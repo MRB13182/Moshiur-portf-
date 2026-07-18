@@ -75,9 +75,9 @@ overflow-x:hidden;
 
 img{
 
-width:100%;
+width:50%;
 display:block;
-
+transform: translateX(80px);
 }
 
 
@@ -2324,42 +2324,49 @@ gap:32px;
 <!--========== S1 : LOADER ==========-->
 <div id="loader">
 
-<div class="loader-wrap">
+  <div class="loader-wrap">
 
-<div class="loader-logo">
-<div class="book">
-<div class="book-left"></div>
-<div class="book-right"></div>
-<div class="book-line"></div>
-</div>
-</div>
+    <div class="logo-ring">
+      <img src="logo.png" alt="Logo">
+    </div>
 
-<h1 class="loader-name">MD. MOSHIUR RAHMAN</h1>
+    <h1 class="loader-name">
+      MD. MOSHIUR <span>RAHMAN</span>
+    </h1>
 
-<p class="loader-sub">
-PREMIUM DIGITAL PORTFOLIO
-</p>
+    <p class="loader-sub">
+      PREMIUM DIGITAL PORTFOLIO
+    </p>
 
-<div class="loader-progress">
+    <div class="loader-progress">
 
-<div class="progress-bar">
-<div class="progress-fill" id="progressFill"></div>
-</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
 
-<div class="progress-info">
-<span id="progressText">0%</span>
-<p>BINDING PAGES</p>
-</div>
+      <div class="progress-info">
+        <span id="progressText">0%</span>
+        <span><h6>INITIALIZING EXPERIENCE</h6></span>
+      </div>
 
-</div>
+    </div>
 
-<p class="loader-footer">
-LUXURY FOLIO • 2026 EDITION
-</p>
+    <div class="loader-status">
+      Loading Assets...
+    </div>
+
+    <div class="loader-line"></div>
+
+    <p class="loader-footer">
+      LUXURY EDITION • DESIGNED WITH PRECISION
+    </p>
+
+  </div>
 
 </div>
 
 </div><!--========== S2 : HERO ==========-->
+
 
 <section id="hero">
 
@@ -2368,11 +2375,12 @@ LUXURY FOLIO • 2026 EDITION
 <header class="navbar">
 
 <div class="nav-logo">
-<span>MR</span>
+<img src="logo.png" alt="Profile">
 </div>
 
 <div class="nav-name">
-MOSHIUR
+MOSHIUR <br>
+<h>RAHMAN</h6>
 </div>
 
 <div class="nav-actions">
@@ -2381,9 +2389,6 @@ MOSHIUR
 ☀
 </button>
 
-<button>
-🔇
-</button>
 
 <button class="menu-btn">
 ☰
