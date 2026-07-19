@@ -1,580 +1,502 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>EduPay Pico — Smart Coaching Payment Manager</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MD. Moshiur Rahman — Full Stack Developer</title>
+<meta name="description" content="Portfolio of MD. Moshiur Rahman, Full Stack Developer & UI Engineer.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
-<div id="app">
+<canvas id="bg-canvas"></canvas>
 
-  <!-- ============ HEADER ============ -->
-<!-- =========================
-     TOP HEADER
-========================== -->
-<header class="topbar">
+<!-- ============ HEADER ============ -->
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark">MR</span>
+      <span class="brand-name">Moshiur<span class="brand-dot">.</span></span>
+    </a>
 
-    <!-- Left -->
-<div class="hdr-left">
+    <nav class="nav-links" id="nav-links">
+      <a href="#home" class="nav-link active" data-nav>Home</a>
+      <a href="#about" class="nav-link" data-nav>About</a>
+      <a href="#journey" class="nav-link" data-nav>Journey</a>
+      <a href="#services" class="nav-link" data-nav>Services</a>
+      <a href="#skills" class="nav-link" data-nav>Skills</a>
+      <a href="#projects" class="nav-link" data-nav>Projects</a>
+      <a href="#aspirations" class="nav-link" data-nav>Aspirations</a>
+      <a href="#contact" class="nav-link" data-nav>Contact</a>
+    </nav>
 
-    <button class="icon-btn hamburger" id="btnHamburger">
-        ☰
-    </button>
-
-    <div class="brand-wrap">
-
-<img src="paypico.png" class="logo-img" alt="EduPay Pico">
-
-        <div class="brand-info">
-
-            <h1 class="brand-title">
-                EduPay <span>PICO</span>
-            </h1>
-
-            <p class="brand-sub">
-                Smart Coaching Payment Manager
-            </p>
-
-        </div>
-
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle bright / dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-
-</div>
-
-    <!-- Right -->
-    <div class="hdr-right">
-
-        <div class="clock-wrap">
-            <div class="clock-time" id="clockTime">--:--</div>
-            <div class="clock-date" id="clockDate">-- --- ----</div>
-        </div>
-
-        <div class="rel">
-            <button class="icon-btn notif-btn" id="btnNotif">
-                🔔
-                <span class="badge-dot" id="notifDot"></span>
-            </button>
-
-            <div class="dropdown glass" id="notifDropdown">
-                <div class="dropdown-head">Notifications</div>
-                <div id="notifList">
-                    <div class="dropdown-empty">
-                        No notifications.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="rel">
-
-            <button class="profile-chip" id="btnProfile">
-
-                <div class="avatar" id="avatarInit">
-                    S
-                </div>
-
-                <div class="profile-info">
-                    <span class="profile-name" id="profileNameTxt">
-                        Student
-                    </span>
-
-                    <small>Active</small>
-                </div>
-
-            </button>
-
-            <div class="dropdown glass" id="profileDropdown">
-
-                <button class="dropdown-item" id="miEditName">
-                    ✏️ Edit Name
-                </button>
-
-                <button class="dropdown-item" id="miAbout">
-                    ℹ️ About
-                </button>
-
-                <button class="dropdown-item danger" id="miLogout">
-                    🚪 Logout
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
+  </div>
 </header>
 
-  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<main>
 
-  <!-- ============ SIDEBAR ============ -->
-  <nav class="sidebar" id="sidebar">
-    <div class="nav-item active" data-page="dashboard"><span class="ic">📊</span> Dashboard</div>
-    <div class="nav-item" data-page="subjects"><span class="ic">📚</span> Subjects</div>
-    <div class="nav-item" data-page="payment"><span class="ic">💳</span> Payment</div>
-    <div class="nav-item" data-page="status"><span class="ic">📋</span> Status</div>
-    <div class="nav-item" data-page="receipt"><span class="ic">🧾</span> Receipt</div>
-    <div class="nav-item" data-page="about"><span class="ic">ℹ️</span> About</div>
-    <div class="nav-item" data-page="developer"><span class="ic">👨‍💻</span> Developer</div>
-    <div class="sidebar-foot">
-      <div class="nav-item" id="navLogout"><span class="ic">🚪</span> Logout</div>
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="eyebrow-dot"></span>Available for select projects</p>
+        <h1 class="hero-title">
+          MD. MOSHIUR<br>RAHMAN
+        </h1>
+        <p class="hero-role">
+          Full Stack Developer &amp; UI Engineer —
+          <span id="role-rotator" class="role-rotator"></span><span class="cursor">|</span>
+        </p>
+        <p class="hero-desc">
+          I design and build fast, dependable web products — from
+          pixel-considered interfaces to the systems that run behind them.
+          Based in Dhaka, Bangladesh, working with teams worldwide.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-outline">Start a Conversation</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><span class="hero-stat-num" data-count="40">0</span><span class="hero-stat-label">Projects Shipped</span></div>
+          <div class="hero-stat"><span class="hero-stat-num" data-count="5">0</span><span class="hero-stat-label">Years Building</span></div>
+          <div class="hero-stat"><span class="hero-stat-num" data-count="18">0</span><span class="hero-stat-label">Happy Clients</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="orbit-badge">
+          <div class="orbit-ring ring-1"></div>
+          <div class="orbit-ring ring-2"></div>
+          <div class="orbit-ring ring-3"></div>
+          <div class="orbit-core">
+            <span><div class="profile-box">
+<img src="logo.png" alt="Profile"></span>
+          </div>
+          <span class="orbit-chip chip-1">React</span>
+          <span class="orbit-chip chip-2">Node.js</span>
+          <span class="orbit-chip chip-3">UI/UX</span>
+        </div>
+      </div>
     </div>
-  </nav>
 
-  <!-- ============ MAIN ============ -->
-  <main>
+    <a href="#about" class="scroll-cue" aria-label="Scroll to About">
+      <span class="scroll-cue-dot"></span>
+    </a>
+  </section>
 
-    <!-- ---------------- DASHBOARD ---------------- -->
-    <section class="page active" id="page-dashboard">
-      <div class="page-head">
-        <div>
-          <div class="page-title">Welcome back 👋</div>
-          <div class="page-sub" id="dashSubtitle">Here's your coaching payment overview.</div>
-        </div>
-        <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <button class="btn btn-gold" data-action="quick-add-subject">➕ Add Subject</button>
-          <button class="btn" data-action="quick-pay">💳 Pay Now</button>
-          <button class="btn" data-action="quick-receipt">🧾 Generate Receipt</button>
-        </div>
-      </div>
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <div class="section-inner">
+      <p class="section-eyebrow">About Me</p>
+      <h2 class="section-title">The person behind the code</h2>
 
-      <div class="grid g4" style="margin-bottom:16px;">
-        <div class="glass card stat-card">
-          <div class="stat-top"><span class="stat-label">Available Subjects</span><div class="stat-ic" style="background:var(--teal-soft); color:var(--teal);">📚</div></div>
-          <div class="stat-value" id="statSubjects">0</div>
-          <div class="stat-sub">Active coaching subjects</div>
+      <div class="about-grid">
+        <div class="about-profile card glass reveal">
+<div class="profile-box">
+<img src="me.png" alt="Profile">
+          <h3>MD. Moshiur Rahman</h3>
+          <p class="muted">Full Stack Developer</p>
+          <p class="about-bio">
+            I've spent the last several years turning fuzzy product ideas into
+            interfaces people actually enjoy using, and back-end systems that
+            don't fall over when it matters. I care about clean architecture,
+            considered detail, and shipping things that hold up.
+          </p>
+          <div class="about-tags">
+            <span class="tag">Problem Solver</span>
+            <span class="tag">Detail-Oriented</span>
+            <span class="tag">Lifelong Learner</span>
+          </div>
         </div>
-        <div class="glass card stat-card">
-          <div class="stat-top"><span class="stat-label">Overall Payment</span><div class="stat-ic" style="background:var(--gold-soft); color:var(--gold);">💰</div></div>
-          <div class="stat-value" id="statOverall">৳0</div>
-          <div class="stat-sub">Total billed to date</div>
-        </div>
-        <div class="glass card stat-card">
-          <div class="stat-top"><span class="stat-label">Overall Due</span><div class="stat-ic" style="background:var(--coral-soft); color:var(--coral);">⏳</div></div>
-          <div class="stat-value" id="statDue">৳0</div>
-          <div class="stat-sub">Pending across subjects</div>
-        </div>
-        <div class="glass card stat-card">
-          <div class="stat-top"><span class="stat-label">Overall Paid</span><div class="stat-ic" style="background:var(--teal-soft); color:var(--teal);">✅</div></div>
-          <div class="stat-value" id="statPaid">৳0</div>
-          <div class="stat-sub">Successfully settled</div>
-        </div>
-      </div>
 
-      <div class="grid g3" style="margin-bottom:16px; align-items:start;">
-        <div class="glass card">
-          <div class="section-title">🌀 Payment Progress</div>
-          <div class="ring-wrap">
-            <div class="ring" id="progressRing"><span class="ring-val" id="progressVal">0%</span></div>
+        <div class="about-info">
+          <div class="info-card card glass reveal">
+            <span class="info-icon">📍</span>
             <div>
-              <div style="font-size:.78rem; color:var(--text-dim);">of total billed amount has been collected across all active subjects.</div>
+              <h4>Location</h4>
+              <p class="muted">Dhaka, Bangladesh</p>
+            </div>
+          </div>
+          <div class="info-card card glass reveal">
+            <span class="info-icon">🎓</span>
+            <div>
+              <h4>Focus</h4>
+              <p class="muted">Web Applications &amp; Product UI</p>
+            </div>
+          </div>
+          <div class="info-card card glass reveal">
+            <span class="info-icon">🛠️</span>
+            <div>
+              <h4>Stack</h4>
+              <p class="muted">JavaScript, React, Node.js</p>
+            </div>
+          </div>
+          <div class="info-card card glass reveal">
+            <span class="info-icon">🕐</span>
+            <div>
+              <h4>Availability</h4>
+              <p class="muted">Open to freelance &amp; full-time</p>
             </div>
           </div>
         </div>
-        <div class="glass card">
-          <div class="section-title">📈 Subject Wise Summary</div>
-          <div id="subjectBars"><div class="list-empty"><span class="em-ic">📭</span>No subjects yet</div></div>
-        </div>
-        <div class="glass card">
-          <div class="section-title">📅 Monthly Collection</div>
-          <div class="month-chart" id="monthChart"></div>
-        </div>
       </div>
-
-      <div class="grid g3">
-        <div class="glass card">
-          <div class="section-title">🕑 Recent Payment</div>
-          <div id="recentPayments"><div class="list-empty"><span class="em-ic">💤</span>No payments yet</div></div>
-        </div>
-        <div class="glass card">
-          <div class="section-title">⚡ Recent Activity</div>
-          <div id="recentActivity"><div class="list-empty"><span class="em-ic">🗒️</span>No activity yet</div></div>
-        </div>
-        <div class="glass card">
-          <div class="section-title">🔔 Upcoming Due</div>
-          <div id="upcomingDue"><div class="list-empty"><span class="em-ic">🎉</span>All caught up</div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ---------------- SUBJECTS ---------------- -->
-    <section class="page" id="page-subjects">
-      <div class="page-head">
-        <div>
-          <div class="page-title">Subjects</div>
-          <div class="page-sub">Manage your coaching subjects &amp; teachers.</div>
-        </div>
-        <button class="btn btn-gold" id="btnAddSubject">➕ Add Subject</button>
-      </div>
-      <div class="toolbar">
-        <div class="search-wrap"><span class="search-ic">🔍</span><input class="input" id="subjSearch" placeholder="Search subject or teacher..."></div>
-        <select class="input" id="subjFilterStatus" style="max-width:170px;">
-          <option value="">All Status</option>
-          <option value="Active">Active</option>
-          <option value="Inactive">Inactive</option>
-        </select>
-      </div>
-      <div class="grid g3" id="subjectList"></div>
-    </section>
-
-    <!-- ---------------- PAYMENT ---------------- -->
-    <section class="page" id="page-payment">
-      <div class="page-head">
-        <div>
-          <div class="page-title">Payment</div>
-          <div class="page-sub">Select a subject and settle unpaid months.</div>
-        </div>
-      </div>
-      <div class="glass card" style="max-width:640px; margin-bottom:16px;">
-        <div class="field">
-          <label>Select Subject</label>
-          <select class="input" id="paySubjectSelect"><option value="">-- choose subject --</option></select>
-        </div>
-        <div id="payDetails" style="display:none;">
-          <div class="grid g2" style="margin-bottom:14px;">
-            <div class="glass card" style="padding:14px;">
-              <div class="stat-label">Teacher</div>
-              <div style="font-weight:700; margin-top:4px;" id="payTeacher">-</div>
-            </div>
-            <div class="glass card" style="padding:14px;">
-              <div class="stat-label">Monthly Salary</div>
-              <div style="font-weight:700; margin-top:4px;" id="paySalary">-</div>
-            </div>
-            <div class="glass card" style="padding:14px;">
-              <div class="stat-label">Paid Months</div>
-              <div style="font-weight:700; margin-top:4px;" id="payPaidCount">-</div>
-            </div>
-            <div class="glass card" style="padding:14px;">
-              <div class="stat-label">Due Months</div>
-              <div style="font-weight:700; margin-top:4px; color:var(--coral);" id="payDueCount">-</div>
-            </div>
-          </div>
-          <div class="field"><label>Current Running Month</label><div class="chip chip-gray" id="payCurrentMonth">-</div></div>
-<div class="field">
-    <label>Month Select to Pay</label>
-    <div class="month-check-list" id="payMonthList"></div>
-</div>
-
-<div class="field-row">
-            <div class="field"><label>Payment Date</label><input type="date" class="input" id="payDate"></div>
-            <div class="field"><label>Payment Method</label>
-              <select class="input" id="payMethod"><option>Cash</option><option>Bank Transfer</option><option>Mobile Banking</option><option>Card</option></select>
-            </div>
-          </div>
-          <div class="field"><label>Notes (optional)</label><textarea class="textarea" id="payNotes" placeholder="Add a note..."></textarea></div>
-          <div class="glass card" style="padding:14px; display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-            <span class="stat-label">Total Amount</span>
-            <span class="stat-value" style="font-size:1.3rem;" id="payAmount">৳0</span>
-          </div>
-          <button class="btn btn-gold btn-block" id="btnConfirmPay">✅ Confirm Payment</button>
-        </div>
-    </section>
-
-    <!-- ---------------- STATUS ---------------- -->
-    <section class="page" id="page-status">
-      <div class="page-head">
-        <div>
-          <div class="page-title">Status</div>
-          <div class="page-sub">Payment status across all subjects.</div>
-        </div>
-      </div>
-      <div class="grid g2" style="margin-bottom:16px;">
-        <div class="glass card stat-card"><div class="stat-label">Total Paid</div><div class="stat-value" id="statusTotalPaid" style="color:var(--teal);">৳0</div></div>
-        <div class="glass card stat-card"><div class="stat-label">Total Due</div><div class="stat-value" id="statusTotalDue" style="color:var(--coral);">৳0</div></div>
-      </div>
-      <div class="toolbar">
-        <div class="search-wrap"><span class="search-ic">🔍</span><input class="input" id="statusSearch" placeholder="Search subject or teacher..."></div>
-        <select class="input" id="statusFilter" style="max-width:160px;">
-          <option value="">All</option>
-          <option value="Paid">Paid</option>
-          <option value="Partial">Partial</option>
-          <option value="Due">Due</option>
-        </select>
-      </div>
-      <div class="glass card table-wrap">
-        <table class="data" id="statusTable">
-          <thead><tr>
-            <th data-sort="name">Subject</th><th data-sort="teacher">Teacher</th><th data-sort="salary">Salary</th>
-            <th data-sort="paid">Paid</th><th data-sort="due">Due</th><th>Current Month</th><th>Status</th>
-          </tr></thead>
-          <tbody id="statusBody"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ---------------- RECEIPT ---------------- -->
-    <section class="page" id="page-receipt">
-      <div class="page-head">
-        <div>
-          <div class="page-title">Receipt</div>
-          <div class="page-sub">Generate subject-wise or overall receipts.</div>
-        </div>
-      </div>
-      <div class="receipt-tabs">
-        <button class="tab-btn active" data-rtab="subject">Subject Wise</button>
-        <button class="tab-btn" data-rtab="overall">Overall</button>
-        <button class="tab-btn" data-rtab="history">History</button>
-      </div>
-
-      <div id="rtab-subject">
-        <div class="glass card" style="max-width:520px; margin-bottom:16px;">
-          <div class="field"><label>Select Subject</label><select class="input" id="rcSubjectSelect"><option value="">-- choose subject --</option></select></div>
-          <div class="field"><label>Select Payment Record</label><select class="input" id="rcPaymentSelect"><option value="">-- choose payment --</option></select></div>
-          <button class="btn btn-gold btn-block" id="btnGenSubjectReceipt">🧾 Generate Receipt</button>
-        </div>
-      </div>
-      <div id="rtab-overall" style="display:none;">
-        <div class="glass card" style="max-width:520px; margin-bottom:16px;">
-          <p style="font-size:.82rem; color:var(--text-dim); margin-bottom:14px;">Generates a consolidated receipt covering every subject's paid &amp; due amount as of today.</p>
-          <button class="btn btn-gold btn-block" id="btnGenOverallReceipt">🧾 Generate Overall Receipt</button>
-        </div>
-      </div>
-      <div id="rtab-history" style="display:none;">
-        <div id="receiptHistory" class="grid g3"></div>
-      </div>
-
-      <div id="receiptPreviewWrap" style="display:none; max-width:560px;">
-        <div class="receipt-preview" id="receiptPreview"></div>
-        <div style="display:flex; gap:10px; margin-top:14px;">
-          <button class="btn btn-gold" id="btnDownloadPdf">⬇️ Download PDF</button>
-          <button class="btn" id="btnPrintReceipt">🖨️ Print</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ---------------- ABOUT ---------------- -->
-    <section class="page" id="page-about">
-      <div class="page-head"><div><div class="page-title">About EduPay Pico</div><div class="page-sub">Smart Coaching Payment Manager</div></div></div>
-      <div class="grid g2">
-        <div class="glass card">
-          <div class="section-title">📦 Version</div>
-          <p style="font-size:.85rem; color:var(--text-dim);">EduPay Pico v1.0.0 — a fully offline-first, single-file payment manager for coaching centers.</p>
-        </div>
-        <div class="glass card">
-          <div class="section-title">🎯 Purpose</div>
-          <p style="font-size:.85rem; color:var(--text-dim);">Helps students and guardians track subject-wise coaching fees, monthly dues, and generate professional receipts — all stored locally on your device.</p>
-        </div>
-        <div class="glass card">
-          <div class="section-title">✨ Features</div>
-          <div class="days-row">
-            <span class="day-pill">Subject Manager</span><span class="day-pill">Auto Due Tracking</span>
-            <span class="day-pill">Receipts</span><span class="day-pill">PDF Export</span>
-            <span class="day-pill">Backups</span><span class="day-pill">Live Search</span>
-          </div>
-        </div>
-        <div class="glass card">
-          <div class="section-title">📖 How To Use</div>
-          <p style="font-size:.85rem; color:var(--text-dim);">1. Add a subject with schedule &amp; fee. 2. Visit Payment to settle due months. 3. Generate a receipt anytime from the Receipt page.</p>
-        </div>
-      </div>
-      <div class="glass card" style="margin-top:16px;">
-        <div class="section-title">🔗 Links</div>
-        <div class="social-row">
-          <a class="btn btn-sm" href="#" onclick="return false;">📘 Facebook</a>
-          <a class="btn btn-sm" href="#" onclick="return false;">💻 GitHub</a>
-          <a class="btn btn-sm" href="mailto:hello@edupaypico.app">✉️ Email</a>
-          <a class="btn btn-sm" href="#" onclick="return false;">🌐 Website</a>
-        </div>
-      </div>
-      <div class="glass card" style="margin-top:16px;">
-        <div class="section-title">💾 Data Management</div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <button class="btn" id="btnExportJson">⬇️ Download JSON Backup</button>
-          <button class="btn" id="btnImportJsonTrigger">⬆️ Import JSON</button>
-          <input type="file" id="importFileInput" accept=".json" style="display:none;">
-          <button class="btn btn-danger" id="btnResetDb">🗑️ Reset Database</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ---------------- DEVELOPER ---------------- -->
-<section class="page" id="page-developer">
-
-<div class="glass card" style="padding:28px;overflow:hidden;">
-
-    <div style="font-size:12px;
-    letter-spacing:4px;
-    color:var(--gold);
-    text-transform:uppercase;
-    margin-bottom:8px;">
-        Established 2026
     </div>
+  </section>
 
-    <div style="font-size:12px;
-    color:var(--text-faint);
-    letter-spacing:3px;
-    margin-bottom:45px;">
-        MD. MOSHIUR RAHMAN
+  <!-- ============ DEVELOPER JOURNEY ============ -->
+  <section class="section" id="journey">
+    <div class="section-inner">
+      <p class="section-eyebrow">Developer Journey</p>
+      <h2 class="section-title">How I got here</h2>
+
+      <div class="timeline">
+
+        <div class="timeline-item reveal">
+          <span class="timeline-index">01</span>
+          <div class="timeline-content card glass">
+            <span class="timeline-year">Year One</span>
+            <h4>Wrote the first line of code</h4>
+            <p class="muted">Started with HTML &amp; CSS, curious how websites actually worked — then fell down the rabbit hole of JavaScript.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <span class="timeline-index">02</span>
+          <div class="timeline-content card glass">
+            <span class="timeline-year">Year Two</span>
+            <h4>First freelance projects</h4>
+            <p class="muted">Built small business sites and landing pages, learning to work directly with real clients and real deadlines.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <span class="timeline-index">03</span>
+          <div class="timeline-content card glass">
+            <span class="timeline-year">Year Three</span>
+            <h4>Went full stack</h4>
+            <p class="muted">Picked up Node.js and databases to own entire products end-to-end, not just the interface layer.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <span class="timeline-index">04</span>
+          <div class="timeline-content card glass">
+            <span class="timeline-year">Year Four</span>
+            <h4>Joined a product team</h4>
+            <p class="muted">Worked inside a larger engineering team, shipping features at scale and learning what "production-ready" really means.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <span class="timeline-index">05</span>
+          <div class="timeline-content card glass">
+            <span class="timeline-year">Today</span>
+            <h4>Building independently</h4>
+            <p class="muted">Now taking on select freelance &amp; contract work, focused on craft, performance, and long-term product thinking.</p>
+          </div>
+        </div>
+
+      </div>
     </div>
+  </section>
 
-    <h1 style="
-    font-size:42px;
-    line-height:1.1;
-    margin-bottom:25px;
-    font-family:var(--font-d);
-    color:#f4d88a;">
-        MD. Moshiur<br>Rahman
-    </h1>
+  <!-- ============ SERVICES ============ -->
+  <section class="section" id="services">
+    <div class="section-inner">
+      <p class="section-eyebrow">Services</p>
+      <h2 class="section-title">What I can build for you</h2>
 
-    <div style="
-    border-left:4px solid var(--gold);
-    padding-left:15px;
-    margin-bottom:28px;">
+      <div class="services-grid">
+        <div class="service-card card glass reveal">
+          <span class="service-icon">🖥️</span>
+          <h3>Web Development</h3>
+          <p class="muted">Responsive, fast, accessible websites and web apps built on modern frameworks.</p>
+        </div>
+        <div class="service-card card glass reveal">
+          <span class="service-icon">🎨</span>
+          <h3>UI / UX Design</h3>
+          <p class="muted">Interfaces that are considered from the first wireframe to the final pixel.</p>
+        </div>
+        <div class="service-card card glass reveal">
+          <span class="service-icon">🔌</span>
+          <h3>API Development</h3>
+          <p class="muted">Secure, well-documented REST &amp; GraphQL APIs that scale with your product.</p>
+        </div>
+        <div class="service-card card glass reveal">
+          <span class="service-icon">⚡</span>
+          <h3>Performance Optimization</h3>
+          <p class="muted">Faster load times, smoother interactions, and leaner bundles — measured, not guessed.</p>
+        </div>
+        <div class="service-card card glass reveal">
+          <span class="service-icon">🧩</span>
+          <h3>Maintenance &amp; Support</h3>
+          <p class="muted">Ongoing updates, bug fixes, and monitoring so your product keeps running smoothly.</p>
+        </div>
+        <div class="service-card card glass reveal">
+          <span class="service-icon">💬</span>
+          <h3>Technical Consulting</h3>
+          <p class="muted">Architecture reviews and technology guidance before you commit to a direction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <h3>Student</h3>
-        <h3>Frontend Web Developer</h3>
-        <h3>UI Designer</h3>
+  <!-- ============ SKILLS ============ -->
+  <section class="section" id="skills">
+    <div class="section-inner">
+      <p class="section-eyebrow">Skills</p>
+      <h2 class="section-title">Tools of the trade</h2>
+
+      <div class="skills-grid">
+        <div class="skill-group card glass reveal">
+          <h3>Frontend</h3>
+          <div class="skill-row" data-skill="82"><span>HTML &amp; CSS</span><span class="skill-pct">0%</span><div class="skill-track"><div class="skill-fill"></div></div></div>
+          <div class="skill-row" data-skill="88"><span>JavaScript</span><span class="skill-pct">0%</span><div class="skill-track"><div class="skill-fill"></div></div></div>
+          <div class="skill-row" data-skill="85"><span>React</span><span class="skill-pct">0%</span><div class="skill-track"><div class="skill-fill"></div></div></div>
+          <div class="skill-row" data-skill="70"><span>TypeScript</span><span class="skill-pct">0%</span><div class="skill-track"><div class="skill-fill"></div></div></div>
+        </div>
+
+        <div class="skill-group card glass reveal">
+          <h3>Backend</h3>
+          <div class="skill-row" data-skill="84"><span>Node.js &amp; Express</span><span class="skill-pct">0%</span><div class="skill-track"><div class="skill-fill"></div></div></div>
+          <div class="skill-row" data-skill="75"><span>MongoDB</span><span class="skill-pct">0%</span><div class="skill-track"><div class="skill-fill"></div></div></div>
+          <div class="skill-row" data-skill="72"><span>PostgreSQL</span><span class="skill-pct">0%</span><div class="skill-track"><div class="skill-fill"></div></div></div>
+          <div class="skill-row" data-skill="65"><span>REST &amp; GraphQL APIs</span><span class="skill-pct">0%</span><div class="skill-track"><div class="skill-fill"></div></div></div>
+        </div>
+
+        <div class="skill-group card glass reveal">
+          <h3>Tools &amp; Workflow</h3>
+          <div class="skill-row" data-skill="90"><span>Git &amp; GitHub</span><span class="skill-pct">0%</span><div class="skill-track"><div class="skill-fill"></div></div></div>
+          <div class="skill-row" data-skill="78"><span>Figma</span><span class="skill-pct">0%</span><div class="skill-track"><div class="skill-fill"></div></div></div>
+          <div class="skill-row" data-skill="68"><span>Docker</span><span class="skill-pct">0%</span><div class="skill-track"><div class="skill-fill"></div></div></div>
+          <div class="skill-row" data-skill="80"><span>Testing &amp; CI/CD</span><span class="skill-pct">0%</span><div class="skill-track"><div class="skill-fill"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+<section class="section" id="projects">
+  <div class="section-inner">
+
+    <p class="section-eyebrow">Projects</p>
+    <h2 class="section-title">Featured Projects</h2>
+
+    <div class="projects-grid">
+
+      <!-- Study Flow -->
+      <article class="project-card card glass reveal">
+
+        <div class="project-media">
+          <img 
+            src="study.png"
+            alt="Study Flow Project">
+        </div>
+
+        <div class="project-body">
+
+          <h3>Study Flow</h3>
+
+          <p class="muted">
+            A smart study management platform that helps students organize
+            courses, manage notes, track progress and improve productivity.
+          </p>
+
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Firebase</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="#" class="btn btn-small btn-primary">
+              See Project
+            </a>
+
+            <a href="#" class="btn btn-small btn-outline">
+              Source Code
+            </a>
+          </div>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- EduPay -->
+      <article class="project-card card glass reveal">
+
+        <div class="project-media">
+          <img 
+            src="edupay.png"
+            alt="EduPay Project">
+        </div>
+
+        <div class="project-body">
+
+          <h3>EduPay</h3>
+
+          <p class="muted">
+            A digital education payment platform for managing student fees,
+            secure transactions, payment history and account management.
+          </p>
+
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Firebase Auth</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="#" class="btn btn-small btn-primary">
+             See Project
+            </a>
+
+            <a href="#" class="btn btn-small btn-outline">
+              Source Code
+            </a>
+          </div>
+
+        </div>
+
+      </article>
+
 
     </div>
 
-    <p style="
-    color:var(--text-dim);
-    line-height:1.8;
-    margin-bottom:40px;">
-
-        "I enjoy creating elegant websites with clean interfaces and smooth user experiences.
-        Every project is built with creativity, attention to detail, and a passion for modern web design."
-
-    </p>
-
-<a href="https://moshiur-port.netlify.app/" class="btn btn-gold btn-block">
-    🚀 Explore My Portfolio
-</a>
-</div>
-
-<div class="grid g2" style="margin-top:20px;">
-
-<div class="glass card">
-<h3>Skills</h3>
-<div class="days-row" style="margin-top:15px;">
-<span class="day-pill">HTML5</span>
-<span class="day-pill">CSS3</span>
-<span class="day-pill">JavaScript</span>
-<span class="day-pill">Firebase</span>
-<span class="day-pill">UI/UX</span>
-<span class="day-pill">Responsive Design</span>
-</div>
-</div>
-
-<div class="glass card">
-<h3>Projects</h3>
-
-<div class="row-item">
-<span>💳 EduPay Pico</span>
-<span>v1.0</span>
-</div>
-
-<div class="row-item">
-<span>📚 GolpoX</span>
-<span>Live</span>
-</div>
-
-<div class="row-item">
-<span>🌐 Portfolio</span>
-<span>2026</span>
-</div>
-
-</div>
-
-<div class="glass card">
-<h3>Social</h3>
-
-<div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:15px;">
-
-<button class="btn btn-sm">🌐 Portfolio</button>
-
-<button class="btn btn-sm">📘 Facebook</button>
-
-<button class="btn btn-sm">💻 GitHub</button>
-
-<button class="btn btn-sm">✉️ Email</button>
-
-</div>
-
-</div>
-
-<div class="glass card">
-
-<h3>About Developer</h3>
-
-<p style="margin-top:15px;color:var(--text-dim);line-height:1.8;">
-
-Frontend developer passionate about creating premium web applications with modern UI, smooth animations and clean architecture.
-
-</p>
-
-</div>
-
-</div>
-
+  </div>
 </section>
+  <!-- ============ HISTORY & ASPIRATIONS ============ -->
+  <section class="section" id="aspirations">
+    <div class="section-inner">
+      <p class="section-eyebrow">History &amp; Aspirations</p>
+      <h2 class="section-title">Where I started, where I'm headed</h2>
 
-  </main>
-</div>
+      <div class="aspirations-grid">
+        <div class="aspirations-col card glass reveal">
+          <h3>Where I started</h3>
+          <p class="muted">
+            I began writing code out of curiosity, not certainty — taking apart
+            simple web pages to understand how they worked. That curiosity
+            turned into freelance work, then into full-time engineering roles
+            where I learned to build things that other people actually depend on.
+          </p>
+        </div>
+        <div class="aspirations-col card glass reveal">
+          <h3>Where I'm headed</h3>
+          <ul class="aspiration-list">
+            <li>Build and ship a product of my own, end to end</li>
+            <li>Mentor developers earlier in their journey</li>
+            <li>Go deeper into system design and scalable architecture</li>
+            <li>Keep working with teams that care about craft</li>
+          </ul>
+        </div>
+      </div>
 
-<!-- ============ MODAL: ADD/EDIT SUBJECT ============ -->
-<div class="modal-overlay" id="subjectModal">
-  <div class="modal-box glass">
-    <div class="modal-head"><div class="modal-title" id="subjectModalTitle">Add Subject</div><div class="close-x" data-close="subjectModal">✕</div></div>
-    <input type="hidden" id="subjEditId">
-    <div class="field"><label>Subject Name</label><input class="input" id="subjName" placeholder="e.g. Physics"></div>
-    <div class="field"><label>Teacher Name</label><input class="input" id="subjTeacher" placeholder="e.g. Mr. Karim"></div>
-    <div class="field"><label>Monthly Salary (৳)</label><input type="number" class="input" id="subjSalary" placeholder="e.g. 1500" min="0"></div>
-    <div class="field">
-      <label>Select Days</label>
-      <div class="checkbox-grid" id="dayCheckboxes"></div>
+      <blockquote class="quote reveal">
+        "Good software is never finished by accident — it's the result of
+        paying attention to the details no one asked you to."
+      </blockquote>
     </div>
-    <div class="field-row">
-      <div class="field"><label>Start Time</label><input type="time" class="input" id="subjStart"></div>
-      <div class="field"><label>End Time</label><input type="time" class="input" id="subjEnd"></div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section" id="contact">
+    <div class="section-inner">
+      <p class="section-eyebrow">Contact</p>
+      <h2 class="section-title">Let's build something</h2>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p class="muted contact-lead">
+            Have a project in mind, or just want to talk shop? My inbox is open.
+          </p>
+          <a class="contact-item" href="mailto:moshiur.rahman.dev@gmail.com">
+            <span class="info-icon">✉️</span>
+            <div><h4>Email</h4><p class="muted">moshiur.rahman.dev@gmail.com</p></div>
+          </a>
+          <a class="contact-item" href="tel:+8801000000000">
+            <span class="info-icon">📱</span>
+            <div><h4>Phone</h4><p class="muted">+880 1000-000000</p></div>
+          </a>
+          <div class="contact-item">
+            <span class="info-icon">📍</span>
+            <div><h4>Location</h4><p class="muted">Dhaka, Bangladesh</p></div>
+          </div>
+
+          <div class="social-row">
+            <a href="#" class="social-btn" aria-label="GitHub">GH</a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">IN</a>
+            <a href="#" class="social-btn" aria-label="Twitter / X">X</a>
+            <a href="#" class="social-btn" aria-label="Facebook">FB</a>
+          </div>
+        </div>
+
+        <form class="contact-form card glass" id="contact-form">
+          <label class="field">
+            <span>Name</span>
+            <input type="text" id="cf-name" name="name" placeholder="Your name" required>
+          </label>
+          <label class="field">
+            <span>Email</span>
+            <input type="email" id="cf-email" name="email" placeholder="you@example.com" required>
+          </label>
+          <label class="field">
+            <span>Message</span>
+            <textarea id="cf-message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+          <p class="form-note" id="form-note"></p>
+        </form>
+      </div>
     </div>
-    <div class="field-row">
-      <div class="field"><label>Start Month</label><select class="input" id="subjStartMonth"></select></div>
-      <div class="field"><label>Start Year</label><select class="input" id="subjStartYear"></select></div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark">MR</span>
+      <span class="brand-name">Moshiur<span class="brand-dot">.</span></span>
     </div>
-    <button class="btn btn-sm" id="btnAutoGenDate" style="margin-bottom:14px;">⚡ Auto Generate (Current Month/Year)</button>
-    <div class="field">
-      <label>Status</label>
-      <select class="input" id="subjStatus"><option>Active</option><option>Inactive</option></select>
+    <p class="muted footer-tag">Full Stack Developer &amp; UI Engineer, building from Dhaka, Bangladesh.</p>
+
+    <nav class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="social-row">
+      <a href="#" class="social-btn" aria-label="GitHub">GH</a>
+      <a href="#" class="social-btn" aria-label="LinkedIn">IN</a>
+      <a href="#" class="social-btn" aria-label="Twitter / X">X</a>
+      <a href="#" class="social-btn" aria-label="Facebook">FB</a>
     </div>
-    <div class="modal-foot">
-      <button class="btn btn-block" data-close="subjectModal">Cancel</button>
-      <button class="btn btn-gold btn-block" id="btnSaveSubject">Save</button>
-    </div>
+
+    <p class="muted footer-copy">© <span id="year"></span> MD. Moshiur Rahman. All rights reserved.</p>
   </div>
-</div>
-
-<!-- ============ MODAL: CONFIRM ============ -->
-<div class="modal-overlay" id="confirmModal">
-  <div class="modal-box glass" style="max-width:380px; text-align:center;">
-    <div class="confirm-icon">⚠️</div>
-    <div class="modal-title" id="confirmTitle" style="margin-bottom:6px;">Are you sure?</div>
-    <p style="font-size:.82rem; color:var(--text-dim); margin-bottom:18px;" id="confirmMsg">This action cannot be undone.</p>
-    <div class="modal-foot">
-      <button class="btn btn-block" data-close="confirmModal">Cancel</button>
-      <button class="btn btn-danger btn-block" id="btnConfirmYes">Confirm</button>
-    </div>
-  </div>
-</div>
-
-<!-- ============ MODAL: EDIT NAME ============ -->
-<div class="modal-overlay" id="nameModal">
-  <div class="modal-box glass" style="max-width:380px;">
-    <div class="modal-head"><div class="modal-title">Edit Your Name</div><div class="close-x" data-close="nameModal">✕</div></div>
-    <div class="field"><label>Student Name</label><input class="input" id="studentNameInput" placeholder="Your name"></div>
-    <div class="modal-foot">
-      <button class="btn btn-block" data-close="nameModal">Cancel</button>
-      <button class="btn btn-gold btn-block" id="btnSaveName">Save</button>
-    </div>
-  </div>
-</div>
-
-<div id="toast-stack"></div>
+</footer>
 
 <script src="script.js"></script>
 </body>
