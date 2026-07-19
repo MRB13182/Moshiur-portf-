@@ -434,40 +434,103 @@ main, header, footer{position:relative;z-index:1;}
   100%{opacity:0;}
 }
 
-/* ==========================================================================
-   ABOUT
-   ========================================================================== */
-.about-grid{
-  display:grid;
-  grid-template-columns:.9fr 1.1fr;
-  gap:24px;
-}
-.about-profile{padding:36px;text-align:left;}
-.avatar{
-  width:64px;height:64px;
-  border-radius:18px;
-  display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--primary),var(--accent));
-  color:#fff;
-  font-family:var(--font-display);
-  font-weight:700;
-  margin-bottom:18px;
-  box-shadow:0 12px 30px -10px rgba(37,99,235,.6);
-}
-.about-profile h3{font-family:var(--font-display);font-size:1.3rem;margin-bottom:4px;}
-.about-profile .muted{margin-bottom:16px;}
-.about-bio{margin-bottom:20px;color:var(--text-muted);}
-.about-tags{display:flex;gap:8px;flex-wrap:wrap;}
+/* ================= ABOUT ================= */
 
-.about-info{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-.info-card{
-  padding:22px;
-  display:flex;
-  gap:14px;
-  align-items:flex-start;
+.about-profile{
+    padding:28px;
+    height:460px;
+    overflow:hidden;
+    text-align:center;
 }
-.info-icon{font-size:1.4rem;line-height:1;}
-.info-card h4{font-family:var(--font-display);font-size:1rem;margin-bottom:2px;}
+
+.about-profile .profile-box{
+    display:flex;
+    justify-content:center;
+    margin-bottom:16px;
+}
+
+.about-profile .profile-box img{
+    width:190px;
+    height:190px;
+    object-fit:cover;
+    border-radius:20px;
+}
+
+.about-profile h3{
+    font-size:1.35rem;
+    margin-bottom:6px;
+}
+
+.about-profile .muted{
+    margin-bottom:16px;
+}
+
+.about-bio,
+.about-tags{
+    display:block;
+}
+
+.about-bio{
+    height:95px;
+    overflow-y:auto;
+    padding-right:6px;
+}
+
+.about-tags{
+    margin-top:12px;
+    height:40px;
+    overflow-x:auto;
+    white-space:nowrap;
+}
+
+.about-bio::-webkit-scrollbar,
+.about-tags::-webkit-scrollbar{
+    width:5px;
+    height:5px;
+}
+
+.about-bio::-webkit-scrollbar-thumb,
+.about-tags::-webkit-scrollbar-thumb{
+    background:var(--primary);
+    border-radius:10px;
+}
+
+/* ================= JOURNEY ================= */
+
+.timeline-content{
+    height:260px;
+    overflow-y:auto;
+    padding:22px 26px;
+    scrollbar-width:thin;
+    scrollbar-color:var(--primary) transparent;
+}
+
+.timeline-content::-webkit-scrollbar{
+    width:5px;
+}
+
+.timeline-content::-webkit-scrollbar-thumb{
+    background:var(--primary);
+    border-radius:10px;
+}
+.about-grid{
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:24px;
+}
+
+.about-info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.info-card{
+    padding:22px;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+}
 
 /* ==========================================================================
    JOURNEY / TIMELINE
@@ -559,26 +622,36 @@ main, header, footer{position:relative;z-index:1;}
 /* ==========================================================================
    PROJECTS
    ========================================================================== */
-.projects-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
+.project-icons{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(70px,1fr));
+gap:18px;
+justify-items:center;
 }
-.project-card{overflow:hidden;display:flex;flex-direction:column;}
-.project-media{
-  height:160px;
-  display:grid;place-items:center;
-  background:
-    radial-gradient(circle at 30% 20%, rgba(96,165,250,.35), transparent 60%),
-    linear-gradient(135deg, rgba(37,99,235,.35), rgba(15,23,42,.6));
-  border-bottom:1px solid var(--border);
-}
-.project-glyph{font-size:2.6rem;filter:drop-shadow(0 10px 20px rgba(37,99,235,.5));}
-.project-body{padding:24px;display:flex;flex-direction:column;gap:12px;flex:1;}
-.project-body h3{font-family:var(--font-display);font-size:1.1rem;}
-.project-tags{display:flex;gap:6px;flex-wrap:wrap;}
-.project-actions{display:flex;gap:10px;margin-top:auto;padding-top:6px;}
 
+.project-icon{
+width:70px;
+height:70px;
+padding:10px;
+border-radius:18px;
+background:rgba(255,255,255,.05);
+border:1px solid var(--border);
+display:flex;
+justify-content:center;
+align-items:center;
+transition:.3s;
+}
+
+.project-icon:hover{
+transform:translateY(-5px) scale(1.08);
+border-color:var(--primary);
+}
+
+.project-icon img{
+width:100%;
+height:100%;
+object-fit:contain;
+}
 /* ==========================================================================
    ASPIRATIONS
    ========================================================================== */
@@ -669,13 +742,64 @@ a.contact-item:hover{transform:translateX(4px);}
   padding:56px 24px 32px;
   text-align:center;
 }
-.footer-inner{max-width:600px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:16px;}
-.footer-brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;}
-.footer-tag{max-width:360px;}
-.footer-links{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;font-size:.88rem;color:var(--text-muted);}
-.footer-links a:hover{color:var(--text);}
-.footer-copy{font-size:.8rem;margin-top:8px;}
 
+.footer-inner{
+  max-width:600px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:16px;
+}
+
+.footer-brand{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  font-family:var(--font-display);
+  font-weight:600;
+}
+
+.footer-logo{
+  width:52px;
+  height:52px;
+  object-fit:contain;
+  border-radius:14px;
+  box-shadow:0 8px 20px rgba(37,99,235,.25);
+}
+
+.footer-tag{
+  max-width:360px;
+}
+
+.footer-links{
+  display:flex;
+  gap:22px;
+  flex-wrap:wrap;
+  justify-content:center;
+  font-size:.88rem;
+  color:var(--text-muted);
+}
+
+.footer-links a{
+  color:var(--text-muted);
+  transition:.3s;
+}
+
+.footer-links a:hover{
+  color:var(--text);
+}
+
+.footer-copy{
+  font-size:.8rem;
+  margin-top:8px;
+}
+.footer-brand .brand-name{
+    font-size:1.6rem;
+    font-weight:700;
+    font-family:var(--font-display);
+}
 /* ==========================================================================
    REVEAL ANIMATIONS
    ========================================================================== */
