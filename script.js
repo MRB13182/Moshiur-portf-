@@ -326,3 +326,49 @@ function initContactForm(){
     form.reset();
   });
 }
+/* ===========================
+   Premium Sticky Stack
+=========================== */
+
+const cards = document.querySelectorAll(".skill-card");
+
+function updateCards() {
+
+    const isMobile = window.innerWidth <= 768;
+
+    const trigger = isMobile ? 90 : 130;
+    const moveGap = isMobile ? 4 : 8;
+    const scaleGap = isMobile ? 0.015 : 0.02;
+
+    cards.forEach((card, index) => {
+
+        const rect = card.getBoundingClientRect();
+
+        if (rect.top <= trigger) {
+
+            const scale = Math.max(
+                0.88,
+                1 - ((cards.length - index - 1) * scaleGap)
+            );
+
+            card.style.transform =
+                `translateY(${index * moveGap}px) scale(${scale})`;
+
+            card.style.zIndex = index + 100;
+            card.style.opacity = "1";
+
+        } else {
+
+            card.style.transform =
+                "translateY(0) scale(1)";
+
+            card.style.zIndex = index;
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll", updateCards, { passive: true });
+window.addEventListener("resize", updateCards);
+window.addEventListener("load", updateCards);
