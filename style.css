@@ -859,18 +859,105 @@ object-fit:contain;
 a.contact-item:hover{transform:translateX(4px);}
 .contact-item h4{font-family:var(--font-display);font-size:.98rem;margin-bottom:2px;}
 
-.social-row{display:flex;gap:10px;margin-top:24px;}
-.social-btn{
-  width:38px;height:38px;
-  display:grid;place-items:center;
-  border-radius:50%;
-  border:1px solid var(--border);
-  font-family:var(--font-mono);
-  font-size:.7rem;
-  transition:border-color .3s, transform .3s, color .3s;
+.social-row{
+display:flex;
+align-items:center;
+flex-wrap:wrap;
+gap:12px;
+margin:18px 0 0;
+padding:0;
 }
-.social-btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px);}
 
+.social-btn{
+width:52px;
+height:52px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:16px;
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.15);
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+text-decoration:none;
+color:var(--text-color,#111827);
+transition:all .3s ease;
+}
+
+.social-btn i{
+font-size:22px;
+line-height:1;
+color:currentColor;
+}
+
+.social-btn span{
+display:none;
+}
+
+.social-btn:hover{
+transform:translateY(-4px);
+background:var(--primary-color,#2563eb);
+border-color:transparent;
+color:#fff;
+box-shadow:0 10px 24px rgba(37,99,235,.28);
+}
+
+.social-btn:hover i{
+color:#fff;
+}
+
+/* Dark Mode */
+html.dark .social-btn,
+body.dark .social-btn,
+[data-theme="dark"] .social-btn,
+body.dark-mode .social-btn{
+background:rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.12);
+color:#fff;
+}
+
+html.dark .social-btn i,
+body.dark .social-btn i,
+[data-theme="dark"] .social-btn i,
+body.dark-mode .social-btn i{
+color:#fff !important;
+}
+
+/* Light Mode */
+html.light .social-btn,
+body.light .social-btn,
+[data-theme="light"] .social-btn,
+body.light-mode .social-btn{
+color:#111827;
+}
+
+html.light .social-btn i,
+body.light .social-btn i,
+[data-theme="light"] .social-btn i,
+body.light-mode .social-btn i{
+color:#111827 !important;
+}
+
+/* Brand Hover */
+.github:hover{background:#24292f;}
+.instagram:hover{background:#E1306C;}
+.facebook:hover{background:#1877F2;}
+.telegram:hover{background:#229ED9;}
+.whatsapp:hover{background:#25D366;}
+
+@media(max-width:600px){
+.social-row{
+gap:10px;
+}
+.social-btn{
+width:48px;
+height:48px;
+border-radius:14px;
+}
+.social-btn i{
+font-size:20px;
+}
+}
 .contact-form{padding:32px;display:flex;flex-direction:column;gap:18px;}
 .field{display:flex;flex-direction:column;gap:8px;font-size:.85rem;color:var(--text-muted);}
 .field input,.field textarea{
