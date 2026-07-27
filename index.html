@@ -1,603 +1,487 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MD. Moshiur Rahman — Full Stack Developer</title>
-<meta name="description" content="Portfolio of MD. Moshiur Rahman, Full Stack Developer & UI Engineer.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MD. Moshiur Rahman — Full Stack Developer & UI Engineer</title>
+  <meta name="description" content="Portfolio of MD. Moshiur Rahman, Full Stack Developer & UI Engineer building fast, dependable web products.">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <!-- Icon Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<canvas id="bg-canvas"></canvas>
+  <!-- Background Canvas & Ambient Glow -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="ambient-glow" aria-hidden="true"></div>
 
-<!-- ============ HEADER ============ -->
-<header class="navbar" id="navbar">
-  <div class="nav-inner">
-    <a href="#home" class="brand">
-  <span class="brand-mark">
-  <img src="logo.png" alt="MR Logo">
-</span>
-      <span class="brand-name">Moshiur<span class="brand-dot">.</span></span>
-    </a>
+  <!-- ============ HEADER ============ -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="brand" aria-label="MD Moshiur Rahman Home">
+        <span class="brand-mark">
+          <img src="logo.svg" onerror="this.src='logo.png'" alt="MR Logo">
+        </span>
+        <span class="brand-name">Moshiur<span class="brand-dot">.</span></span>
+      </a>
 
-    <nav class="nav-links" id="nav-links">
-      <a href="#home" class="nav-link active" data-nav>Home</a>
-      <a href="#about" class="nav-link" data-nav>About</a>
-      <a href="#journey" class="nav-link" data-nav>Journey</a>
-      <a href="#services" class="nav-link" data-nav>Services</a>
-      <a href="#skills" class="nav-link" data-nav>Skills</a>
-      <a href="#projects" class="nav-link" data-nav>Projects</a>
-      <a href="#aspirations" class="nav-link" data-nav>Aspirations</a>
-      <a href="#contact" class="nav-link" data-nav>Contact</a>
-    </nav>
+      <nav class="nav-links" id="nav-links" aria-label="Primary Navigation">
+        <a href="#home" class="nav-link active" data-nav>Home</a>
+        <a href="#about" class="nav-link" data-nav>About</a>
+        <a href="#journey" class="nav-link" data-nav>Journey</a>
+        <a href="#services" class="nav-link" data-nav>Services</a>
+        <a href="#skills" class="nav-link" data-nav>Skills</a>
+        <a href="#projects" class="nav-link" data-nav>Projects</a>
+        <a href="#aspirations" class="nav-link" data-nav>Aspirations</a>
+        <a href="#contact" class="nav-link" data-nav>Contact</a>
+      </nav>
 
-    <div class="nav-actions">
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle bright / dark mode">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
-      </button>
-      <button class="hamburger" id="hamburger" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</header>
-
-<main>
-
-  <!-- ============ HERO ============ -->
-  <section class="hero" id="home">
-    <div class="hero-inner">
-      <div class="hero-copy reveal">
-        <p class="eyebrow"><span class="eyebrow-dot"></span>Available for select projects</p>
-        <h1 class="hero-title">
-          MD. MOSHIUR<br>RAHMAN
-        </h1>
-        <p class="hero-role">
-          Full Stack Developer &amp; UI Engineer —
-          <span id="role-rotator" class="role-rotator"></span><span class="cursor">|</span>
-        </p>
-        <p class="hero-desc">
-          I design and build fast, dependable web products — from
-          pixel-considered interfaces to the systems that run behind them.
-          Based in Dhaka, Bangladesh, working with teams worldwide.
-        </p>
-        <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">View Projects</a>
-          <a href="#contact" class="btn btn-outline">Start a Conversation</a>
-        </div>
-        <div class="hero-stats">
-          <div class="hero-stat"><span class="hero-stat-num" data-count="40">0</span><span class="hero-stat-label">Projects Shipped</span></div>
-          <div class="hero-stat"><span class="hero-stat-num" data-count="5">0</span><span class="hero-stat-label">Years Building</span></div>
-          <div class="hero-stat"><span class="hero-stat-num" data-count="18">0</span><span class="hero-stat-label">Happy Clients</span></div>
-        </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
       </div>
+    </div>
+  </header>
 
-      <div class="hero-visual reveal">
-        <div class="orbit-badge">
-          <div class="orbit-ring ring-1"></div>
-          <div class="orbit-ring ring-2"></div>
-          <div class="orbit-ring ring-3"></div>
-          <div class="orbit-core">
-            <span><div class="profile-box">
-<img src="logo.png" alt="Profile"></span>
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="eyebrow-dot"></span>Available for select projects</div>
+          <h1 class="hero-title">
+            MD. MOSHIUR<br>RAHMAN
+          </h1>
+          <div class="hero-role" aria-live="polite">
+            Full Stack Developer &amp; UI Engineer —
+            <span id="role-rotator" class="role-rotator"></span><span class="cursor" aria-hidden="true">|</span>
           </div>
-          <span class="orbit-chip chip-1">React</span>
-          <span class="orbit-chip chip-2">Node.js</span>
-          <span class="orbit-chip chip-3">UI/UX</span>
-        </div>
-      </div>
-    </div>
-
-    <a href="#about" class="scroll-cue" aria-label="Scroll to About">
-      <span class="scroll-cue-dot"></span>
-    </a>
-  </section>
-
-  <!-- ============ ABOUT ============ -->
-<section class="section" id="about">
-  <div class="section-inner">
-
-    <p class="section-eyebrow">About Me</p>
-    <h2 class="section-title">The person behind the code</h2>
-
-    <div class="about-grid">
-
-      <!-- Left -->
-      <div class="about-profile card glass reveal">
-
-        <div class="profile-box">
-          <img src="me.png" alt="Profile">
-        </div>
-
-        <h3>MD. Moshiur Rahman</h3>
-        <p class="muted">Full Stack Developer</p>
-
-        <div class="about-scroll">
-          <p class="about-bio">
-            I've spent the last several years turning fuzzy product ideas into
-            interfaces people actually enjoy using, and back-end systems that
-            don't fall over when it matters. I care about clean architecture,
-            considered detail, and shipping things that hold up.
+          <p class="hero-desc">
+            I design and build fast, dependable web products — from
+            pixel-considered interfaces to the systems that run behind them.
+            Based in Dhaka, Bangladesh, working with teams worldwide.
           </p>
-
-          <div class="about-tags">
-            <span class="tag">Problem Solver</span>
-            <span class="tag">Detail-Oriented</span>
-            <span class="tag">Lifelong Learner</span>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="#contact" class="btn btn-outline">Start a Conversation</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat"><span class="hero-stat-num" data-count="40">0</span><span class="hero-stat-label">Projects Shipped</span></div>
+            <div class="hero-stat"><span class="hero-stat-num" data-count="5">0</span><span class="hero-stat-label">Years Building</span></div>
+            <div class="hero-stat"><span class="hero-stat-num" data-count="18">0</span><span class="hero-stat-label">Happy Clients</span></div>
           </div>
         </div>
 
-      </div>
-
-      <!-- Right -->
-      <div class="about-info">
-        <div class="info-card card glass reveal">
-          <span class="info-icon">🎓</span>
-          <div>
-            <h4>Focus</h4>
-            <p class="muted">Web Applications &amp; Product UI</p>
+        <div class="hero-visual reveal">
+          <div class="orbit-badge">
+            <div class="orbit-ring ring-1"></div>
+            <div class="orbit-ring ring-2"></div>
+            <div class="orbit-ring ring-3"></div>
+            <div class="orbit-core">
+              <div class="profile-box">
+                <img src="logo.svg" onerror="this.src='logo.png'" alt="MD Moshiur Rahman Logo" decoding="async">
+              </div>
+            </div>
+            <span class="orbit-chip chip-1">React</span>
+            <span class="orbit-chip chip-2">Node.js</span>
+            <span class="orbit-chip chip-3">UI/UX</span>
           </div>
-        </div>
-
-        <div class="info-card card glass reveal">
-          <span class="info-icon">🛠️</span>
-          <div>
-            <h4>Stack</h4>
-            <p class="muted">JavaScript, React, Node.js</p>
-          </div>
-        </div>
-
-        <div class="info-card card glass reveal">
-          <span class="info-icon">🕐</span>
-          <div>
-            <h4>Availability</h4>
-            <p class="muted">Open to Freelance &amp; Full-Time</p>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-  <!-- ============ DEVELOPER JOURNEY ============ -->
-  <section class="section" id="journey">
-    <div class="section-inner">
-      <p class="section-eyebrow">Developer Journey</p>
-      <h2 class="section-title">How I got here</h2>
-
-      <div class="timeline">
-
-        <div class="timeline-item reveal">
-          <span class="timeline-index">01</span>
-          <div class="timeline-content card glass">
-            <span class="timeline-year">Year One</span>
-            <h4>Wrote the first line of code</h4>
-            <p class="muted">Started with HTML &amp; CSS, curious how websites actually worked — then fell down the rabbit hole of JavaScript.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <span class="timeline-index">02</span>
-          <div class="timeline-content card glass">
-            <span class="timeline-year">Year Two</span>
-            <h4>First freelance projects</h4>
-            <p class="muted">Built small business sites and landing pages, learning to work directly with real clients and real deadlines.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <span class="timeline-index">03</span>
-          <div class="timeline-content card glass">
-            <span class="timeline-year">Year Three</span>
-            <h4>Went full stack</h4>
-            <p class="muted">Picked up Node.js and databases to own entire products end-to-end, not just the interface layer.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <span class="timeline-index">04</span>
-          <div class="timeline-content card glass">
-            <span class="timeline-year">Year Four</span>
-            <h4>Joined a product team</h4>
-            <p class="muted">Worked inside a larger engineering team, shipping features at scale and learning what "production-ready" really means.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <span class="timeline-index">05</span>
-          <div class="timeline-content card glass">
-            <span class="timeline-year">Today</span>
-            <h4>Building independently</h4>
-            <p class="muted">Now taking on select freelance &amp; contract work, focused on craft, performance, and long-term product thinking.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ SERVICES ============ -->
-  <section class="section" id="services">
-    <div class="section-inner">
-      <p class="section-eyebrow">Services</p>
-      <h2 class="section-title">What I can build for you</h2>
-
-      <div class="services-grid">
-        <div class="service-card card glass reveal">
-          <span class="service-icon">🖥️</span>
-          <h3>Web Development</h3>
-          <p class="muted">Responsive, fast, accessible websites and web apps built on modern frameworks.</p>
-        </div>
-        <div class="service-card card glass reveal">
-          <span class="service-icon">🎨</span>
-          <h3>UI / UX Design</h3>
-          <p class="muted">Interfaces that are considered from the first wireframe to the final pixel.</p>
-        </div>
-        <div class="service-card card glass reveal">
-          <span class="service-icon">🔌</span>
-          <h3>API Development</h3>
-          <p class="muted">Secure, well-documented REST &amp; GraphQL APIs that scale with your product.</p>
-        </div>
-        <div class="service-card card glass reveal">
-          <span class="service-icon">⚡</span>
-          <h3>Performance Optimization</h3>
-          <p class="muted">Faster load times, smoother interactions, and leaner bundles — measured, not guessed.</p>
-        </div>
-        <div class="service-card card glass reveal">
-          <span class="service-icon">🧩</span>
-          <h3>Maintenance &amp; Support</h3>
-          <p class="muted">Ongoing updates, bug fixes, and monitoring so your product keeps running smoothly.</p>
-        </div>
-        <div class="service-card card glass reveal">
-          <span class="service-icon">💬</span>
-          <h3>Technical Consulting</h3>
-          <p class="muted">Architecture reviews and technology guidance before you commit to a direction.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ SKILLS ============ -->
-<section class="section" id="skills">
-
-<!-- HTML -->
-<div class="skill-card reveal">
-    <div class="skill-icon">🌐</div>
-    <div class="skill-info">
-        <h3>HTML & CSS</h3>
-        <p>Frontend Development</p>
-    </div>
-    <div class="skill-level">
-        <span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span><span></span>
-    </div>
-</div>
-
-<div class="skill-card reveal">
-    <div class="skill-icon">🟨</div>
-    <div class="skill-info">
-        <h3>JavaScript</h3>
-        <p>Core Language</p>
-    </div>
-    <div class="skill-level">
-        <span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span>
-    </div>
-</div>
-
-<div class="skill-card reveal">
-    <div class="skill-icon">⚛️</div>
-    <div class="skill-info">
-        <h3>React</h3>
-        <p>Frontend Library</p>
-    </div>
-    <div class="skill-level">
-        <span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span><span></span>
-    </div>
-</div>
-
-<div class="skill-card reveal">
-    <div class="skill-icon">🔷</div>
-    <div class="skill-info">
-        <h3>TypeScript</h3>
-        <p>Typed JavaScript</p>
-    </div>
-    <div class="skill-level">
-        <span class="active"></span><span class="active"></span><span class="active"></span><span></span><span></span>
-    </div>
-</div>
-
-<div class="skill-card reveal">
-    <div class="skill-icon">🟢</div>
-    <div class="skill-info">
-        <h3>Node.js</h3>
-        <p>Backend Runtime</p>
-    </div>
-    <div class="skill-level">
-        <span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span><span></span>
-    </div>
-</div>
-
-<div class="skill-card reveal">
-    <div class="skill-icon">🚀</div>
-    <div class="skill-info">
-        <h3>Express.js</h3>
-        <p>Backend Framework</p>
-    </div>
-    <div class="skill-level">
-        <span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span><span></span>
-    </div>
-</div>
-
-<div class="skill-card reveal">
-    <div class="skill-icon">🍃</div>
-    <div class="skill-info">
-        <h3>MongoDB</h3>
-        <p>NoSQL Database</p>
-    </div>
-    <div class="skill-level">
-        <span class="active"></span><span class="active"></span><span class="active"></span><span></span><span></span>
-    </div>
-</div>
-
-<div class="skill-card reveal">
-    <div class="skill-icon">🐘</div>
-    <div class="skill-info">
-        <h3>PostgreSQL</h3>
-        <p>SQL Database</p>
-    </div>
-    <div class="skill-level">
-        <span class="active"></span><span class="active"></span><span class="active"></span><span></span><span></span>
-    </div>
-</div>
-
-<div class="skill-card reveal">
-    <div class="skill-icon">🔗</div>
-    <div class="skill-info">
-        <h3>REST API</h3>
-        <p>Backend Architecture</p>
-    </div>
-    <div class="skill-level">
-        <span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span><span></span>
-    </div>
-</div>
-
-<div class="skill-card reveal">
-    <div class="skill-icon">▲</div>
-    <div class="skill-info">
-        <h3>Next.js</h3>
-        <p>React Framework</p>
-    </div>
-    <div class="skill-level">
-        <span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span><span></span>
-    </div>
-</div>
-
-<div class="skill-card reveal">
-    <div class="skill-icon">🎨</div>
-    <div class="skill-info">
-        <h3>Figma</h3>
-        <p>UI/UX Design</p>
-    </div>
-    <div class="skill-level">
-        <span class="active"></span><span class="active"></span><span class="active"></span><span></span><span></span>
-    </div>
-</div>
-
-<div class="skill-card reveal">
-    <div class="skill-icon">💨</div>
-    <div class="skill-info">
-        <h3>Tailwind CSS</h3>
-        <p>CSS Framework</p>
-    </div>
-    <div class="skill-level">
-        <span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span>
-    </div>
-</div>
-
-<div class="skill-card reveal">
-    <div class="skill-icon">🐳</div>
-    <div class="skill-info">
-        <h3>Docker</h3>
-        <p>Containerization</p>
-    </div>
-    <div class="skill-level">
-        <span class="active"></span><span class="active"></span><span class="active"></span><span></span><span></span>
-    </div>
-</div>
-
-<div class="skill-card reveal">
-    <div class="skill-icon">⚙️</div>
-    <div class="skill-info">
-        <h3>Git & GitHub</h3>
-        <p>Version Control</p>
-    </div>
-    <div class="skill-level">
-        <span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span>
-    </div>
-</div>
-</section>
-
-  <!-- ============ PROJECTS ============ -->
- <section id="projects" class="section">
-<h2 class="section-title">Projects</h2>
-
-<div class="project-icons">
-
-<a href="https://study-flowup.netlify.app/" target="_blank" class="project-icon">
-<img src="study.png" alt="Study Flow">
-</a>
-
-<a href="https://edupay-pico.netlify.app/" target="_blank" class="project-icon">
-<img src="paypico.png" alt="paypico">
-</a>
-
-</div>
-</section>
-
-  <!-- ============ HISTORY & ASPIRATIONS ============ -->
-  <section class="section" id="aspirations">
-    <div class="section-inner">
-      <p class="section-eyebrow">History &amp; Aspirations</p>
-      <h2 class="section-title">Where I started, where I'm headed</h2>
-
-      <div class="aspirations-grid">
-        <div class="aspirations-col card glass reveal">
-          <h3>Where I started</h3>
-          <p class="muted">
-            I began writing code out of curiosity, not certainty — taking apart
-            simple web pages to understand how they worked. That curiosity
-            turned into freelance work, then into full-time engineering roles
-            where I learned to build things that other people actually depend on.
-          </p>
-        </div>
-        <div class="aspirations-col card glass reveal">
-          <h3>Where I'm headed</h3>
-          <ul class="aspiration-list">
-            <li>Build and ship a product of my own, end to end</li>
-            <li>Mentor developers earlier in their journey</li>
-            <li>Go deeper into system design and scalable architecture</li>
-            <li>Keep working with teams that care about craft</li>
-          </ul>
         </div>
       </div>
 
-      <blockquote class="quote reveal">
-        "Good software is never finished by accident — it's the result of
-        paying attention to the details no one asked you to."
-      </blockquote>
-    </div>
-  </section>
+      <a href="#about" class="scroll-cue" aria-label="Scroll down to About section">
+        <span class="scroll-cue-dot"></span>
+      </a>
+    </section>
 
-  <!-- ============ CONTACT ============ -->
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about">
+      <div class="section-inner">
+        <div class="section-eyebrow">About Me</div>
+        <h2 class="section-title">The person behind the code</h2>
 
-<div class="contact-grid">
+        <div class="about-grid">
+          <!-- Left Profile Card -->
+          <div class="about-profile card glass reveal">
+            <div class="profile-box">
+              <img src="me.svg" onerror="this.src='me.png'" alt="MD. Moshiur Rahman" loading="lazy" decoding="async">
+            </div>
+            <h3>MD. Moshiur Rahman</h3>
+            <div class="muted">Full Stack Developer</div>
 
-  <!-- LEFT -->
-  <div class="contact-info">
-      <p class="section-eyebrow">Contact</p>
-    <p class="muted contact-lead">
-      Have a project in mind, or just want to talk? My inbox is open.
-    </p>
+            <div class="about-scroll">
+              <p class="about-bio">
+                I've spent the last several years turning fuzzy product ideas into
+                interfaces people actually enjoy using, and back-end systems that
+                don't fall over when it matters. I care about clean architecture,
+                considered detail, and shipping things that hold up.
+              </p>
 
-    <a class="contact-item" href="mailto:borshonsweb@gmail.com?subject=Portfolio%20Contact">
-      <span class="info-icon">✉️</span>
-      <div>
-        <h4>Email</h4>
-        <p class="muted">borshonsweb@gmail.com</p>
+              <div class="about-tags">
+                <span class="tag">Problem Solver</span>
+                <span class="tag">Detail-Oriented</span>
+                <span class="tag">Lifelong Learner</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Info Cards -->
+          <div class="about-info">
+            <div class="info-card card glass reveal">
+              <div class="info-icon" aria-hidden="true">🎓</div>
+              <div>
+                <h4>Focus</h4>
+                <p class="muted">Web Applications &amp; Product UI</p>
+              </div>
+            </div>
+
+            <div class="info-card card glass reveal">
+              <div class="info-icon" aria-hidden="true">🛠️</div>
+              <div>
+                <h4>Stack</h4>
+                <p class="muted">JavaScript, React, Node.js</p>
+              </div>
+            </div>
+
+            <div class="info-card card glass reveal">
+              <div class="info-icon" aria-hidden="true">🕐</div>
+              <div>
+                <h4>Availability</h4>
+                <p class="muted">Open to Freelance &amp; Full-Time</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </a>
+    </section>
 
-<div class="social-row">
+    <!-- ============ DEVELOPER JOURNEY ============ -->
+    <section class="section" id="journey">
+      <div class="section-inner">
+        <div class="section-eyebrow">Developer Journey</div>
+        <h2 class="section-title">How I got here</h2>
 
-<a href="https://github.com/MRB13182" target="_blank" class="social-btn github">
-    <i class="fa-brands fa-github"></i>
-</a>
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <div class="timeline-index">01</div>
+            <div class="timeline-content card glass">
+              <span class="timeline-year">Year One</span>
+              <h4>Wrote the first line of code</h4>
+              <p class="muted">Started with HTML &amp; CSS, curious how websites actually worked — then fell down the rabbit hole of JavaScript.</p>
+            </div>
+          </div>
 
-<a href="https://www.instagram.com/ali.babaa.x?igsh=Y3dlMm5ib2IzZng0" target="_blank" class="social-btn instagram">
-    <i class="fa-brands fa-instagram"></i>
-</a>
+          <div class="timeline-item reveal">
+            <div class="timeline-index">02</div>
+            <div class="timeline-content card glass">
+              <span class="timeline-year">Year Two</span>
+              <h4>First freelance projects</h4>
+              <p class="muted">Built small business sites and landing pages, learning to work directly with real clients and real deadlines.</p>
+            </div>
+          </div>
 
-<a href="https://www.facebook.com/md.moshiur.rahman.512608" target="_blank" class="social-btn facebook">
-    <i class="fa-brands fa-facebook-f"></i>
-</a>
+          <div class="timeline-item reveal">
+            <div class="timeline-index">03</div>
+            <div class="timeline-content card glass">
+              <span class="timeline-year">Year Three</span>
+              <h4>Went full stack</h4>
+              <p class="muted">Picked up Node.js and databases to own entire products end-to-end, not just the interface layer.</p>
+            </div>
+          </div>
 
-<a href="https://t.me/moshiur_182" target="_blank" class="social-btn telegram">
-    <i class="fa-brands fa-telegram"></i>
-</a>
+          <div class="timeline-item reveal">
+            <div class="timeline-index">04</div>
+            <div class="timeline-content card glass">
+              <span class="timeline-year">Year Four</span>
+              <h4>Joined a product team</h4>
+              <p class="muted">Worked inside a larger engineering team, shipping features at scale and learning what "production-ready" really means.</p>
+            </div>
+          </div>
 
-<a href="https://wa.me/8801732212203" target="_blank" class="social-btn whatsapp">
-    <i class="fa-brands fa-whatsapp"></i>
-</a>
+          <div class="timeline-item reveal">
+            <div class="timeline-index">05</div>
+            <div class="timeline-content card glass">
+              <span class="timeline-year">Today</span>
+              <h4>Building independently</h4>
+              <p class="muted">Now taking on select freelance &amp; contract work, focused on craft, performance, and long-term product thinking.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <!-- ============ SERVICES ============ -->
+    <section class="section" id="services">
+      <div class="section-inner">
+        <div class="section-eyebrow">Services</div>
+        <h2 class="section-title">What I can build for you</h2>
 
-  </div>
+        <div class="services-grid">
+          <div class="service-card card glass reveal">
+            <div class="service-icon" aria-hidden="true">🖥️</div>
+            <h3>Web Development</h3>
+            <p class="muted">Responsive, fast, accessible websites and web apps built on modern frameworks.</p>
+          </div>
+          <div class="service-card card glass reveal">
+            <div class="service-icon" aria-hidden="true">🎨</div>
+            <h3>UI / UX Design</h3>
+            <p class="muted">Interfaces that are considered from the first wireframe to the final pixel.</p>
+          </div>
+          <div class="service-card card glass reveal">
+            <div class="service-icon" aria-hidden="true">🔌</div>
+            <h3>API Development</h3>
+            <p class="muted">Secure, well-documented REST &amp; GraphQL APIs that scale with your product.</p>
+          </div>
+          <div class="service-card card glass reveal">
+            <div class="service-icon" aria-hidden="true">⚡</div>
+            <h3>Performance Optimization</h3>
+            <p class="muted">Faster load times, smoother interactions, and leaner bundles — measured, not guessed.</p>
+          </div>
+          <div class="service-card card glass reveal">
+            <div class="service-icon" aria-hidden="true">🧩</div>
+            <h3>Maintenance &amp; Support</h3>
+            <p class="muted">Ongoing updates, bug fixes, and monitoring so your product keeps running smoothly.</p>
+          </div>
+          <div class="service-card card glass reveal">
+            <div class="service-icon" aria-hidden="true">💬</div>
+            <h3>Technical Consulting</h3>
+            <p class="muted">Architecture reviews and technology guidance before you commit to a direction.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- RIGHT -->
-  <form
-  action="https://formsubmit.co/borshonsweb@gmail.com"
-  method="POST"
-  class="contact-form card glass">
+    <!-- ============ SKILLS (PREMIUM ROTARY SKILL WHEEL) ============ -->
+    <section class="section" id="skills">
+      <div class="section-inner">
+        <div class="section-eyebrow">Skills &amp; Expertise</div>
+        <h2 class="section-title">Technical Capabilities</h2>
 
-  <!-- Hidden Settings -->
-  <input type="hidden" name="_subject" value="New Portfolio Contact">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_template" value="table">
-  <input type="hidden" name="_next" value="https://moshiurportf.netlify.app/">
+        <div class="skill-wheel-wrapper reveal">
+          <!-- Interactive Glass Information Box Above Wheel -->
+          <div class="skill-info-box" id="skill-info-box" aria-live="polite">
+            <div class="info-box-left">
+              <div class="info-box-icon-wrap" id="info-box-icon">🌐</div>
+              <div class="info-box-titles">
+                <h3 id="info-box-title">HTML &amp; CSS</h3>
+                <p id="info-box-category">Frontend Development</p>
+              </div>
+            </div>
+            <div class="info-box-right">
+              <div class="info-box-stars" id="info-box-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            </div>
+          </div>
 
-  <label class="field">
-    <span>Name</span>
-    <input
-      type="text"
-      name="name"
-      placeholder="Your Name"
-      required>
-  </label>
+          <!-- Sleek instruction badge -->
+          <div class="wheel-instruction-badge" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8L22 12L18 16"/><path d="M6 8L2 12L6 16"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+            <span>Drag or Swipe horizontally to rotate dial</span>
+          </div>
 
-  <label class="field">
-    <span>Email</span>
-    <input
-      type="email"
-      name="email"
-      placeholder="you@example.com"
-      required>
-  </label>
+          <!-- Half-Visible Rotary Wheel Viewport (Crops lower half) -->
+          <div class="wheel-viewport" id="wheel-viewport">
+            <!-- Rotary Wheel Stage -->
+            <div class="wheel-stage" id="wheel-stage">
+              <!-- Top pointer/needle indicating active skill at 12 o'clock -->
+              <div class="wheel-pointer" aria-hidden="true">
+                <div class="pointer-arrow"></div>
+                <div class="pointer-glow"></div>
+              </div>
 
-  <label class="field">
-    <span>Message</span>
-    <textarea
-      name="message"
-      rows="5"
-      placeholder="Tell me about your project..."
-      required></textarea>
-  </label>
+              <!-- The Rotating Dial Disc -->
+              <div class="rotary-dial" id="rotary-dial">
+                <!-- Glass metallic outer rings & dial marks -->
+                <div class="dial-ring dial-ring-outer"></div>
+                <div class="dial-ring dial-ring-middle"></div>
+                <div class="dial-ticks" id="dial-ticks"></div>
 
-  <button type="submit" class="btn btn-primary btn-block">
-    Send Message
-  </button>
+                <!-- Stationary Center Hub -->
+                <div class="dial-center-hub">
+                  <div class="hub-inner-glass">
+                    <div class="hub-status-light"></div>
+                    <span class="hub-label">ROTARY DIAL</span>
+                    <span class="hub-sublabel">INTERACTIVE</span>
+                  </div>
+                </div>
 
-</form>
-</main>
+                <!-- Skill Pods Container (Rotated by JS) -->
+                <div class="dial-pods-container" id="dial-pods-container">
+                  <!-- Skill pods injected by vanilla JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- ============ FOOTER ============ -->
+    <!-- ============ PROJECTS ============ -->
+    <section class="section" id="projects">
+      <div class="section-inner">
+        <div class="section-eyebrow">Projects</div>
+        <h2 class="section-title">Selected Work</h2>
 
-<footer class="footer">
-  <div class="footer-inner">
+        <div class="project-icons">
+          <a href="https://study-flowup.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-icon reveal" aria-label="View Study Flow project (opens in new tab)">
+            <img src="study.svg" onerror="this.src='study.png'" alt="Study Flow App Icon" loading="lazy">
+          </a>
 
-<div class="footer-brand">
-    <img src="logo.png" alt="Logo" class="footer-logo">
+          <a href="https://edupay-pico.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-icon reveal" aria-label="View EduPay Pico project (opens in new tab)">
+            <img src="paypico.svg" onerror="this.src='paypico.png'" alt="EduPay Pico App Icon" loading="lazy">
+          </a>
+        </div>
+      </div>
+    </section>
 
-    <span class="brand-name">
-        Moshiur<span class="brand-dot">.</span>
-    </span>
-</div>
-    <p class="muted footer-tag">
-      Full Stack Developer • UI Engineer
-    </p>
+    <!-- ============ HISTORY & ASPIRATIONS ============ -->
+    <section class="section" id="aspirations">
+      <div class="section-inner">
+        <div class="section-eyebrow">History &amp; Aspirations</div>
+        <h2 class="section-title">Where I started, where I'm headed</h2>
 
-    <nav class="footer-links">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
+        <div class="aspirations-grid">
+          <div class="aspirations-col card glass reveal">
+            <h3>Where I started</h3>
+            <p class="muted">
+              I began writing code out of curiosity, not certainty — taking apart
+              simple web pages to understand how they worked. That curiosity
+              turned into freelance work, then into full-time engineering roles
+              where I learned to build things that other people actually depend on.
+            </p>
+          </div>
+          <div class="aspirations-col card glass reveal">
+            <h3>Where I'm headed</h3>
+            <ul class="aspiration-list">
+              <li>Build and ship a product of my own, end to end</li>
+              <li>Mentor developers earlier in their journey</li>
+              <li>Go deeper into system design and scalable architecture</li>
+              <li>Keep working with teams that care about craft</li>
+            </ul>
+          </div>
+        </div>
 
-    <p class="muted footer-copy">
-      © <span id="year"></span> MD. Moshiur Rahman. All rights reserved.
-    </p>
+        <blockquote class="quote reveal">
+          "Good software is never finished by accident — it's the result of
+          paying attention to the details no one asked you to."
+        </blockquote>
+      </div>
+    </section>
 
-  </div>
-</footer>
-<script src="script.js"></script>
+    <!-- ============ CONTACT ============ -->
+    <section class="section" id="contact">
+      <div class="section-inner">
+        <div class="contact-grid">
+          <!-- LEFT -->
+          <div class="contact-info reveal">
+            <div class="section-eyebrow">Contact</div>
+            <h2 class="section-title" style="margin-bottom: 24px;">Let's talk</h2>
+            <p class="muted contact-lead">
+              Have a project in mind, or just want to talk? My inbox is open.
+            </p>
+
+            <a class="contact-item" href="mailto:borshonsweb@gmail.com?subject=Portfolio%20Contact">
+              <div class="info-icon" aria-hidden="true">✉️</div>
+              <div>
+                <h4>Email</h4>
+                <p class="muted">borshonsweb@gmail.com</p>
+              </div>
+            </a>
+
+            <div class="social-row" aria-label="Social Media Profiles">
+              <a href="https://github.com/MRB13182" target="_blank" rel="noopener noreferrer" class="social-btn github" aria-label="GitHub Profile">
+                <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </a>
+
+              <a href="https://www.instagram.com/ali.babaa.x?igsh=Y3dlMm5ib2IzZng0" target="_blank" rel="noopener noreferrer" class="social-btn instagram" aria-label="Instagram Profile">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+              </a>
+
+              <a href="https://www.facebook.com/md.moshiur.rahman.512608" target="_blank" rel="noopener noreferrer" class="social-btn facebook" aria-label="Facebook Profile">
+                <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+              </a>
+
+              <a href="https://t.me/moshiur_182" target="_blank" rel="noopener noreferrer" class="social-btn telegram" aria-label="Telegram Profile">
+                <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+              </a>
+
+              <a href="https://wa.me/8801732212203" target="_blank" rel="noopener noreferrer" class="social-btn whatsapp" aria-label="WhatsApp Profile">
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- RIGHT -->
+          <form action="https://formsubmit.co/borshonsweb@gmail.com" method="POST" class="contact-form card glass reveal">
+            <!-- Hidden Settings -->
+            <input type="hidden" name="_subject" value="New Portfolio Contact from MD Moshiur Rahman site">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://moshiurportf.netlify.app/">
+
+            <label class="field">
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Your Name" required autocomplete="name">
+            </label>
+
+            <label class="field">
+              <span>Email</span>
+              <input type="email" name="email" placeholder="you@example.com" required autocomplete="email">
+            </label>
+
+            <label class="field">
+              <span>Message</span>
+              <textarea name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+            </label>
+
+            <button type="submit" class="btn btn-primary btn-block">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo.svg" onerror="this.src='logo.png'" alt="MR Logo" class="footer-logo" loading="lazy">
+        <span class="brand-name">Moshiur<span class="brand-dot">.</span></span>
+      </div>
+      <p class="muted footer-tag">
+        Full Stack Developer • UI Engineer
+      </p>
+
+      <nav class="footer-links" aria-label="Footer Navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <p class="muted footer-copy">
+        © <span id="year">2026</span> MD. Moshiur Rahman. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script>
 </body>
 </html>
+
+
