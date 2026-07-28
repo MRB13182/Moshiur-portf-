@@ -2,6 +2,7 @@
    MD. Moshiur Rahman — Premium Portfolio
    script.js
    Apple + Linear + Framer Quality Vanilla JavaScript Engine
+   (Premium Curved Rotary Skill Wheel Edition - Full 360° Circle)
    ========================================================================== */
 
 function initAll() {
@@ -36,13 +37,11 @@ function initTheme() {
 
   const savedTheme = localStorage.getItem('mr-theme');
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const initialTheme = savedTheme || (prefersDark ? 'dark' : 'dark'); /* Default to luxury dark */
+  const initialTheme = savedTheme || (prefersDark ? 'dark' : 'dark');
 
   const applyTheme = (theme) => {
     root.setAttribute('data-theme', theme);
     localStorage.setItem('mr-theme', theme);
-    
-    /* Update toggle ARIA label */
     toggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
   };
 
@@ -70,7 +69,6 @@ function initNavbar() {
     const scrollY = window.scrollY || window.pageYOffset;
     navbar.classList.toggle('scrolled', scrollY > 20);
 
-    /* Determine active section */
     let currentSection = '';
     const navHeight = navbar.offsetHeight + 40;
 
@@ -82,7 +80,6 @@ function initNavbar() {
       }
     });
 
-    /* Fallback to first section if at very top */
     if (scrollY < 100 && sections.length > 0) {
       currentSection = sections[0].getAttribute('id');
     }
@@ -119,7 +116,6 @@ function initMobileMenu() {
   const navLinks = document.getElementById('nav-links');
   if (!hamburger || !navLinks) return;
 
-  /* Create backdrop overlay */
   let backdrop = document.querySelector('.nav-backdrop');
   if (!backdrop) {
     backdrop = document.createElement('div');
@@ -132,8 +128,6 @@ function initMobileMenu() {
     hamburger.setAttribute('aria-expanded', 'true');
     navLinks.classList.add('open');
     backdrop.classList.add('open');
-    
-    /* Lock body scroll without layout shift */
     document.body.classList.add('no-scroll');
     document.body.style.overflow = 'hidden';
     document.body.style.touchAction = 'none';
@@ -144,8 +138,6 @@ function initMobileMenu() {
     hamburger.setAttribute('aria-expanded', 'false');
     navLinks.classList.remove('open');
     backdrop.classList.remove('open');
-    
-    /* Restore body scroll */
     document.body.classList.remove('no-scroll');
     document.body.style.overflow = '';
     document.body.style.touchAction = '';
@@ -158,24 +150,20 @@ function initMobileMenu() {
     else openMenu();
   });
 
-  /* Close on link click */
   navLinks.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       closeMenu();
     });
   });
 
-  /* Close on backdrop click */
   backdrop.addEventListener('click', closeMenu);
 
-  /* Close on ESC key */
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && hamburger.classList.contains('open')) {
       closeMenu();
     }
   });
 
-  /* Close on resize to desktop */
   window.addEventListener('resize', () => {
     if (window.innerWidth > 768 && hamburger.classList.contains('open')) {
       closeMenu();
@@ -241,12 +229,12 @@ function initRoleRotator() {
     let typeSpeed = isDeleting ? 28 : 55;
 
     if (!isDeleting && charIndex === currentRole.length) {
-      typeSpeed = 2000; /* Pause at end of sentence */
+      typeSpeed = 2000;
       isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
       isDeleting = false;
       roleIndex = (roleIndex + 1) % roles.length;
-      typeSpeed = 400; /* Pause before typing next */
+      typeSpeed = 400;
     }
 
     timerId = setTimeout(type, typeSpeed);
@@ -271,7 +259,6 @@ function initRevealAnimations() {
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach((entry, idx) => {
       if (entry.isIntersecting) {
-        /* Add staggered delay based on relative index in view */
         const delay = (idx % 4) * 80;
         setTimeout(() => {
           entry.target.classList.add('visible');
@@ -285,7 +272,7 @@ function initRevealAnimations() {
 }
 
 /* ----------------------------------------------------------------------
-   8. Hero Stat Counters Engine: Smooth Cubic Easing
+   7. Hero Stat Counters Engine: Smooth Cubic Easing
    ---------------------------------------------------------------------- */
 function initCounters() {
   const counters = document.querySelectorAll('[data-count]');
@@ -322,51 +309,50 @@ function initCounters() {
 }
 
 /* ----------------------------------------------------------------------
-   9. Premium Interactive Rotary Skill Wheel Engine (Half-Visible Glass Dial)
+   8. Premium Complete 360° Circular Rotary Skill Wheel Engine
    ---------------------------------------------------------------------- */
 function initSkillWheel() {
   const dial = document.getElementById('rotary-dial');
   const podsContainer = document.getElementById('dial-pods-container');
   const ticksContainer = document.getElementById('dial-ticks');
-  const infoBox = document.getElementById('skill-info-box');
-  if (!dial || !podsContainer) return;
+  const infoCard = document.getElementById('skill-info-card');
+  if (!dial || !podsContainer || !infoCard) return;
 
+  /* Exactly 20 Skills as requested */
   const skillsData = [
-    { title: "HTML & CSS", category: "Frontend Development", scoreText: "★★★★★", icon: '<i class="fa-brands fa-html5" aria-hidden="true"></i>' },
-    { title: "JavaScript", category: "Core Language", scoreText: "★★★★★", icon: '<i class="fa-brands fa-js" aria-hidden="true"></i>' },
-    { title: "React", category: "Frontend Library", scoreText: "★★★★★", icon: '<i class="fa-brands fa-react" aria-hidden="true"></i>' },
-    { title: "TypeScript", category: "Typed JavaScript", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-code" aria-hidden="true"></i>' },
-    { title: "Node.js", category: "Backend Runtime", scoreText: "★★★★☆", icon: '<i class="fa-brands fa-node-js" aria-hidden="true"></i>' },
-    { title: "Express.js", category: "Backend Framework", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-server" aria-hidden="true"></i>' },
-    { title: "MongoDB", category: "NoSQL Database", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-database" aria-hidden="true"></i>' },
-    { title: "PostgreSQL", category: "Relational Database", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-database" aria-hidden="true"></i>' },
-    { title: "REST API", category: "Backend Architecture", scoreText: "★★★★★", icon: '<i class="fa-solid fa-network-wired" aria-hidden="true"></i>' },
-    { title: "Next.js", category: "React Framework", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-cubes" aria-hidden="true"></i>' },
-    { title: "Figma", category: "UI/UX Design", scoreText: "★★★★☆", icon: '<i class="fa-brands fa-figma" aria-hidden="true"></i>' },
-    { title: "Tailwind CSS", category: "CSS Framework", scoreText: "★★★★★", icon: '<i class="fa-brands fa-css3-alt" aria-hidden="true"></i>' },
-    { title: "Docker", category: "Containerization", scoreText: "★★★☆☆", icon: '<i class="fa-brands fa-docker" aria-hidden="true"></i>' },
-    { title: "Git & GitHub", category: "Version Control", scoreText: "★★★★★", icon: '<i class="fa-brands fa-github" aria-hidden="true"></i>' },
-    { title: "Firebase", category: "Cloud Backend", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-cloud" aria-hidden="true"></i>' },
-    { title: "Supabase", category: "Open Source Backend", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-bolt" aria-hidden="true"></i>' },
-    { title: "UI/UX Design", category: "Interface Design", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>' },
-    { title: "Web Animation", category: "Interactive Motion", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-film" aria-hidden="true"></i>' },
-    { title: "Performance Optimization", category: "Speed & Core Vitals", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-gauge-high" aria-hidden="true"></i>' },
-    { title: "Responsive Design", category: "Multi-Device UI", scoreText: "★★★★★", icon: '<i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>' },
-    { title: "API Integration", category: "Third-Party Services", scoreText: "★★★★★", icon: '<i class="fa-solid fa-plug" aria-hidden="true"></i>' },
-    { title: "Database Design", category: "Schema Architecture", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-sitemap" aria-hidden="true"></i>' }
+    { title: "HTML5", category: "Frontend Core", scoreText: "★★★★★", pct: 100, icon: '<i class="fa-brands fa-html5" aria-hidden="true"></i>', desc: "Semantic markup architecture, accessibility (WCAG AA), SEO optimization, and modern web APIs for responsive web applications." },
+    { title: "CSS3", category: "Styling & Layout", scoreText: "★★★★★", pct: 98, icon: '<i class="fa-brands fa-css3-alt" aria-hidden="true"></i>', desc: "Advanced Flexbox, CSS Grid, custom properties, fluid responsive typography, and hardware-accelerated 60 FPS animations." },
+    { title: "JavaScript", category: "Core Language", scoreText: "★★★★★", pct: 98, icon: '<i class="fa-brands fa-js" aria-hidden="true"></i>', desc: "Deep mastery of ES6+, asynchronous event loop, closures, DOM manipulation, functional programming, and performance tuning." },
+    { title: "TypeScript", category: "Typed JavaScript", scoreText: "★★★★★", pct: 95, icon: '<i class="fa-solid fa-code" aria-hidden="true"></i>', desc: "Enterprise type safety, custom interfaces, generics, decorators, and strict compile-time verification for scalable applications." },
+    { title: "React", category: "Frontend Library", scoreText: "★★★★★", pct: 96, icon: '<i class="fa-brands fa-react" aria-hidden="true"></i>', desc: "Component-driven architecture, custom hooks, concurrent rendering, state management, and optimized virtual DOM reconciliation." },
+    { title: "Next.js", category: "React Framework", scoreText: "★★★★★", pct: 92, icon: '<i class="fa-solid fa-cubes" aria-hidden="true"></i>', desc: "Server-side rendering (SSR), static site generation (SSG), App Router, API routes, and edge-optimized web delivery." },
+    { title: "Node.js", category: "Backend Runtime", scoreText: "★★★★★", pct: 94, icon: '<i class="fa-brands fa-node-js" aria-hidden="true"></i>', desc: "Event-driven server architecture, asynchronous I/O, microservices, file system processing, and high-concurrency data streams." },
+    { title: "Express.js", category: "Backend Framework", scoreText: "★★★★★", pct: 94, icon: '<i class="fa-solid fa-server" aria-hidden="true"></i>', desc: "RESTful API design, custom middleware pipelines, authentication routing, security headers, and structured error handling." },
+    { title: "MongoDB", category: "NoSQL Database", scoreText: "★★★★☆", pct: 90, icon: '<i class="fa-solid fa-database" aria-hidden="true"></i>', desc: "Document-oriented schema design, indexing strategies, aggregation pipelines, Mongoose ODM, and scalable cloud clusters." },
+    { title: "PostgreSQL", category: "Relational Database", scoreText: "★★★★☆", pct: 90, icon: '<i class="fa-solid fa-database" aria-hidden="true"></i>', desc: "Relational schema architecture, complex SQL queries, JOIN optimization, indexing, ACID transactions, and data integrity." },
+    { title: "REST API", category: "System Integration", scoreText: "★★★★★", pct: 96, icon: '<i class="fa-solid fa-network-wired" aria-hidden="true"></i>', desc: "Scalable HTTP endpoint architecture, OpenAPI documentation, rate limiting, token authentication, and data pagination." },
+    { title: "Git", category: "Version Control", scoreText: "★★★★★", pct: 95, icon: '<i class="fa-brands fa-git-alt" aria-hidden="true"></i>', desc: "Advanced branching workflows, interactive rebase, conflict resolution, commit history governance, and collaborative engineering." },
+    { title: "GitHub", category: "DevOps & CI/CD", scoreText: "★★★★★", pct: 94, icon: '<i class="fa-brands fa-github" aria-hidden="true"></i>', desc: "Automated GitHub Actions workflows, code review pipelines, pull request governance, package registries, and repo security." },
+    { title: "Docker", category: "Containerization", scoreText: "★★★★☆", pct: 86, icon: '<i class="fa-brands fa-docker" aria-hidden="true"></i>', desc: "Containerized application deployment, multi-stage Dockerfiles, Docker Compose environment orchestration, and volume mapping." },
+    { title: "Tailwind CSS", category: "Utility CSS", scoreText: "★★★★★", pct: 98, icon: '<i class="fa-solid fa-wind" aria-hidden="true"></i>', desc: "Utility-first design systems, custom theme configuration, responsive design tokens, dark mode systems, and rapid UI prototyping." },
+    { title: "Figma", category: "UI/UX Design", scoreText: "★★★★☆", pct: 88, icon: '<i class="fa-brands fa-figma" aria-hidden="true"></i>', desc: "Interactive prototyping, auto-layout design systems, vector iconography, design token mapping, and developer handoff." },
+    { title: "Firebase", category: "Cloud Backend", scoreText: "★★★★☆", pct: 90, icon: '<i class="fa-solid fa-fire" aria-hidden="true"></i>', desc: "Real-time Firestore databases, Firebase Authentication, Cloud Functions, hosting deployment, and secure security rules." },
+    { title: "Redux", category: "State Management", scoreText: "★★★★☆", pct: 88, icon: '<i class="fa-solid fa-layer-group" aria-hidden="true"></i>', desc: "Predictable global state containers, Redux Toolkit (RTK), asynchronous thunks, immutable state trees, and DevTools debugging." },
+    { title: "VS Code", category: "Development IDE", scoreText: "★★★★★", pct: 96, icon: '<i class="fa-solid fa-laptop-code" aria-hidden="true"></i>', desc: "Optimized development environments, custom snippets, debugging pipelines, keyboard workflow mastery, and linting automation." },
+    { title: "Linux", category: "OS & Server Admin", scoreText: "★★★★☆", pct: 85, icon: '<i class="fa-brands fa-linux" aria-hidden="true"></i>', desc: "Server command-line operations, bash scripting, SSH authentication, process management, Nginx proxy setup, and permission security." }
   ];
 
-  /* Generate 44 ticks around the wheel */
+  /* Generate 60 ticks around the wheel for authentic rotary dial look */
   if (ticksContainer && !ticksContainer.children.length) {
-    for (let i = 0; i < 44; i++) {
+    for (let i = 0; i < 60; i++) {
       const tick = document.createElement('div');
-      tick.className = `dial-tick${i % 2 === 0 ? ' major' : ''}`;
-      tick.style.transform = `rotate(${i * (360 / 44)}deg)`;
+      tick.className = `dial-tick${i % 5 === 0 ? ' major' : ''}`;
+      tick.style.transform = `rotate(${i * (360 / 60)}deg)`;
       ticksContainer.appendChild(tick);
     }
   }
 
-  /* Create Skill Pods */
+  /* Inject Skill Pods */
   podsContainer.innerHTML = '';
   const podElements = skillsData.map((skill) => {
     const pod = document.createElement('div');
@@ -385,65 +371,78 @@ function initSkillWheel() {
   let startAngle = 0;
   let startRotation = 0;
   let startX = 0;
+  let startY = 0;
   let lastRotation = 0;
   let velocity = 0;
   let lastTime = 0;
   let activeIndex = -1;
+  let currentPctDisplay = 0;
+  let pctAnimId = null;
 
   const stepAngle = 360 / skillsData.length;
+  /* Active pointer is located at Top Center (0 degrees / 12 o'clock in clock coordinates) */
+  const ACTIVE_ANGLE = 0;
 
-  /* Helper: Get dynamic pod radius based on screen size */
   const getRadius = () => {
     const rStr = getComputedStyle(document.documentElement).getPropertyValue('--pod-radius');
-    return parseFloat(rStr) || 300;
+    return parseFloat(rStr) || 325;
   };
 
-  /* Update active skill info box with smooth glass transition */
-  const updateInfoBox = (index) => {
-    if (index === activeIndex || !infoBox || !skillsData[index]) return;
+  /* Smooth number counter for percentage display */
+  const animatePercentage = (targetPct) => {
+    if (pctAnimId) cancelAnimationFrame(pctAnimId);
+    const pctEl = document.getElementById('card-skill-pct');
+    const barEl = document.getElementById('card-skill-progress');
+    if (!pctEl || !barEl) return;
+
+    barEl.style.width = `${targetPct}%`;
+    const startPct = currentPctDisplay || 0;
+    const duration = 500;
+    const startTime = performance.now();
+
+    const step = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(1, elapsed / duration);
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      currentPctDisplay = Math.round(startPct + (targetPct - startPct) * easeOut);
+      pctEl.textContent = `${currentPctDisplay}%`;
+
+      if (progress < 1) {
+        pctAnimId = requestAnimationFrame(step);
+      }
+    };
+    pctAnimId = requestAnimationFrame(step);
+  };
+
+  /* Update One Premium Glass Information Card with smooth transition */
+  const updateInfoCard = (index) => {
+    if (index === activeIndex || !infoCard || !skillsData[index]) return;
     activeIndex = index;
     const skill = skillsData[index];
 
-    const iconEl = document.getElementById('info-box-icon');
-    const titleEl = document.getElementById('info-box-title');
-    const categoryEl = document.getElementById('info-box-category');
-    const starsEl = document.getElementById('info-box-stars');
+    const iconEl = document.getElementById('card-skill-icon');
+    const titleEl = document.getElementById('card-skill-title');
+    const categoryEl = document.getElementById('card-skill-category');
+    const descEl = document.getElementById('card-skill-desc');
+    const starsEl = document.getElementById('card-skill-stars');
 
-    if (iconEl) iconEl.innerHTML = skill.icon;
-    if (titleEl) {
-      titleEl.style.opacity = '0';
-      setTimeout(() => {
-        titleEl.textContent = skill.title;
-        titleEl.style.opacity = '1';
-      }, 100);
-    }
-    if (categoryEl) {
-      categoryEl.style.opacity = '0';
-      setTimeout(() => {
-        categoryEl.textContent = skill.category;
-        categoryEl.style.opacity = '1';
-      }, 100);
-    }
-    if (starsEl) {
-      starsEl.style.transform = 'scale(0.8)';
-      starsEl.style.opacity = '0.5';
-      setTimeout(() => {
+    infoCard.classList.add('updating');
+
+    setTimeout(() => {
+      if (iconEl) iconEl.innerHTML = skill.icon;
+      if (titleEl) titleEl.textContent = skill.title;
+      if (categoryEl) categoryEl.textContent = skill.category;
+      if (descEl) descEl.textContent = skill.desc;
+      if (starsEl) {
         starsEl.textContent = skill.scoreText;
         starsEl.setAttribute('aria-label', `${skill.scoreText.split('★').length - 1} out of 5 stars`);
-        starsEl.style.transform = 'scale(1)';
-        starsEl.style.opacity = '1';
-      }, 100);
-    }
-
-    infoBox.style.transform = 'scale(0.97)';
-    infoBox.style.borderColor = '#60A5FA';
-    setTimeout(() => {
-      infoBox.style.transform = 'scale(1)';
-      infoBox.style.borderColor = '';
+      }
+      animatePercentage(skill.pct);
+      infoCard.classList.remove('updating');
     }, 150);
   };
 
-  /* Position pods around circle and determine active item at 12 o'clock */
+  /* Render wheel positions around full 360° circle and determine active skill at 0 degrees (12 o'clock) */
   const renderWheel = () => {
     const radius = getRadius();
     let closestIndex = 0;
@@ -461,9 +460,9 @@ function initSkillWheel() {
       const x = Math.sin(rad) * radius;
       const y = -Math.cos(rad) * radius;
 
-      /* Calculate normalized distance from top 12 o'clock position (0 degrees) */
-      let normalized = (totalAngle % 360 + 360) % 360;
-      if (normalized > 180) normalized -= 360;
+      /* Calculate normalized shortest angular distance from the active pointer at 0 degrees (12 o'clock) */
+      let normalized = ((totalAngle - ACTIVE_ANGLE) % 360 + 360) % 360;
+      if (normalized > 180) normalized = 360 - normalized;
       const dist = Math.abs(normalized);
 
       if (dist < minDistance) {
@@ -471,37 +470,38 @@ function initSkillWheel() {
         closestIndex = i;
       }
 
-      /* Dynamic scale & opacity based on proximity to active pointer */
-      const distPct = Math.max(0, 1 - dist / 35);
-      const scale = 0.85 + distPct * 0.65;
-      const opacity = 0.45 + distPct * 0.55;
+      /* In a full 360° circle, all icons are visible around the circle. 
+         As an icon rotates toward the top arrow (dist -> 0), it smoothly brightens to 1.0 and enlarges! */
+      const distPct = Math.max(0, 1 - dist / 60);
+      const scale = 0.82 + distPct * 0.36;
+      const opacity = 0.48 + distPct * 0.52;
 
-      pod.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+      pod.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
       pod.style.opacity = opacity;
       
-      if (dist < 10) {
+      if (dist < 9) {
         pod.classList.add('active');
       } else {
         pod.classList.remove('active');
       }
     });
 
-    updateInfoBox(closestIndex);
+    updateInfoCard(closestIndex);
   };
 
-  /* Pointer event handlers for Rotary Dial drag/swipe */
+  /* Pointer event handlers for drag / swipe */
   const onPointerDown = (e) => {
     isDragging = true;
     dial.style.cursor = 'grabbing';
     velocity = 0;
     startX = e.clientX;
+    startY = e.clientY;
 
     const rect = dial.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     
     startAngle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI);
-    startRotation = targetRotation;
     lastRotation = targetRotation;
     lastTime = performance.now();
 
@@ -519,16 +519,20 @@ function initSkillWheel() {
     const distFromCenter = Math.hypot(e.clientX - centerX, e.clientY - centerY);
 
     let deltaAngle = 0;
-    if (distFromCenter > 45) {
+    if (distFromCenter > 30) {
       const currentAngle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI);
       deltaAngle = currentAngle - startAngle;
       if (deltaAngle > 180) deltaAngle -= 360;
       if (deltaAngle < -180) deltaAngle += 360;
+      startAngle = currentAngle;
     } else {
-      deltaAngle = (e.clientX - startX) * 0.65;
+      /* Horizontal/Vertical swipe fallback when touching near center */
+      deltaAngle = (e.clientX - startX) * 0.5 - (e.clientY - startY) * 0.5;
+      startX = e.clientX;
+      startY = e.clientY;
     }
 
-    const newTarget = startRotation + deltaAngle;
+    const newTarget = lastRotation + deltaAngle;
     const now = performance.now();
     const dt = now - lastTime;
     if (dt > 0) {
@@ -555,14 +559,23 @@ function initSkillWheel() {
   window.addEventListener('pointerup', onPointerUp);
   window.addEventListener('pointercancel', onPointerUp);
 
-  /* Pod Click Handler: Direct spin to selected skill */
+  /* Trackpad / Mouse Wheel Support */
+  dial.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    velocity += (e.deltaY || e.deltaX) * 0.035;
+  }, { passive: false });
+
+  /* Pod Click Handler: Direct spin to selected skill at 0 degrees (12 o'clock top center) */
   podElements.forEach((pod, i) => {
     const spinToSkill = () => {
       if (isDragging) return;
-      const desiredBase = -i * stepAngle;
-      const diff = (desiredBase - targetRotation) % 360;
-      let shortestDiff = ((diff + 540) % 360) - 180;
-      targetRotation += shortestDiff;
+      const baseAngle = i * stepAngle;
+      const currentMod = ((targetRotation % 360) + 360) % 360;
+      const desiredMod = ((ACTIVE_ANGLE - baseAngle) % 360 + 360) % 360;
+      let diff = desiredMod - currentMod;
+      if (diff > 180) diff -= 360;
+      if (diff < -180) diff += 360;
+      targetRotation += diff;
     };
 
     pod.addEventListener('click', spinToSkill);
@@ -574,16 +587,19 @@ function initSkillWheel() {
     });
   });
 
-  /* Animation & Physics Loop */
+  /* 60 FPS Inertia & Magnetic Snapping Loop */
   const animateWheel = () => {
     if (!isDragging) {
       if (Math.abs(velocity) > 0.01) {
         targetRotation += velocity * 16;
-        velocity *= 0.94;
+        velocity *= 0.93;
       } else {
         velocity = 0;
-        const snapped = Math.round(targetRotation / stepAngle) * stepAngle;
-        targetRotation += (snapped - targetRotation) * 0.12;
+        /* Calculate nearest magnetic snap point aligned with ACTIVE_ANGLE (0 degrees top center) */
+        const offset = targetRotation - ACTIVE_ANGLE;
+        const snappedOffset = Math.round(offset / stepAngle) * stepAngle;
+        const snappedTarget = ACTIVE_ANGLE + snappedOffset;
+        targetRotation += (snappedTarget - targetRotation) * 0.12;
       }
     }
 
@@ -598,7 +614,7 @@ function initSkillWheel() {
 }
 
 /* ----------------------------------------------------------------------
-   10. Ambient Background Particles Engine: High FPS & RequestAnimationFrame
+   9. Ambient Background Particles Engine: High FPS & RequestAnimationFrame
    ---------------------------------------------------------------------- */
 function initParticles() {
   const canvas = document.getElementById('bg-canvas');
@@ -609,9 +625,8 @@ function initParticles() {
   let particles = [];
   const mouse = { x: null, y: null };
   
-  /* Responsive particle density for optimum FPS */
   const getParticleCount = () => window.innerWidth < 768 ? 32 : 64;
-  const LINK_DIST_SQ = 130 * 130; /* Use distance squared to avoid Math.sqrt in loop */
+  const LINK_DIST_SQ = 130 * 130;
 
   function resize() {
     width = canvas.width = window.innerWidth;
@@ -649,12 +664,11 @@ function initParticles() {
       if (p.x < 0 || p.x > width) p.vx *= -1;
       if (p.y < 0 || p.y > height) p.vy *= -1;
 
-      /* Gentle mouse interaction */
       if (mouse.x !== null) {
         const dx = p.x - mouse.x;
         const dy = p.y - mouse.y;
         const distSq = dx * dx + dy * dy;
-        if (distSq < 14400) { /* 120 * 120 */
+        if (distSq < 14400) {
           const dist = Math.sqrt(distSq);
           p.x += (dx / dist) * 0.5;
           p.y += (dy / dist) * 0.5;
@@ -666,7 +680,6 @@ function initParticles() {
       ctx.fillStyle = dotColor;
       ctx.fill();
 
-      /* Draw linking lines */
       for (let j = i + 1; j < len; j++) {
         const b = particles[j];
         const dx = p.x - b.x;
@@ -689,7 +702,6 @@ function initParticles() {
     animId = requestAnimationFrame(step);
   }
 
-  /* Debounced resize handler */
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
@@ -709,7 +721,6 @@ function initParticles() {
     mouse.y = null;
   }, { passive: true });
 
-  /* Pause animation when tab is hidden to save battery & CPU */
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
       isRunning = false;
@@ -728,7 +739,7 @@ function initParticles() {
 }
 
 /* ----------------------------------------------------------------------
-   11. Contact Form Engine: Responsive & User Feedback
+   10. Contact Form Engine: Responsive & User Feedback
    ---------------------------------------------------------------------- */
 function initContactForm() {
   const form = document.querySelector('.contact-form');
@@ -740,7 +751,6 @@ function initContactForm() {
   form.appendChild(noteEl);
 
   form.addEventListener('submit', (e) => {
-    /* Allow formsubmit.co POST to proceed or show clean confirmation */
     const nameInput = form.querySelector('input[name="name"]');
     const name = nameInput ? nameInput.value.trim() : '';
     const firstName = name ? name.split(' ')[0] : 'friend';

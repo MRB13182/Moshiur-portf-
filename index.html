@@ -265,62 +265,87 @@
       </div>
     </section>
 
-    <!-- ============ SKILLS (PREMIUM ROTARY SKILL WHEEL) ============ -->
+    <!-- ============ SKILLS (PREMIUM CURVED ROTARY SKILL WHEEL - COMPLETE 360° CIRCLE) ============ -->
     <section class="section" id="skills">
       <div class="section-inner">
-        <div class="section-eyebrow">Skills &amp; Expertise</div>
-        <h2 class="section-title">Technical Capabilities</h2>
+        <div class="skills-header reveal">
+          <div class="section-eyebrow">Skills &amp; Expertise</div>
+          <h2 class="section-title">Technical Capabilities</h2>
+        </div>
 
-        <div class="skill-wheel-wrapper reveal">
-          <!-- Interactive Glass Information Box Above Wheel -->
-          <div class="skill-info-box" id="skill-info-box" aria-live="polite">
-            <div class="info-box-left">
-              <div class="info-box-icon-wrap" id="info-box-icon"><i class="fa-brands fa-html5" aria-hidden="true"></i></div>
-              <div class="info-box-titles">
-                <h3 id="info-box-title">HTML &amp; CSS</h3>
-                <p id="info-box-category">Frontend Development</p>
+        <div class="skills-showcase reveal">
+          <!-- Above Wheel: Instruction Badge & One Premium Glass Information Card -->
+          <div class="skills-info-column">
+            <!-- Sleek Instruction Badge -->
+            <div class="wheel-instruction-badge" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8L22 12L18 16"/><path d="M6 8L2 12L6 16"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+              <span>Rotate Wheel or Click Skill to Explore</span>
+            </div>
+
+            <!-- One Premium Glass Information Card -->
+            <div class="skill-info-card glass" id="skill-info-card" aria-live="polite">
+              <div class="card-top-row">
+                <div class="card-icon-wrapper" id="card-skill-icon">
+                  <i class="fa-brands fa-html5" aria-hidden="true"></i>
+                </div>
+                <div class="card-titles">
+                  <h3 id="card-skill-title">HTML5</h3>
+                  <span class="tag" id="card-skill-category">Frontend Core</span>
+                </div>
+                <div class="card-level">
+                  <div class="level-stars" id="card-skill-stars" aria-label="5 out of 5 stars">★★★★★</div>
+                  <span class="level-label">Proficiency</span>
+                </div>
+              </div>
+
+              <div class="card-body">
+                <p id="card-skill-desc" class="skill-description">
+                  Semantic markup architecture, accessibility (WCAG AA), SEO optimization, and modern web APIs for responsive web applications.
+                </p>
+              </div>
+
+              <div class="card-progress-section">
+                <div class="progress-header">
+                  <span class="progress-label">Mastery Level</span>
+                  <span class="progress-value" id="card-skill-pct">100%</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-bar" id="card-skill-progress" style="width: 100%;"></div>
+                </div>
               </div>
             </div>
-            <div class="info-box-right">
-              <div class="info-box-stars" id="info-box-stars" aria-label="5 out of 5 stars">★★★★★</div>
-            </div>
           </div>
 
-          <!-- Sleek instruction badge -->
-          <div class="wheel-instruction-badge" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8L22 12L18 16"/><path d="M6 8L2 12L6 16"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
-            <span>Drag or Swipe horizontally to rotate dial</span>
-          </div>
-
-          <!-- Half-Visible Rotary Wheel Viewport (Crops lower half) -->
-          <div class="wheel-viewport" id="wheel-viewport">
+          <!-- Complete 360° Rotary Dial Wheel -->
+          <div class="wheel-container-full" id="wheel-container-full">
             <!-- Rotary Wheel Stage -->
             <div class="wheel-stage" id="wheel-stage">
-              <!-- Top pointer/needle indicating active skill at 12 o'clock -->
+              <!-- Active Pointer / Needle pointing DOWN to the active pod at 12 o'clock (top center) -->
               <div class="wheel-pointer" aria-hidden="true">
-                <div class="pointer-arrow"></div>
                 <div class="pointer-glow"></div>
+                <div class="pointer-arrow"></div>
               </div>
 
               <!-- The Rotating Dial Disc -->
               <div class="rotary-dial" id="rotary-dial">
-                <!-- Glass metallic outer rings & dial marks -->
+                <!-- Glass metallic outer ring & dial ticks -->
                 <div class="dial-ring dial-ring-outer"></div>
                 <div class="dial-ring dial-ring-middle"></div>
                 <div class="dial-ticks" id="dial-ticks"></div>
 
-                <!-- Stationary Center Hub -->
+                <!-- Stationary Center Hub with MR branding -->
                 <div class="dial-center-hub">
                   <div class="hub-inner-glass">
+
+                    <span class="hub-title">MY SKILLS</span>
+                    <span class="hub-subtitle">what i can do for you</span>
                     <div class="hub-status-light"></div>
-                    <span class="hub-label">ROTARY DIAL</span>
-                    <span class="hub-sublabel">INTERACTIVE</span>
                   </div>
                 </div>
 
                 <!-- Skill Pods Container (Rotated by JS) -->
                 <div class="dial-pods-container" id="dial-pods-container">
-                  <!-- Skill pods injected by vanilla JS -->
+                  <!-- Injected by vanilla JS -->
                 </div>
               </div>
             </div>
