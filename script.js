@@ -4,7 +4,7 @@
    Apple + Linear + Framer Quality Vanilla JavaScript Engine
    ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initAll() {
   initTheme();
   initNavbar();
   initMobileMenu();
@@ -18,7 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAll);
+} else {
+  initAll();
+}
 
 /* ----------------------------------------------------------------------
    1. Theme Engine: Dark Mode by Default with LocalStorage & Smooth Switch
@@ -326,28 +332,28 @@ function initSkillWheel() {
   if (!dial || !podsContainer) return;
 
   const skillsData = [
-    { title: "HTML & CSS", category: "Frontend Development", scoreText: "★★★★★", icon: "🌐" },
-    { title: "JavaScript", category: "Core Language", scoreText: "★★★★★", icon: "🟨" },
-    { title: "React", category: "Frontend Library", scoreText: "★★★★★", icon: "⚛️" },
-    { title: "TypeScript", category: "Typed JavaScript", scoreText: "★★★★☆", icon: "🔷" },
-    { title: "Node.js", category: "Backend Runtime", scoreText: "★★★★☆", icon: "🟢" },
-    { title: "Express.js", category: "Backend Framework", scoreText: "★★★★☆", icon: "🚀" },
-    { title: "MongoDB", category: "NoSQL Database", scoreText: "★★★★☆", icon: "🍃" },
-    { title: "PostgreSQL", category: "Relational Database", scoreText: "★★★★☆", icon: "🐘" },
-    { title: "REST API", category: "Backend Architecture", scoreText: "★★★★★", icon: "🔗" },
-    { title: "Next.js", category: "React Framework", scoreText: "★★★★☆", icon: "▲" },
-    { title: "Figma", category: "UI/UX Design", scoreText: "★★★★☆", icon: "🎨" },
-    { title: "Tailwind CSS", category: "CSS Framework", scoreText: "★★★★★", icon: "💨" },
-    { title: "Docker", category: "Containerization", scoreText: "★★★☆☆", icon: "🐳" },
-    { title: "Git & GitHub", category: "Version Control", scoreText: "★★★★★", icon: "⚙️" },
-    { title: "Firebase", category: "Cloud Backend", scoreText: "★★★★☆", icon: "🔥" },
-    { title: "Supabase", category: "Open Source Backend", scoreText: "★★★★☆", icon: "⚡" },
-    { title: "UI/UX Design", category: "Interface Design", scoreText: "★★★★☆", icon: "✨" },
-    { title: "Web Animation", category: "Interactive Motion", scoreText: "★★★★☆", icon: "💫" },
-    { title: "Performance Optimization", category: "Speed & Core Vitals", scoreText: "★★★★☆", icon: "⚡" },
-    { title: "Responsive Design", category: "Multi-Device UI", scoreText: "★★★★★", icon: "📱" },
-    { title: "API Integration", category: "Third-Party Services", scoreText: "★★★★★", icon: "🔌" },
-    { title: "Database Design", category: "Schema Architecture", scoreText: "★★★★☆", icon: "🗄️" }
+    { title: "HTML & CSS", category: "Frontend Development", scoreText: "★★★★★", icon: '<i class="fa-brands fa-html5" aria-hidden="true"></i>' },
+    { title: "JavaScript", category: "Core Language", scoreText: "★★★★★", icon: '<i class="fa-brands fa-js" aria-hidden="true"></i>' },
+    { title: "React", category: "Frontend Library", scoreText: "★★★★★", icon: '<i class="fa-brands fa-react" aria-hidden="true"></i>' },
+    { title: "TypeScript", category: "Typed JavaScript", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-code" aria-hidden="true"></i>' },
+    { title: "Node.js", category: "Backend Runtime", scoreText: "★★★★☆", icon: '<i class="fa-brands fa-node-js" aria-hidden="true"></i>' },
+    { title: "Express.js", category: "Backend Framework", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-server" aria-hidden="true"></i>' },
+    { title: "MongoDB", category: "NoSQL Database", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-database" aria-hidden="true"></i>' },
+    { title: "PostgreSQL", category: "Relational Database", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-database" aria-hidden="true"></i>' },
+    { title: "REST API", category: "Backend Architecture", scoreText: "★★★★★", icon: '<i class="fa-solid fa-network-wired" aria-hidden="true"></i>' },
+    { title: "Next.js", category: "React Framework", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-cubes" aria-hidden="true"></i>' },
+    { title: "Figma", category: "UI/UX Design", scoreText: "★★★★☆", icon: '<i class="fa-brands fa-figma" aria-hidden="true"></i>' },
+    { title: "Tailwind CSS", category: "CSS Framework", scoreText: "★★★★★", icon: '<i class="fa-brands fa-css3-alt" aria-hidden="true"></i>' },
+    { title: "Docker", category: "Containerization", scoreText: "★★★☆☆", icon: '<i class="fa-brands fa-docker" aria-hidden="true"></i>' },
+    { title: "Git & GitHub", category: "Version Control", scoreText: "★★★★★", icon: '<i class="fa-brands fa-github" aria-hidden="true"></i>' },
+    { title: "Firebase", category: "Cloud Backend", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-cloud" aria-hidden="true"></i>' },
+    { title: "Supabase", category: "Open Source Backend", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-bolt" aria-hidden="true"></i>' },
+    { title: "UI/UX Design", category: "Interface Design", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>' },
+    { title: "Web Animation", category: "Interactive Motion", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-film" aria-hidden="true"></i>' },
+    { title: "Performance Optimization", category: "Speed & Core Vitals", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-gauge-high" aria-hidden="true"></i>' },
+    { title: "Responsive Design", category: "Multi-Device UI", scoreText: "★★★★★", icon: '<i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>' },
+    { title: "API Integration", category: "Third-Party Services", scoreText: "★★★★★", icon: '<i class="fa-solid fa-plug" aria-hidden="true"></i>' },
+    { title: "Database Design", category: "Schema Architecture", scoreText: "★★★★☆", icon: '<i class="fa-solid fa-sitemap" aria-hidden="true"></i>' }
   ];
 
   /* Generate 44 ticks around the wheel */
@@ -403,7 +409,7 @@ function initSkillWheel() {
     const categoryEl = document.getElementById('info-box-category');
     const starsEl = document.getElementById('info-box-stars');
 
-    if (iconEl) iconEl.textContent = skill.icon;
+    if (iconEl) iconEl.innerHTML = skill.icon;
     if (titleEl) {
       titleEl.style.opacity = '0';
       setTimeout(() => {
@@ -730,7 +736,7 @@ function initContactForm() {
 
   const noteEl = document.createElement('p');
   noteEl.className = 'form-note';
-  noteEl.style.cssText = 'font-size: 0.88rem; color: var(--text-accent); min-height: 1.4em; margin-top: 4px;';
+  noteEl.style.cssText = 'font-size: 0.78rem; color: var(--text-accent); min-height: 1.4em; margin-top: 4px;';
   form.appendChild(noteEl);
 
   form.addEventListener('submit', (e) => {
@@ -740,12 +746,5 @@ function initContactForm() {
     const firstName = name ? name.split(' ')[0] : 'friend';
 
     noteEl.textContent = `✨ Thank you, ${firstName}! Sending your message now...`;
-    
-    /* If debugging without backend reload, you can uncomment e.preventDefault() */
-    /* e.preventDefault();
-       setTimeout(() => {
-         noteEl.textContent = `✅ Message sent successfully, ${firstName}! I'll reply soon.`;
-         form.reset();
-       }, 1000); */
   });
 }

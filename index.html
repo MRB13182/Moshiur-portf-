@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="root" style="display: none;"></div>
 
   <!-- Background Canvas & Ambient Glow -->
   <canvas id="bg-canvas"></canvas>
@@ -28,7 +29,7 @@
     <div class="nav-inner">
       <a href="#home" class="brand" aria-label="MD Moshiur Rahman Home">
         <span class="brand-mark">
-          <img src="logo.svg" onerror="this.src='logo.png'" alt="MR Logo">
+          <img src="/logo.svg" onerror="this.src='logo.png'" alt="MR Logo">
         </span>
         <span class="brand-name">Moshiur<span class="brand-dot">.</span></span>
       </a>
@@ -92,7 +93,7 @@
             <div class="orbit-ring ring-3"></div>
             <div class="orbit-core">
               <div class="profile-box">
-                <img src="logo.svg" onerror="this.src='logo.png'" alt="MD Moshiur Rahman Logo" decoding="async">
+                <img src="/logo.svg" onerror="this.src='logo.png'" alt="MD Moshiur Rahman Logo" decoding="async">
               </div>
             </div>
             <span class="orbit-chip chip-1">React</span>
@@ -117,7 +118,7 @@
           <!-- Left Profile Card -->
           <div class="about-profile card glass reveal">
             <div class="profile-box">
-              <img src="me.svg" onerror="this.src='me.png'" alt="MD. Moshiur Rahman" loading="lazy" decoding="async">
+              <img src="/me.svg" onerror="this.src='me.png'" alt="MD. Moshiur Rahman" loading="lazy" decoding="async">
             </div>
             <h3>MD. Moshiur Rahman</h3>
             <div class="muted">Full Stack Developer</div>
@@ -274,7 +275,7 @@
           <!-- Interactive Glass Information Box Above Wheel -->
           <div class="skill-info-box" id="skill-info-box" aria-live="polite">
             <div class="info-box-left">
-              <div class="info-box-icon-wrap" id="info-box-icon">🌐</div>
+              <div class="info-box-icon-wrap" id="info-box-icon"><i class="fa-brands fa-html5" aria-hidden="true"></i></div>
               <div class="info-box-titles">
                 <h3 id="info-box-title">HTML &amp; CSS</h3>
                 <p id="info-box-category">Frontend Development</p>
@@ -336,11 +337,11 @@
 
         <div class="project-icons">
           <a href="https://study-flowup.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-icon reveal" aria-label="View Study Flow project (opens in new tab)">
-            <img src="study.svg" onerror="this.src='study.png'" alt="Study Flow App Icon" loading="lazy">
+            <img src="/study.svg" onerror="this.src='study.png'" alt="Study Flow App Icon" loading="lazy">
           </a>
 
           <a href="https://edupay-pico.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-icon reveal" aria-label="View EduPay Pico project (opens in new tab)">
-            <img src="paypico.svg" onerror="this.src='paypico.png'" alt="EduPay Pico App Icon" loading="lazy">
+            <img src="/paypico.svg" onerror="this.src='paypico.png'" alt="EduPay Pico App Icon" loading="lazy">
           </a>
         </div>
       </div>
@@ -396,7 +397,7 @@
               <div class="info-icon" aria-hidden="true">✉️</div>
               <div>
                 <h4>Email</h4>
-                <p class="muted">borshonsweb@gmail.com</p>
+                <p class="muted">Press here for Mail</p>
               </div>
             </a>
 
@@ -459,7 +460,7 @@
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="logo.svg" onerror="this.src='logo.png'" alt="MR Logo" class="footer-logo" loading="lazy">
+        <img src="/logo.svg" onerror="this.src='logo.png'" alt="MR Logo" class="footer-logo" loading="lazy">
         <span class="brand-name">Moshiur<span class="brand-dot">.</span></span>
       </div>
       <p class="muted footer-tag">
@@ -481,7 +482,6 @@
 
   <!-- Script -->
   <script src="script.js"></script>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
-
-
