@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,15 +11,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Icon Library -->
+  <!-- Font Awesome Icon Library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  <!-- Stylesheet -->
+  <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="root" style="display: none;"></div>
-
   <!-- Background Canvas & Ambient Glow -->
   <canvas id="bg-canvas"></canvas>
   <div class="ambient-glow" aria-hidden="true"></div>
@@ -28,7 +26,7 @@
   <header class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="#home" class="brand" aria-label="MD Moshiur Rahman Home">
-        <span class="brand-mark">
+        <span class="brand-mark logo-glow">
           <img src="/logo.svg" onerror="this.src='logo.png'" alt="MR Logo">
         </span>
         <span class="brand-name">Moshiur<span class="brand-dot">.</span></span>
@@ -46,7 +44,7 @@
       </nav>
 
       <div class="nav-actions">
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode">
+        <button class="theme-toggle premium-glass" id="theme-toggle" aria-label="Toggle light and dark mode">
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
         </button>
@@ -87,18 +85,18 @@
         </div>
 
         <div class="hero-visual reveal">
-          <div class="orbit-badge">
+          <div class="orbit-badge orbit-container">
             <div class="orbit-ring ring-1"></div>
             <div class="orbit-ring ring-2"></div>
             <div class="orbit-ring ring-3"></div>
-            <div class="orbit-core">
+            <div class="orbit-core hero-circle">
               <div class="profile-box">
                 <img src="/logo.svg" onerror="this.src='logo.png'" alt="MD Moshiur Rahman Logo" decoding="async">
               </div>
             </div>
-            <span class="orbit-chip chip-1">React</span>
-            <span class="orbit-chip chip-2">Node.js</span>
-            <span class="orbit-chip chip-3">UI/UX</span>
+            <span class="orbit-chip chip-1 premium-glass">React</span>
+            <span class="orbit-chip chip-2 premium-glass">Node.js</span>
+            <span class="orbit-chip chip-3 premium-glass">UI/UX</span>
           </div>
         </div>
       </div>
@@ -142,7 +140,9 @@
           <!-- Right Info Cards -->
           <div class="about-info">
             <div class="info-card card glass reveal">
-              <div class="info-icon" aria-hidden="true">🎓</div>
+              <div class="glass-icon info-icon" aria-hidden="true">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
               <div>
                 <h4>Focus</h4>
                 <p class="muted">Web Applications &amp; Product UI</p>
@@ -150,7 +150,9 @@
             </div>
 
             <div class="info-card card glass reveal">
-              <div class="info-icon" aria-hidden="true">🛠️</div>
+              <div class="glass-icon info-icon" aria-hidden="true">
+                <i class="fa-solid fa-layer-group"></i>
+              </div>
               <div>
                 <h4>Stack</h4>
                 <p class="muted">JavaScript, React, Node.js</p>
@@ -158,7 +160,9 @@
             </div>
 
             <div class="info-card card glass reveal">
-              <div class="info-icon" aria-hidden="true">🕐</div>
+              <div class="glass-icon info-icon" aria-hidden="true">
+                <i class="fa-solid fa-clock"></i>
+              </div>
               <div>
                 <h4>Availability</h4>
                 <p class="muted">Open to Freelance &amp; Full-Time</p>
@@ -232,32 +236,44 @@
 
         <div class="services-grid">
           <div class="service-card card glass reveal">
-            <div class="service-icon" aria-hidden="true">🖥️</div>
+            <div class="glass-icon service-icon" aria-hidden="true">
+              <i class="fa-solid fa-desktop"></i>
+            </div>
             <h3>Web Development</h3>
             <p class="muted">Responsive, fast, accessible websites and web apps built on modern frameworks.</p>
           </div>
           <div class="service-card card glass reveal">
-            <div class="service-icon" aria-hidden="true">🎨</div>
+            <div class="glass-icon service-icon" aria-hidden="true">
+              <i class="fa-solid fa-palette"></i>
+            </div>
             <h3>UI / UX Design</h3>
             <p class="muted">Interfaces that are considered from the first wireframe to the final pixel.</p>
           </div>
           <div class="service-card card glass reveal">
-            <div class="service-icon" aria-hidden="true">🔌</div>
+            <div class="glass-icon service-icon" aria-hidden="true">
+              <i class="fa-solid fa-plug"></i>
+            </div>
             <h3>API Development</h3>
             <p class="muted">Secure, well-documented REST &amp; GraphQL APIs that scale with your product.</p>
           </div>
           <div class="service-card card glass reveal">
-            <div class="service-icon" aria-hidden="true">⚡</div>
+            <div class="glass-icon service-icon" aria-hidden="true">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
             <h3>Performance Optimization</h3>
             <p class="muted">Faster load times, smoother interactions, and leaner bundles — measured, not guessed.</p>
           </div>
           <div class="service-card card glass reveal">
-            <div class="service-icon" aria-hidden="true">🧩</div>
+            <div class="glass-icon service-icon" aria-hidden="true">
+              <i class="fa-solid fa-puzzle-piece"></i>
+            </div>
             <h3>Maintenance &amp; Support</h3>
             <p class="muted">Ongoing updates, bug fixes, and monitoring so your product keeps running smoothly.</p>
           </div>
           <div class="service-card card glass reveal">
-            <div class="service-icon" aria-hidden="true">💬</div>
+            <div class="glass-icon service-icon" aria-hidden="true">
+              <i class="fa-solid fa-comments"></i>
+            </div>
             <h3>Technical Consulting</h3>
             <p class="muted">Architecture reviews and technology guidance before you commit to a direction.</p>
           </div>
@@ -265,7 +281,7 @@
       </div>
     </section>
 
-    <!-- ============ SKILLS (PREMIUM CURVED ROTARY SKILL WHEEL - COMPLETE 360° CIRCLE) ============ -->
+    <!-- ============ SKILLS ============ -->
     <section class="section" id="skills">
       <div class="section-inner">
         <div class="skills-header reveal">
@@ -285,7 +301,7 @@
             <!-- One Premium Glass Information Card -->
             <div class="skill-info-card glass" id="skill-info-card" aria-live="polite">
               <div class="card-top-row">
-                <div class="card-icon-wrapper" id="card-skill-icon">
+                <div class="card-icon-wrapper glass-icon" id="card-skill-icon">
                   <i class="fa-brands fa-html5" aria-hidden="true"></i>
                 </div>
                 <div class="card-titles">
@@ -318,34 +334,27 @@
 
           <!-- Complete 360° Rotary Dial Wheel -->
           <div class="wheel-container-full" id="wheel-container-full">
-            <!-- Rotary Wheel Stage -->
             <div class="wheel-stage" id="wheel-stage">
-              <!-- Active Pointer / Needle pointing DOWN to the active pod at 12 o'clock (top center) -->
               <div class="wheel-pointer" aria-hidden="true">
                 <div class="pointer-glow"></div>
                 <div class="pointer-arrow"></div>
               </div>
 
-              <!-- The Rotating Dial Disc -->
               <div class="rotary-dial" id="rotary-dial">
-                <!-- Glass metallic outer ring & dial ticks -->
                 <div class="dial-ring dial-ring-outer"></div>
                 <div class="dial-ring dial-ring-middle"></div>
                 <div class="dial-ticks" id="dial-ticks"></div>
 
-                <!-- Stationary Center Hub with MR branding -->
                 <div class="dial-center-hub">
                   <div class="hub-inner-glass">
-
                     <span class="hub-title">MY SKILLS</span>
                     <span class="hub-subtitle">what i can do for you</span>
                     <div class="hub-status-light"></div>
                   </div>
                 </div>
 
-                <!-- Skill Pods Container (Rotated by JS) -->
                 <div class="dial-pods-container" id="dial-pods-container">
-                  <!-- Injected by vanilla JS -->
+                  <!-- Injected by JS -->
                 </div>
               </div>
             </div>
@@ -419,7 +428,9 @@
             </p>
 
             <a class="contact-item" href="mailto:borshonsweb@gmail.com?subject=Portfolio%20Contact">
-              <div class="info-icon" aria-hidden="true">✉️</div>
+              <div class="glass-icon info-icon" aria-hidden="true">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
               <div>
                 <h4>Email</h4>
                 <p class="muted">Press here for Mail</p>
@@ -451,7 +462,6 @@
 
           <!-- RIGHT -->
           <form action="https://formsubmit.co/borshonsweb@gmail.com" method="POST" class="contact-form card glass reveal">
-            <!-- Hidden Settings -->
             <input type="hidden" name="_subject" value="New Portfolio Contact from MD Moshiur Rahman site">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
@@ -507,6 +517,5 @@
 
   <!-- Script -->
   <script src="script.js"></script>
-  <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

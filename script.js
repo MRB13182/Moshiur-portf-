@@ -1,8 +1,7 @@
 /* ==========================================================================
    MD. Moshiur Rahman — Premium Portfolio
    script.js
-   Apple + Linear + Framer Quality Vanilla JavaScript Engine
-   (Premium Curved Rotary Skill Wheel Edition - Full 360° Circle)
+   Vanilla JavaScript Engine (Theme System, 360° Rotary Wheel & Glass System)
    ========================================================================== */
 
 function initAll() {
@@ -28,34 +27,48 @@ if (document.readyState === 'loading') {
 }
 
 /* ----------------------------------------------------------------------
-   1. Theme Engine: Dark Mode by Default with LocalStorage & Smooth Switch
+   1. Theme Engine: LIGHT MODE BY DEFAULT with LocalStorage Persistence
    ---------------------------------------------------------------------- */
 function initTheme() {
   const root = document.documentElement;
   const toggle = document.getElementById('theme-toggle');
-  if (!toggle) return;
 
+  /* Default theme is 'light' when website loads for the first time */
   const savedTheme = localStorage.getItem('mr-theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const initialTheme = savedTheme || (prefersDark ? 'dark' : 'dark');
+  const initialTheme = savedTheme ? savedTheme : 'light';
 
   const applyTheme = (theme) => {
     root.setAttribute('data-theme', theme);
+    if (theme === 'dark') {
+      root.classList.remove('theme-light');
+      root.classList.add('theme-dark');
+      document.body.classList.remove('theme-light');
+      document.body.classList.add('theme-dark');
+    } else {
+      root.classList.remove('theme-dark');
+      root.classList.add('theme-light');
+      document.body.classList.remove('theme-dark');
+      document.body.classList.add('theme-light');
+    }
     localStorage.setItem('mr-theme', theme);
-    toggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
+    if (toggle) {
+      toggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
+    }
   };
 
   applyTheme(initialTheme);
 
-  toggle.addEventListener('click', () => {
-    const current = root.getAttribute('data-theme');
-    const next = current === 'dark' ? 'light' : 'dark';
-    applyTheme(next);
-  });
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') || 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+    });
+  }
 }
 
 /* ----------------------------------------------------------------------
-   2. Navbar Engine: Sticky Blur, Scroll State & Active Section Tracking
+   2. Navbar Engine: Sticky Blur & Active Section Tracking
    ---------------------------------------------------------------------- */
 function initNavbar() {
   const navbar = document.getElementById('navbar');
@@ -109,7 +122,7 @@ function initNavbar() {
 }
 
 /* ----------------------------------------------------------------------
-   3. Mobile Menu Engine: Zero-Jitter Body Lock, ESC & Outside Click
+   3. Mobile Menu Engine: Zero-Jitter Body Lock
    ---------------------------------------------------------------------- */
 function initMobileMenu() {
   const hamburger = document.getElementById('hamburger');
@@ -172,7 +185,7 @@ function initMobileMenu() {
 }
 
 /* ----------------------------------------------------------------------
-   4. Smooth Scroll Engine: Precise Offset Calculation
+   4. Smooth Scroll Engine
    ---------------------------------------------------------------------- */
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -197,7 +210,7 @@ function initSmoothScroll() {
 }
 
 /* ----------------------------------------------------------------------
-   5. Role Rotator Engine: Natural Typing & Deleting Effect
+   5. Role Rotator Engine: Natural Typewriter
    ---------------------------------------------------------------------- */
 function initRoleRotator() {
   const el = document.getElementById('role-rotator');
@@ -213,7 +226,6 @@ function initRoleRotator() {
   let roleIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
-  let timerId = null;
 
   const type = () => {
     const currentRole = roles[roleIndex];
@@ -237,14 +249,14 @@ function initRoleRotator() {
       typeSpeed = 400;
     }
 
-    timerId = setTimeout(type, typeSpeed);
+    setTimeout(type, typeSpeed);
   };
 
   type();
 }
 
 /* ----------------------------------------------------------------------
-   6. Scroll Reveal Engine: Hardware-Accelerated IntersectionObserver
+   6. Scroll Reveal Engine: IntersectionObserver
    ---------------------------------------------------------------------- */
 function initRevealAnimations() {
   const revealItems = document.querySelectorAll('.reveal');
@@ -272,7 +284,7 @@ function initRevealAnimations() {
 }
 
 /* ----------------------------------------------------------------------
-   7. Hero Stat Counters Engine: Smooth Cubic Easing
+   7. Hero Stat Counters Engine
    ---------------------------------------------------------------------- */
 function initCounters() {
   const counters = document.querySelectorAll('[data-count]');
@@ -309,7 +321,7 @@ function initCounters() {
 }
 
 /* ----------------------------------------------------------------------
-   8. Premium Complete 360° Circular Rotary Skill Wheel Engine
+   8. Premium 360° Circular Rotary Skill Wheel Engine
    ---------------------------------------------------------------------- */
 function initSkillWheel() {
   const dial = document.getElementById('rotary-dial');
@@ -318,7 +330,6 @@ function initSkillWheel() {
   const infoCard = document.getElementById('skill-info-card');
   if (!dial || !podsContainer || !infoCard) return;
 
-  /* Exactly 20 Skills as requested */
   const skillsData = [
     { title: "HTML5", category: "Frontend Core", scoreText: "★★★★★", pct: 100, icon: '<i class="fa-brands fa-html5" aria-hidden="true"></i>', desc: "Semantic markup architecture, accessibility (WCAG AA), SEO optimization, and modern web APIs for responsive web applications." },
     { title: "CSS3", category: "Styling & Layout", scoreText: "★★★★★", pct: 98, icon: '<i class="fa-brands fa-css3-alt" aria-hidden="true"></i>', desc: "Advanced Flexbox, CSS Grid, custom properties, fluid responsive typography, and hardware-accelerated 60 FPS animations." },
@@ -342,7 +353,7 @@ function initSkillWheel() {
     { title: "Linux", category: "OS & Server Admin", scoreText: "★★★★☆", pct: 85, icon: '<i class="fa-brands fa-linux" aria-hidden="true"></i>', desc: "Server command-line operations, bash scripting, SSH authentication, process management, Nginx proxy setup, and permission security." }
   ];
 
-  /* Generate 60 ticks around the wheel for authentic rotary dial look */
+  /* Ticks generation */
   if (ticksContainer && !ticksContainer.children.length) {
     for (let i = 0; i < 60; i++) {
       const tick = document.createElement('div');
@@ -352,7 +363,7 @@ function initSkillWheel() {
     }
   }
 
-  /* Inject Skill Pods */
+  /* Pods Injection */
   podsContainer.innerHTML = '';
   const podElements = skillsData.map((skill) => {
     const pod = document.createElement('div');
@@ -380,7 +391,6 @@ function initSkillWheel() {
   let pctAnimId = null;
 
   const stepAngle = 360 / skillsData.length;
-  /* Active pointer is located at Top Center (0 degrees / 12 o'clock in clock coordinates) */
   const ACTIVE_ANGLE = 0;
 
   const getRadius = () => {
@@ -388,7 +398,6 @@ function initSkillWheel() {
     return parseFloat(rStr) || 325;
   };
 
-  /* Smooth number counter for percentage display */
   const animatePercentage = (targetPct) => {
     if (pctAnimId) cancelAnimationFrame(pctAnimId);
     const pctEl = document.getElementById('card-skill-pct');
@@ -414,7 +423,6 @@ function initSkillWheel() {
     pctAnimId = requestAnimationFrame(step);
   };
 
-  /* Update One Premium Glass Information Card with smooth transition */
   const updateInfoCard = (index) => {
     if (index === activeIndex || !infoCard || !skillsData[index]) return;
     activeIndex = index;
@@ -442,7 +450,6 @@ function initSkillWheel() {
     }, 150);
   };
 
-  /* Render wheel positions around full 360° circle and determine active skill at 0 degrees (12 o'clock) */
   const renderWheel = () => {
     const radius = getRadius();
     let closestIndex = 0;
@@ -460,7 +467,6 @@ function initSkillWheel() {
       const x = Math.sin(rad) * radius;
       const y = -Math.cos(rad) * radius;
 
-      /* Calculate normalized shortest angular distance from the active pointer at 0 degrees (12 o'clock) */
       let normalized = ((totalAngle - ACTIVE_ANGLE) % 360 + 360) % 360;
       if (normalized > 180) normalized = 360 - normalized;
       const dist = Math.abs(normalized);
@@ -470,8 +476,6 @@ function initSkillWheel() {
         closestIndex = i;
       }
 
-      /* In a full 360° circle, all icons are visible around the circle. 
-         As an icon rotates toward the top arrow (dist -> 0), it smoothly brightens to 1.0 and enlarges! */
       const distPct = Math.max(0, 1 - dist / 60);
       const scale = 0.82 + distPct * 0.36;
       const opacity = 0.48 + distPct * 0.52;
@@ -489,7 +493,6 @@ function initSkillWheel() {
     updateInfoCard(closestIndex);
   };
 
-  /* Pointer event handlers for drag / swipe */
   const onPointerDown = (e) => {
     isDragging = true;
     dial.style.cursor = 'grabbing';
@@ -526,7 +529,6 @@ function initSkillWheel() {
       if (deltaAngle < -180) deltaAngle += 360;
       startAngle = currentAngle;
     } else {
-      /* Horizontal/Vertical swipe fallback when touching near center */
       deltaAngle = (e.clientX - startX) * 0.5 - (e.clientY - startY) * 0.5;
       startX = e.clientX;
       startY = e.clientY;
@@ -559,13 +561,11 @@ function initSkillWheel() {
   window.addEventListener('pointerup', onPointerUp);
   window.addEventListener('pointercancel', onPointerUp);
 
-  /* Trackpad / Mouse Wheel Support */
   dial.addEventListener('wheel', (e) => {
     e.preventDefault();
     velocity += (e.deltaY || e.deltaX) * 0.035;
   }, { passive: false });
 
-  /* Pod Click Handler: Direct spin to selected skill at 0 degrees (12 o'clock top center) */
   podElements.forEach((pod, i) => {
     const spinToSkill = () => {
       if (isDragging) return;
@@ -587,7 +587,6 @@ function initSkillWheel() {
     });
   });
 
-  /* 60 FPS Inertia & Magnetic Snapping Loop */
   const animateWheel = () => {
     if (!isDragging) {
       if (Math.abs(velocity) > 0.01) {
@@ -595,7 +594,6 @@ function initSkillWheel() {
         velocity *= 0.93;
       } else {
         velocity = 0;
-        /* Calculate nearest magnetic snap point aligned with ACTIVE_ANGLE (0 degrees top center) */
         const offset = targetRotation - ACTIVE_ANGLE;
         const snappedOffset = Math.round(offset / stepAngle) * stepAngle;
         const snappedTarget = ACTIVE_ANGLE + snappedOffset;
@@ -614,7 +612,7 @@ function initSkillWheel() {
 }
 
 /* ----------------------------------------------------------------------
-   9. Ambient Background Particles Engine: High FPS & RequestAnimationFrame
+   9. Ambient Background Particles Engine: Dynamic Light/Dark Responsive
    ---------------------------------------------------------------------- */
 function initParticles() {
   const canvas = document.getElementById('bg-canvas');
@@ -652,7 +650,7 @@ function initParticles() {
     ctx.clearRect(0, 0, width, height);
 
     const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-    const dotColor = isLight ? 'rgba(37, 99, 235, 0.5)' : 'rgba(96, 165, 250, 0.75)';
+    const dotColor = isLight ? 'rgba(37, 99, 235, 0.45)' : 'rgba(96, 165, 250, 0.75)';
     const lineColorRGB = isLight ? '37, 99, 235' : '96, 165, 250';
 
     const len = particles.length;
@@ -688,7 +686,7 @@ function initParticles() {
 
         if (distSq < LINK_DIST_SQ) {
           const dist = Math.sqrt(distSq);
-          const alpha = (1 - dist / 130) * (isLight ? 0.2 : 0.3);
+          const alpha = (1 - dist / 130) * (isLight ? 0.22 : 0.3);
           ctx.strokeStyle = `rgba(${lineColorRGB}, ${alpha})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
@@ -739,7 +737,7 @@ function initParticles() {
 }
 
 /* ----------------------------------------------------------------------
-   10. Contact Form Engine: Responsive & User Feedback
+   10. Contact Form Engine
    ---------------------------------------------------------------------- */
 function initContactForm() {
   const form = document.querySelector('.contact-form');
@@ -750,7 +748,7 @@ function initContactForm() {
   noteEl.style.cssText = 'font-size: 0.78rem; color: var(--text-accent); min-height: 1.4em; margin-top: 4px;';
   form.appendChild(noteEl);
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', () => {
     const nameInput = form.querySelector('input[name="name"]');
     const name = nameInput ? nameInput.value.trim() : '';
     const firstName = name ? name.split(' ')[0] : 'friend';
