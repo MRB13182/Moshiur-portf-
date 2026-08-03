@@ -5,19 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MD. Moshiur Rahman — Full Stack Developer & UI Engineer</title>
   <meta name="description" content="Portfolio of MD. Moshiur Rahman, Full Stack Developer & UI Engineer building fast, dependable web products.">
+  <meta name="theme-color" content="#f8fafc">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- Font Awesome Icon Library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+  <!-- Custom Cursor & Cursor Glow -->
+  <div class="custom-cursor" id="custom-cursor" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
   <!-- Background Canvas & Ambient Glow -->
   <canvas id="bg-canvas"></canvas>
   <div class="ambient-glow" aria-hidden="true"></div>
@@ -27,7 +32,7 @@
     <div class="nav-inner">
       <a href="#home" class="brand" aria-label="MD Moshiur Rahman Home">
         <span class="brand-mark logo-glow">
-          <img src="/logo.svg" onerror="this.src='logo.png'" alt="MR Logo">
+          <img src="/logo.svg" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' rx=\'28\' fill=\'url(%23g)\'/><defs><linearGradient id=\'g\' x1=\'0\' y1=\'0\' x2=\'1\' y2=\'1\'><stop offset=\'0%\' stop-color=\'%232563eb\'/><stop offset=\'100%\' stop-color=\'%2360a5fa\'/></linearGradient></defs><text x=\'50\' y=\'62\' font-family=\'Space Grotesk, sans-serif\' font-weight=\'bold\' font-size=\'42\' fill=\'%23ffffff\' text-anchor=\'middle\'>MR</text></svg>'" alt="MR Logo">
         </span>
         <span class="brand-name">Moshiur<span class="brand-dot">.</span></span>
       </a>
@@ -44,7 +49,7 @@
       </nav>
 
       <div class="nav-actions">
-        <button class="theme-toggle premium-glass" id="theme-toggle" aria-label="Toggle light and dark mode">
+        <button class="theme-toggle premium-glass magnetic" id="theme-toggle" aria-label="Toggle light and dark mode">
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
         </button>
@@ -74,8 +79,8 @@
             Based in Dhaka, Bangladesh, working with teams worldwide.
           </p>
           <div class="hero-actions">
-            <a href="#projects" class="btn btn-primary">View Projects</a>
-            <a href="#contact" class="btn btn-outline">Start a Conversation</a>
+            <a href="#projects" class="btn btn-primary magnetic">View Projects</a>
+            <a href="#contact" class="btn btn-outline magnetic">Start a Conversation</a>
           </div>
           <div class="hero-stats">
             <div class="hero-stat"><span class="hero-stat-num" data-count="40">0</span><span class="hero-stat-label">Projects Shipped</span></div>
@@ -91,7 +96,7 @@
             <div class="orbit-ring ring-3"></div>
             <div class="orbit-core hero-circle">
               <div class="profile-box">
-                <img src="/logo.svg" onerror="this.src='logo.png'" alt="MD Moshiur Rahman Logo" decoding="async">
+                <img src="/logo.svg" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'160\' height=\'160\' viewBox=\'0 0 160 160\'><rect width=\'160\' height=\'160\' rx=\'80\' fill=\'none\'/><text x=\'80\' y=\'98\' font-family=\'Space Grotesk, sans-serif\' font-weight=\'bold\' font-size=\'64\' fill=\'%23ffffff\' text-anchor=\'middle\'>MR</text></svg>'" alt="MD Moshiur Rahman Logo" decoding="async">
               </div>
             </div>
             <span class="orbit-chip chip-1 premium-glass">React</span>
@@ -114,9 +119,9 @@
 
         <div class="about-grid">
           <!-- Left Profile Card -->
-          <div class="about-profile card glass reveal">
+          <div class="about-profile card glass reveal tilt-card">
             <div class="profile-box">
-              <img src="/me.svg" onerror="this.src='me.png'" alt="MD. Moshiur Rahman" loading="lazy" decoding="async">
+              <img src="/me.svg" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'300\' viewBox=\'0 0 300 300\'><rect width=\'300\' height=\'300\' rx=\'24\' fill=\'url(%23gm)\'/><defs><linearGradient id=\'gm\' x1=\'0\' y1=\'0\' x2=\'1\' y2=\'1\'><stop offset=\'0%\' stop-color=\'%231e293b\'/><stop offset=\'100%\' stop-color=\'%232563eb\'/></linearGradient></defs><circle cx=\'150\' cy=\'110\' r=\'45\' fill=\'%2360a5fa\'/><path d=\'M75,240 C75,180 225,180 225,240\' fill=\'%2360a5fa\'/></svg>'" alt="MD. Moshiur Rahman" loading="lazy" decoding="async">
             </div>
             <h3>MD. Moshiur Rahman</h3>
             <div class="muted">Full Stack Developer</div>
@@ -139,7 +144,7 @@
 
           <!-- Right Info Cards -->
           <div class="about-info">
-            <div class="info-card card glass reveal">
+            <div class="info-card card glass reveal tilt-card">
               <div class="glass-icon info-icon" aria-hidden="true">
                 <i class="fa-solid fa-graduation-cap"></i>
               </div>
@@ -149,7 +154,7 @@
               </div>
             </div>
 
-            <div class="info-card card glass reveal">
+            <div class="info-card card glass reveal tilt-card">
               <div class="glass-icon info-icon" aria-hidden="true">
                 <i class="fa-solid fa-layer-group"></i>
               </div>
@@ -159,7 +164,7 @@
               </div>
             </div>
 
-            <div class="info-card card glass reveal">
+            <div class="info-card card glass reveal tilt-card">
               <div class="glass-icon info-icon" aria-hidden="true">
                 <i class="fa-solid fa-clock"></i>
               </div>
@@ -182,7 +187,7 @@
         <div class="timeline">
           <div class="timeline-item reveal">
             <div class="timeline-index">01</div>
-            <div class="timeline-content card glass">
+            <div class="timeline-content card glass tilt-card">
               <span class="timeline-year">Year One</span>
               <h4>Wrote the first line of code</h4>
               <p class="muted">Started with HTML &amp; CSS, curious how websites actually worked — then fell down the rabbit hole of JavaScript.</p>
@@ -191,7 +196,7 @@
 
           <div class="timeline-item reveal">
             <div class="timeline-index">02</div>
-            <div class="timeline-content card glass">
+            <div class="timeline-content card glass tilt-card">
               <span class="timeline-year">Year Two</span>
               <h4>First freelance projects</h4>
               <p class="muted">Built small business sites and landing pages, learning to work directly with real clients and real deadlines.</p>
@@ -200,7 +205,7 @@
 
           <div class="timeline-item reveal">
             <div class="timeline-index">03</div>
-            <div class="timeline-content card glass">
+            <div class="timeline-content card glass tilt-card">
               <span class="timeline-year">Year Three</span>
               <h4>Went full stack</h4>
               <p class="muted">Picked up Node.js and databases to own entire products end-to-end, not just the interface layer.</p>
@@ -209,7 +214,7 @@
 
           <div class="timeline-item reveal">
             <div class="timeline-index">04</div>
-            <div class="timeline-content card glass">
+            <div class="timeline-content card glass tilt-card">
               <span class="timeline-year">Year Four</span>
               <h4>Joined a product team</h4>
               <p class="muted">Worked inside a larger engineering team, shipping features at scale and learning what "production-ready" really means.</p>
@@ -218,7 +223,7 @@
 
           <div class="timeline-item reveal">
             <div class="timeline-index">05</div>
-            <div class="timeline-content card glass">
+            <div class="timeline-content card glass tilt-card">
               <span class="timeline-year">Today</span>
               <h4>Building independently</h4>
               <p class="muted">Now taking on select freelance &amp; contract work, focused on craft, performance, and long-term product thinking.</p>
@@ -235,42 +240,42 @@
         <h2 class="section-title">What I can build for you</h2>
 
         <div class="services-grid">
-          <div class="service-card card glass reveal">
+          <div class="service-card card glass reveal tilt-card">
             <div class="glass-icon service-icon" aria-hidden="true">
               <i class="fa-solid fa-desktop"></i>
             </div>
             <h3>Web Development</h3>
             <p class="muted">Responsive, fast, accessible websites and web apps built on modern frameworks.</p>
           </div>
-          <div class="service-card card glass reveal">
+          <div class="service-card card glass reveal tilt-card">
             <div class="glass-icon service-icon" aria-hidden="true">
               <i class="fa-solid fa-palette"></i>
             </div>
             <h3>UI / UX Design</h3>
             <p class="muted">Interfaces that are considered from the first wireframe to the final pixel.</p>
           </div>
-          <div class="service-card card glass reveal">
+          <div class="service-card card glass reveal tilt-card">
             <div class="glass-icon service-icon" aria-hidden="true">
               <i class="fa-solid fa-plug"></i>
             </div>
             <h3>API Development</h3>
             <p class="muted">Secure, well-documented REST &amp; GraphQL APIs that scale with your product.</p>
           </div>
-          <div class="service-card card glass reveal">
+          <div class="service-card card glass reveal tilt-card">
             <div class="glass-icon service-icon" aria-hidden="true">
               <i class="fa-solid fa-bolt"></i>
             </div>
             <h3>Performance Optimization</h3>
             <p class="muted">Faster load times, smoother interactions, and leaner bundles — measured, not guessed.</p>
           </div>
-          <div class="service-card card glass reveal">
+          <div class="service-card card glass reveal tilt-card">
             <div class="glass-icon service-icon" aria-hidden="true">
               <i class="fa-solid fa-puzzle-piece"></i>
             </div>
             <h3>Maintenance &amp; Support</h3>
             <p class="muted">Ongoing updates, bug fixes, and monitoring so your product keeps running smoothly.</p>
           </div>
-          <div class="service-card card glass reveal">
+          <div class="service-card card glass reveal tilt-card">
             <div class="glass-icon service-icon" aria-hidden="true">
               <i class="fa-solid fa-comments"></i>
             </div>
@@ -299,7 +304,7 @@
             </div>
 
             <!-- One Premium Glass Information Card -->
-            <div class="skill-info-card glass" id="skill-info-card" aria-live="polite">
+            <div class="skill-info-card glass tilt-card" id="skill-info-card" aria-live="polite">
               <div class="card-top-row">
                 <div class="card-icon-wrapper glass-icon" id="card-skill-icon">
                   <i class="fa-brands fa-html5" aria-hidden="true"></i>
@@ -340,7 +345,7 @@
                 <div class="pointer-arrow"></div>
               </div>
 
-              <div class="rotary-dial" id="rotary-dial">
+              <div class="rotary-dial" id="rotary-dial" tabindex="0" role="region" aria-label="Skill Dial Control">
                 <div class="dial-ring dial-ring-outer"></div>
                 <div class="dial-ring dial-ring-middle"></div>
                 <div class="dial-ticks" id="dial-ticks"></div>
@@ -370,12 +375,12 @@
         <h2 class="section-title">Selected Work</h2>
 
         <div class="project-icons">
-          <a href="https://study-flowup.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-icon reveal" aria-label="View Study Flow project (opens in new tab)">
-            <img src="/study.svg" onerror="this.src='study.png'" alt="Study Flow App Icon" loading="lazy">
+          <a href="https://study-flowup.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-icon reveal magnetic tilt-card" aria-label="View Study Flow project (opens in new tab)">
+            <img src="/study.svg" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' rx=\'24\' fill=\'url(%23gs)\'/><defs><linearGradient id=\'gs\' x1=\'0\' y1=\'0\' x2=\'1\' y2=\'1\'><stop offset=\'0%\' stop-color=\'%230f172a\'/><stop offset=\'100%\' stop-color=\'%233b82f6\'/></linearGradient></defs><path d=\'M25 45 L50 30 L75 45 L50 60 Z M35 53 V67 C35 72 65 72 65 67 V53\' fill=\'none\' stroke=\'%23ffffff\' stroke-width=\'4\' stroke-linecap=\'round\'/></svg>'" alt="Study Flow App Icon" loading="lazy">
           </a>
 
-          <a href="https://edupay-pico.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-icon reveal" aria-label="View EduPay Pico project (opens in new tab)">
-            <img src="/paypico.svg" onerror="this.src='paypico.png'" alt="EduPay Pico App Icon" loading="lazy">
+          <a href="https://edupay-pico.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-icon reveal magnetic tilt-card" aria-label="View EduPay Pico project (opens in new tab)">
+            <img src="/paypico.svg" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' rx=\'24\' fill=\'url(%23gp)\'/><defs><linearGradient id=\'gp\' x1=\'0\' y1=\'0\' x2=\'1\' y2=\'1\'><stop offset=\'0%\' stop-color=\'%232563eb\'/><stop offset=\'100%\' stop-color=\'%23a855f7\'/></linearGradient></defs><rect x=\'20\' y=\'32\' width=\'60\' height=\'36\' rx=\'6\' fill=\'none\' stroke=\'%23ffffff\' stroke-width=\'4\'/><line x1=\'20\' y1=\'44\' x2=\'80\' y2=\'44\' stroke=\'%23ffffff\' stroke-width=\'4\'/></svg>'" alt="EduPay Pico App Icon" loading="lazy">
           </a>
         </div>
       </div>
@@ -388,7 +393,7 @@
         <h2 class="section-title">Where I started, where I'm headed</h2>
 
         <div class="aspirations-grid">
-          <div class="aspirations-col card glass reveal">
+          <div class="aspirations-col card glass reveal tilt-card">
             <h3>Where I started</h3>
             <p class="muted">
               I began writing code out of curiosity, not certainty — taking apart
@@ -397,7 +402,7 @@
               where I learned to build things that other people actually depend on.
             </p>
           </div>
-          <div class="aspirations-col card glass reveal">
+          <div class="aspirations-col card glass reveal tilt-card">
             <h3>Where I'm headed</h3>
             <ul class="aspiration-list">
               <li>Build and ship a product of my own, end to end</li>
@@ -427,7 +432,7 @@
               Have a project in mind, or just want to talk? My inbox is open.
             </p>
 
-            <a class="contact-item" href="mailto:borshonsweb@gmail.com?subject=Portfolio%20Contact">
+            <a class="contact-item magnetic" href="mailto:borshonsweb@gmail.com?subject=Portfolio%20Contact">
               <div class="glass-icon info-icon" aria-hidden="true">
                 <i class="fa-solid fa-envelope"></i>
               </div>
@@ -438,30 +443,30 @@
             </a>
 
             <div class="social-row" aria-label="Social Media Profiles">
-              <a href="https://github.com/MRB13182" target="_blank" rel="noopener noreferrer" class="social-btn github" aria-label="GitHub Profile">
+              <a href="https://github.com/MRB13182" target="_blank" rel="noopener noreferrer" class="social-btn github magnetic" aria-label="GitHub Profile">
                 <i class="fa-brands fa-github" aria-hidden="true"></i>
               </a>
 
-              <a href="https://www.instagram.com/ali.babaa.x?igsh=Y3dlMm5ib2IzZng0" target="_blank" rel="noopener noreferrer" class="social-btn instagram" aria-label="Instagram Profile">
+              <a href="https://www.instagram.com/ali.babaa.x?igsh=Y3dlMm5ib2IzZng0" target="_blank" rel="noopener noreferrer" class="social-btn instagram magnetic" aria-label="Instagram Profile">
                 <i class="fa-brands fa-instagram" aria-hidden="true"></i>
               </a>
 
-              <a href="https://www.facebook.com/md.moshiur.rahman.512608" target="_blank" rel="noopener noreferrer" class="social-btn facebook" aria-label="Facebook Profile">
+              <a href="https://www.facebook.com/md.moshiur.rahman.512608" target="_blank" rel="noopener noreferrer" class="social-btn facebook magnetic" aria-label="Facebook Profile">
                 <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
               </a>
 
-              <a href="https://t.me/moshiur_182" target="_blank" rel="noopener noreferrer" class="social-btn telegram" aria-label="Telegram Profile">
+              <a href="https://t.me/moshiur_182" target="_blank" rel="noopener noreferrer" class="social-btn telegram magnetic" aria-label="Telegram Profile">
                 <i class="fa-brands fa-telegram" aria-hidden="true"></i>
               </a>
 
-              <a href="https://wa.me/8801732212203" target="_blank" rel="noopener noreferrer" class="social-btn whatsapp" aria-label="WhatsApp Profile">
+              <a href="https://wa.me/8801732212203" target="_blank" rel="noopener noreferrer" class="social-btn whatsapp magnetic" aria-label="WhatsApp Profile">
                 <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
               </a>
             </div>
           </div>
 
           <!-- RIGHT -->
-          <form action="https://formsubmit.co/borshonsweb@gmail.com" method="POST" class="contact-form card glass reveal">
+          <form action="https://formsubmit.co/borshonsweb@gmail.com" method="POST" class="contact-form card glass reveal tilt-card">
             <input type="hidden" name="_subject" value="New Portfolio Contact from MD Moshiur Rahman site">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
@@ -482,7 +487,7 @@
               <textarea name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
             </label>
 
-            <button type="submit" class="btn btn-primary btn-block">
+            <button type="submit" class="btn btn-primary btn-block magnetic">
               Send Message
             </button>
           </form>
@@ -495,7 +500,7 @@
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="/logo.svg" onerror="this.src='logo.png'" alt="MR Logo" class="footer-logo" loading="lazy">
+        <img src="/logo.svg" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' rx=\'28\' fill=\'url(%23g)\'/><defs><linearGradient id=\'g\' x1=\'0\' y1=\ me0\' x2=\'1\' y2=\'1\'><stop offset=\'0%\' stop-color=\'%232563eb\'/><stop offset=\'100%\' stop-color=\'%2360a5fa\'/></linearGradient></defs><text x=\'50\' y=\'62\' font-family=\'Space Grotesk, sans-serif\' font-weight=\'bold\' font-size=\'42\' fill=\'%23ffffff\' text-anchor=\'middle\'>MR</text></svg>'" alt="MR Logo" class="footer-logo" loading="lazy">
         <span class="brand-name">Moshiur<span class="brand-dot">.</span></span>
       </div>
       <p class="muted footer-tag">
@@ -515,7 +520,139 @@
     </div>
   </footer>
 
-  <!-- Script -->
-  <script src="script.js"></script>
+  <!-- ============ AI CHATBOT COMPONENT ============ -->
+  <div class="chatbot-wrapper" id="chatbot-wrapper">
+    <!-- Floating Circular AI Trigger Button -->
+    <button class="chatbot-trigger magnetic" id="chatbot-trigger" aria-label="Open MRx Ai Assistant" aria-expanded="false" aria-controls="chatbot-panel">
+      <div class="trigger-glow"></div>
+      <div class="trigger-icon-wrapper">
+        <img src="/robot.svg" class="trigger-robot-img icon-bot" alt="MRx Ai Robot">
+        <i class="fa-solid fa-xmark icon-close" aria-hidden="true"></i>
+      </div>
+      <span class="trigger-badge">MRx Ai</span>
+      <span class="trigger-status-dot"></span>
+    </button>
+
+    <!-- Transparent Glassmorphism Chatbot Panel -->
+    <div class="chatbot-panel" id="chatbot-panel" role="dialog" aria-label="MRx Ai Assistant Chat" aria-hidden="true">
+      <!-- Header -->
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-avatar">
+            <img src="/robot.svg" class="chat-robot-avatar" alt="MRx Ai Robot">
+          </div>
+          <div class="chat-header-titles">
+            <div class="chat-title-row">
+              <h3 class="chat-title">MRx Ai</h3>
+              <span class="chat-model-badge"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Gemini 3.6</span>
+            </div>
+            <p class="chat-subtitle">
+              <span class="status-pulse"></span> Online • Instant Portfolio Answers
+            </p>
+          </div>
+        </div>
+        <div class="chat-header-actions">
+          <button class="chat-action-btn" id="chat-clear-btn" title="Clear conversation" aria-label="Clear chat history">
+            <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+          </button>
+          <button class="chat-action-btn" id="chat-close-btn" title="Close chat" aria-label="Close assistant panel">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat Messages Scroll Container -->
+      <div class="chat-messages" id="chat-messages" aria-live="polite">
+        <!-- Initial Welcome Message from AI -->
+        <div class="message-row ai-row">
+          <div class="msg-avatar">
+            <img src="/robot.svg" class="msg-robot-avatar" alt="MRx Ai Robot">
+          </div>
+          <div class="msg-content glass-msg">
+            <div class="msg-author">MRx Ai</div>
+            <p>Welcome! I'm <strong>MRx Ai</strong>, MD. Moshiur Rahman's futuristic portfolio AI assistant.</p>
+            <p class="msg-hint">Ask me anything about Moshiur's <strong>projects</strong>, <strong>technical skills</strong>, <strong>experience</strong>, <strong>services</strong>, or <strong>contact information</strong>!</p>
+            
+            <!-- Quick AI Contact Card with Logo -->
+            <div class="chat-contact-card">
+              <div class="chat-contact-header">
+                <img src="/logo.svg" alt="MD. Moshiur Rahman MR Logo" class="chat-contact-logo" />
+                <div class="chat-contact-meta">
+                  <h4 class="chat-contact-name">MD. Moshiur Rahman</h4>
+                  <span class="chat-contact-role">Full Stack Developer & UI Engineer</span>
+                </div>
+              </div>
+              <div class="chat-contact-chips">
+                <a href="mailto:borshonsweb@gmail.com" class="chat-contact-chip" title="Send Email">
+                  <i class="fa-solid fa-envelope" aria-hidden="true"></i> borshonsweb@gmail.com
+                </a>
+                <a href="https://wa.me/8801732212203" target="_blank" rel="noopener noreferrer" class="chat-contact-chip whatsapp" title="WhatsApp Direct">
+                  <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> +8801732212203
+                </a>
+                <a href="https://t.me/moshiur_182" target="_blank" rel="noopener noreferrer" class="chat-contact-chip telegram" title="Telegram Direct">
+                  <i class="fa-brands fa-telegram" aria-hidden="true"></i> Telegram
+                </a>
+                <a href="https://github.com/MRB13182" target="_blank" rel="noopener noreferrer" class="chat-contact-chip github" title="GitHub Profile">
+                  <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Suggestion Chips -->
+        <div class="chat-suggestions-wrapper" id="chat-suggestions">
+          <div class="suggestions-label"><i class="fa-solid fa-compass" aria-hidden="true"></i> Quick Questions:</div>
+          <div class="suggestions-grid">
+            <button class="chip-btn" data-prompt="What are Moshiur's main projects and live links?">🚀 Key Projects</button>
+            <button class="chip-btn" data-prompt="What technical skills and tools does Moshiur master?">🛠️ Tech Stack</button>
+            <button class="chip-btn" data-prompt="What services can Moshiur build for my business?">💼 Services Offered</button>
+            <button class="chip-btn" data-prompt="How can I contact or hire Moshiur right now?">📬 Contact Info</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Typing Indicator (hidden by default) -->
+      <div class="typing-indicator" id="typing-indicator" style="display: none;">
+        <div class="msg-avatar">
+          <img src="/robot.svg" class="msg-robot-avatar" alt="MRx Ai Robot">
+        </div>
+        <div class="typing-bubble glass-msg">
+          <span class="typing-text">MRx Ai is thinking</span>
+          <div class="dots-wrapper">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Input Area -->
+      <div class="chat-input-area">
+        <form id="chat-form" class="chat-form" autocomplete="off">
+          <div class="input-wrapper">
+            <textarea 
+              id="chat-input" 
+              class="chat-input" 
+              placeholder="Ask MRx Ai anything about Moshiur..." 
+              rows="1"
+              aria-label="Ask MRx Ai Assistant a question"
+              required
+            ></textarea>
+            <button type="submit" id="chat-send-btn" class="chat-send-btn" aria-label="Send message">
+              <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="input-footer">
+            <span class="key-hint"><kbd>Enter</kbd> send • <kbd>Shift+Enter</kbd> newline</span>
+            <span class="powered-by"><i class="fa-solid fa-sparkles" aria-hidden="true"></i> Gemini Powered</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Application Script -->
+  <script src="/script.js"></script>
 </body>
 </html>

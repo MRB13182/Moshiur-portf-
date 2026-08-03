@@ -1,9 +1,75 @@
 /* ==========================================================================
    MD. Moshiur Rahman — Premium Portfolio
    script.js
-   Vanilla JavaScript Engine (Theme System, 360° Rotary Wheel & Glass System)
+   Vanilla JavaScript Engine + AI Chatbot Assistant Integration
    ========================================================================== */
 
+/* ---------- 1. API KEY & AI ASSISTANT CONFIGURATION ---------- */
+const API_KEY = "AQ.Ab8RN6JlTcaGRat8K2ICvoyQ8aFmSmh9seskNo2whOhAbo94vA";
+
+const SYSTEM_INSTRUCTION = `You are MRx Ai, the official AI Portfolio Assistant for MD. Moshiur Rahman, a Full Stack Developer & UI Engineer based in Dhaka, Bangladesh.
+Your role is to represent Moshiur in a friendly, enthusiastic, professional, and articulate manner to portfolio visitors, clients, and recruiters.
+
+COMPLETE BACKGROUND & KNOWLEDGE BASE:
+
+1. PERSONAL INFORMATION & OVERVIEW:
+- Name: MD. Moshiur Rahman
+- Role: Full Stack Developer & UI Engineer
+- Base Location: Dhaka, Bangladesh (Works with clients and teams globally)
+- Experience: 5+ years of building web applications, scalable APIs, and user interfaces
+- Key Metrics: 40+ completed projects shipped, 18+ satisfied clients
+- Core Philosophy: Focuses on clean architecture, pixel precision, fast performance, and dependable engineering.
+
+2. FEATURED PROJECTS & LIVE URLS:
+- Study Flow App: A productivity & focus management platform with custom timers, analytics, and workflow automation. Live URL: https://study-flowup.netlify.app/
+- EduPay Pico: An educational fintech payment gateway platform streamlining tuition fees, invoicing, and transaction tracking. Live URL: https://edupay-pico.netlify.app/
+- Portfolio Work: Over 40 shipped web products, SaaS dashboards, REST APIs, and full-stack applications.
+
+3. TECHNICAL SKILLS & STACK:
+- Frontend Core: HTML5, CSS3, JavaScript (ES6+), TypeScript
+- Frameworks & Libraries: React, Next.js, Redux, Tailwind CSS
+- Backend & Runtime: Node.js, Express.js, RESTful APIs
+- Databases: MongoDB, PostgreSQL, Firebase (Firestore & Auth)
+- DevOps & Tools: Git, GitHub, Docker, VS Code, Linux (Nginx, Bash administration)
+- UI/UX Design: Figma (wireframing, interactive prototyping, design tokens)
+
+4. SERVICES OFFERED:
+- Web Development: Fast, responsive, accessible web applications built on modern React/Node stack.
+- UI/UX Design: Considered interfaces designed from wireframes to pixel-perfect design systems.
+- API Development: Secure, well-documented RESTful and GraphQL APIs built to scale.
+- Performance Optimization: Speeding up load times, bundle optimization, and smooth 60 FPS animations.
+- Maintenance & Support: Continuous updates, bug fixes, and system monitoring.
+- Technical Consulting: Architecture reviews, technology stack selection, and product advice.
+
+5. CONTACT & SOCIAL CHANNELS:
+- Email: borshonsweb@gmail.com
+- Phone / WhatsApp: +8801732212203 (Direct WhatsApp: https://wa.me/8801732212203)
+- Telegram: @moshiur_182 (Direct Telegram: https://t.me/moshiur_182)
+- GitHub: MRB13182 (Direct GitHub: https://github.com/MRB13182)
+- Instagram: @ali.babaa.x (Direct Instagram: https://www.instagram.com/ali.babaa.x?igsh=Y3dlMm5ib2IzZng0)
+- Facebook: md.moshiur.rahman.512608 (Direct Facebook: https://www.facebook.com/md.moshiur.rahman.512608)
+
+6. PORTFOLIO SECTIONS:
+- #home: Introduction, role rotator, metrics, profile badge
+- #about: Person behind the code, core bio, focus, stack
+- #journey: Developer journey timeline from year 1 to present
+- #services: 6 core services offered
+- #skills: Interactive 360° Rotary Dial Wheel showing all 20 skills
+- #projects: Highlighted live project icons with direct links
+- #aspirations: History, future goals, and inspiration quote
+- #contact: Email link, social icons, and contact form
+
+RESPONSE STYLE GUIDELINES:
+- Be concise, helpful, warm, and professional.
+- Format responses neatly using bold text (**term**) for key terms, bullet points for lists, and clickable links for URLs.
+- If asked how to hire or contact Moshiur, share his email (borshonsweb@gmail.com) and WhatsApp (+8801732212203).
+- If asked questions unrelated to Moshiur's portfolio, politely steer the conversation back to Moshiur's work, technical capabilities, or booking a project with him.
+`;
+
+/* Global Conversation History */
+let conversationHistory = [];
+
+/* ---------- INITIALIZATION ---------- */
 function initAll() {
   initTheme();
   initNavbar();
@@ -14,7 +80,10 @@ function initAll() {
   initCounters();
   initSkillWheel();
   initParticles();
+  initCustomCursorAndMagnetic();
+  init3DTilt();
   initContactForm();
+  initAIChatbot();
   
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -33,7 +102,6 @@ function initTheme() {
   const root = document.documentElement;
   const toggle = document.getElementById('theme-toggle');
 
-  /* Default theme is 'light' when website loads for the first time */
   const savedTheme = localStorage.getItem('mr-theme');
   const initialTheme = savedTheme ? savedTheme : 'light';
 
@@ -54,6 +122,14 @@ function initTheme() {
     if (toggle) {
       toggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
     }
+
+    let metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (!metaTheme) {
+      metaTheme = document.createElement('meta');
+      metaTheme.name = 'theme-color';
+      document.head.appendChild(metaTheme);
+    }
+    metaTheme.content = theme === 'dark' ? '#020617' : '#f8fafc';
   };
 
   applyTheme(initialTheme);
@@ -256,7 +332,7 @@ function initRoleRotator() {
 }
 
 /* ----------------------------------------------------------------------
-   6. Scroll Reveal Engine: IntersectionObserver
+   6. Scroll Reveal Engine: IntersectionObserver with Stagger
    ---------------------------------------------------------------------- */
 function initRevealAnimations() {
   const revealItems = document.querySelectorAll('.reveal');
@@ -264,14 +340,14 @@ function initRevealAnimations() {
 
   const observerOptions = {
     root: null,
-    rootMargin: '0px 0px -60px 0px',
-    threshold: 0.12
+    rootMargin: '0px 0px -50px 0px',
+    threshold: 0.1
   };
 
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach((entry, idx) => {
       if (entry.isIntersecting) {
-        const delay = (idx % 4) * 80;
+        const delay = (idx % 4) * 90;
         setTimeout(() => {
           entry.target.classList.add('visible');
         }, delay);
@@ -353,7 +429,6 @@ function initSkillWheel() {
     { title: "Linux", category: "OS & Server Admin", scoreText: "★★★★☆", pct: 85, icon: '<i class="fa-brands fa-linux" aria-hidden="true"></i>', desc: "Server command-line operations, bash scripting, SSH authentication, process management, Nginx proxy setup, and permission security." }
   ];
 
-  /* Ticks generation */
   if (ticksContainer && !ticksContainer.children.length) {
     for (let i = 0; i < 60; i++) {
       const tick = document.createElement('div');
@@ -363,7 +438,6 @@ function initSkillWheel() {
     }
   }
 
-  /* Pods Injection */
   podsContainer.innerHTML = '';
   const podElements = skillsData.map((skill) => {
     const pod = document.createElement('div');
@@ -447,7 +521,7 @@ function initSkillWheel() {
       }
       animatePercentage(skill.pct);
       infoCard.classList.remove('updating');
-    }, 150);
+    }, 120);
   };
 
   const renderWheel = () => {
@@ -495,6 +569,7 @@ function initSkillWheel() {
 
   const onPointerDown = (e) => {
     isDragging = true;
+    dragDistance = 0;
     dial.style.cursor = 'grabbing';
     velocity = 0;
     startX = e.clientX;
@@ -507,14 +582,18 @@ function initSkillWheel() {
     startAngle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI);
     lastRotation = targetRotation;
     lastTime = performance.now();
-
-    if (e.pointerId && dial.setPointerCapture) {
-      try { dial.setPointerCapture(e.pointerId); } catch (err) {}
-    }
   };
 
   const onPointerMove = (e) => {
     if (!isDragging) return;
+
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    dragDistance += Math.hypot(dx, dy);
+
+    if (dragDistance > 8 && e.pointerId && dial.setPointerCapture) {
+      try { dial.setPointerCapture(e.pointerId); } catch (err) {}
+    }
     
     const rect = dial.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
@@ -522,7 +601,7 @@ function initSkillWheel() {
     const distFromCenter = Math.hypot(e.clientX - centerX, e.clientY - centerY);
 
     let deltaAngle = 0;
-    if (distFromCenter > 30) {
+    if (distFromCenter > 25) {
       const currentAngle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI);
       deltaAngle = currentAngle - startAngle;
       if (deltaAngle > 180) deltaAngle -= 360;
@@ -563,12 +642,23 @@ function initSkillWheel() {
 
   dial.addEventListener('wheel', (e) => {
     e.preventDefault();
-    velocity += (e.deltaY || e.deltaX) * 0.035;
+    velocity += (e.deltaY || e.deltaX) * 0.032;
   }, { passive: false });
 
+  dial.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      targetRotation -= stepAngle;
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      targetRotation += stepAngle;
+    }
+  });
+
   podElements.forEach((pod, i) => {
-    const spinToSkill = () => {
-      if (isDragging) return;
+    const spinToSkill = (e) => {
+      if (e) e.stopPropagation();
+      if (dragDistance > 10) return;
       const baseAngle = i * stepAngle;
       const currentMod = ((targetRotation % 360) + 360) % 360;
       const desiredMod = ((ACTIVE_ANGLE - baseAngle) % 360 + 360) % 360;
@@ -576,13 +666,17 @@ function initSkillWheel() {
       if (diff > 180) diff -= 360;
       if (diff < -180) diff += 360;
       targetRotation += diff;
+      velocity = 0;
     };
 
     pod.addEventListener('click', spinToSkill);
+    pod.addEventListener('pointerup', (e) => {
+      if (dragDistance <= 10) spinToSkill(e);
+    });
     pod.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        spinToSkill();
+        spinToSkill(e);
       }
     });
   });
@@ -737,7 +831,88 @@ function initParticles() {
 }
 
 /* ----------------------------------------------------------------------
-   10. Contact Form Engine
+   10. Custom Cursor & Magnetic Button Physics Engine
+   ---------------------------------------------------------------------- */
+function initCustomCursorAndMagnetic() {
+  const cursor = document.getElementById('custom-cursor');
+  const glow = document.getElementById('cursor-glow');
+  if (!cursor || !glow) return;
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let cursorX = mouseX;
+  let cursorY = mouseY;
+  let glowX = mouseX;
+  let glowY = mouseY;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  }, { passive: true });
+
+  const renderCursor = () => {
+    cursorX += (mouseX - cursorX) * 0.75;
+    cursorY += (mouseY - cursorY) * 0.75;
+    glowX += (mouseX - glowX) * 0.18;
+    glowY += (mouseY - glowY) * 0.18;
+
+    cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
+    glow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0) translate(-50%, -50%)`;
+
+    requestAnimationFrame(renderCursor);
+  };
+  requestAnimationFrame(renderCursor);
+
+  const interactables = document.querySelectorAll('a, button, input, textarea, .skill-pod, .project-icon, .card, .chip-btn');
+  interactables.forEach((el) => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  const magnetics = document.querySelectorAll('.magnetic');
+  magnetics.forEach((el) => {
+    el.addEventListener('mousemove', (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      el.style.transform = `translate3d(${x * 0.25}px, ${y * 0.25}px, 0)`;
+    });
+
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = `translate3d(0, 0, 0)`;
+    });
+  });
+}
+
+/* ----------------------------------------------------------------------
+   11. 3D Card Tilt Perspective Effect
+   ---------------------------------------------------------------------- */
+function init3DTilt() {
+  const tiltCards = document.querySelectorAll('.tilt-card');
+  if (!tiltCards.length) return;
+
+  tiltCards.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((y - centerY) / centerY) * -6;
+      const rotateY = ((x - centerX) / centerX) * 6;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+    });
+  });
+}
+
+/* ----------------------------------------------------------------------
+   12. Contact Form Engine
    ---------------------------------------------------------------------- */
 function initContactForm() {
   const form = document.querySelector('.contact-form');
@@ -745,7 +920,7 @@ function initContactForm() {
 
   const noteEl = document.createElement('p');
   noteEl.className = 'form-note';
-  noteEl.style.cssText = 'font-size: 0.78rem; color: var(--text-accent); min-height: 1.4em; margin-top: 4px;';
+  noteEl.style.cssText = 'font-size: 0.8rem; font-family: var(--font-mono); color: var(--text-accent); min-height: 1.4em; margin-top: 6px;';
   form.appendChild(noteEl);
 
   form.addEventListener('submit', () => {
@@ -755,4 +930,298 @@ function initContactForm() {
 
     noteEl.textContent = `✨ Thank you, ${firstName}! Sending your message now...`;
   });
+}
+
+/* ----------------------------------------------------------------------
+   13. LUXURY FUTURISTIC AI CHATBOT ENGINE
+   ---------------------------------------------------------------------- */
+function initAIChatbot() {
+  const triggerBtn = document.getElementById('chatbot-trigger');
+  const chatPanel = document.getElementById('chatbot-panel');
+  const closeBtn = document.getElementById('chat-close-btn');
+  const clearBtn = document.getElementById('chat-clear-btn');
+  const chatForm = document.getElementById('chat-form');
+  const chatInput = document.getElementById('chat-input');
+  const messagesContainer = document.getElementById('chat-messages');
+  const typingIndicator = document.getElementById('typing-indicator');
+  const suggestionsBox = document.getElementById('chat-suggestions');
+
+  if (!triggerBtn || !chatPanel || !chatForm || !chatInput || !messagesContainer) return;
+
+  // Toggle Panel Visibility
+  const togglePanel = () => {
+    const isOpen = chatPanel.classList.contains('open');
+    if (isOpen) {
+      closePanel();
+    } else {
+      openPanel();
+    }
+  };
+
+  const openPanel = () => {
+    chatPanel.classList.add('open');
+    chatPanel.setAttribute('aria-hidden', 'false');
+    triggerBtn.classList.add('active');
+    triggerBtn.setAttribute('aria-expanded', 'true');
+    setTimeout(() => chatInput.focus(), 150);
+    scrollToBottom();
+  };
+
+  const closePanel = () => {
+    chatPanel.classList.remove('open');
+    chatPanel.setAttribute('aria-hidden', 'true');
+    triggerBtn.classList.remove('active');
+    triggerBtn.setAttribute('aria-expanded', 'false');
+  };
+
+  triggerBtn.addEventListener('click', togglePanel);
+  if (closeBtn) closeBtn.addEventListener('click', closePanel);
+
+  // Clear Chat History
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      conversationHistory = [];
+      const messages = messagesContainer.querySelectorAll('.message-row:not(:first-child)');
+      messages.forEach(m => m.remove());
+      if (suggestionsBox) suggestionsBox.style.display = 'flex';
+      scrollToBottom();
+    });
+  }
+
+  // Escape key closes panel
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && chatPanel.classList.contains('open')) {
+      closePanel();
+    }
+  });
+
+  // Handle Quick Suggestion Chips
+  document.addEventListener('click', (e) => {
+    const chip = e.target.closest('.chip-btn');
+    if (chip && chip.dataset.prompt) {
+      const promptText = chip.dataset.prompt;
+      if (suggestionsBox) suggestionsBox.style.display = 'none';
+      sendMessage(promptText);
+    }
+  });
+
+  // Handle Textarea Enter / Shift+Enter
+  chatInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      chatForm.dispatchEvent(new Event('submit', { cancelable: true }));
+    }
+  });
+
+  // Auto-resize textarea
+  chatInput.addEventListener('input', () => {
+    chatInput.style.height = 'auto';
+    chatInput.style.height = Math.min(chatInput.scrollHeight, 100) + 'px';
+  });
+
+  // Form Submit Handler
+  chatForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    if (suggestionsBox) suggestionsBox.style.display = 'none';
+    chatInput.value = '';
+    chatInput.style.height = 'auto';
+
+    sendMessage(text);
+  });
+
+  // Scroll Helper
+  const scrollToBottom = () => {
+    requestAnimationFrame(() => {
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    });
+  };
+
+  // Helper: Format Markdown Text to Safe HTML
+  const formatMarkdown = (text) => {
+    if (!text) return '';
+    let html = text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    // Bold
+    html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    // Italic
+    html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    
+    // Markdown Links [title](url)
+    html = html.replace(/\[(.*?)\]\((https?:\/\/[^\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7em;"></i></a>');
+
+    // Plain URLs
+    html = html.replace(/(^|[^"'])((https?:\/\/[^\s<]+))/g, '$1<a href="$2" target="_blank" rel="noopener noreferrer">$2 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7em;"></i></a>');
+
+    // Bullet points
+    const lines = html.split('\n');
+    let inList = false;
+    let formattedLines = [];
+
+    lines.forEach(line => {
+      const trimmed = line.trim();
+      if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
+        if (!inList) {
+          inList = true;
+          formattedLines.push('<ul>');
+        }
+        formattedLines.push(`<li>${trimmed.substring(2)}</li>`);
+      } else {
+        if (inList) {
+          inList = false;
+          formattedLines.push('</ul>');
+        }
+        if (trimmed) {
+          formattedLines.push(`<p>${trimmed}</p>`);
+        }
+      }
+    });
+
+    if (inList) formattedLines.push('</ul>');
+
+    return formattedLines.join('');
+  };
+
+  // Append Message Row to UI
+  const appendMessage = (sender, messageText) => {
+    const isUser = sender === 'user';
+    const row = document.createElement('div');
+    row.className = `message-row ${isUser ? 'user-row' : 'ai-row'}`;
+
+    const formattedContent = isUser ? `<p>${messageText.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>` : formatMarkdown(messageText);
+
+    row.innerHTML = `
+      <div class="msg-avatar">
+        ${isUser ? '<i class="fa-solid fa-user" aria-hidden="true"></i>' : '<img src="/robot.svg" class="msg-robot-avatar" alt="MRx Ai Robot">'}
+      </div>
+      <div class="msg-content glass-msg">
+        <div class="msg-author">${isUser ? 'You' : 'MRx Ai'}</div>
+        ${formattedContent}
+      </div>
+    `;
+
+    messagesContainer.appendChild(row);
+    scrollToBottom();
+    return row;
+  };
+
+  // Knowledge Base Engine Fallback
+  const generateKnowledgeResponse = (query) => {
+    const q = query.toLowerCase();
+
+    if (q.includes('project') || q.includes('work') || q.includes('built') || q.includes('portfolio') || q.includes('study') || q.includes('pay') || q.includes('app')) {
+      return "MD. Moshiur Rahman has engineered **40+ successful web projects** including:\n\n" +
+             "1. **Study Flow** ([study-flowup.netlify.app](https://study-flowup.netlify.app/))\n" +
+             "   - Comprehensive productivity, task management, and study focus app.\n\n" +
+             "2. **EduPay Pico** ([edupay-pico.netlify.app](https://edupay-pico.netlify.app/))\n" +
+             "   - Next-generation educational fintech payment gateway interface.\n\n" +
+             "3. **MRx Ai Portfolio Assistant**\n" +
+             "   - Luxury glassmorphism assistant powered by Gemini 3.6 Flash.\n\n" +
+             "Would you like to know more about his stack or start a project together?";
+    }
+
+    if (q.includes('skill') || q.includes('stack') || q.includes('tech') || q.includes('tool') || q.includes('language') || q.includes('react') || q.includes('node') || q.includes('html') || q.includes('css')) {
+      return "MD. Moshiur Rahman specializes in modern full-stack web engineering:\n\n" +
+             "- **Frontend**: HTML5, CSS3/Tailwind CSS, JavaScript (ES6+), React, Glassmorphism UI\n" +
+             "- **Backend**: Node.js, Express, RESTful & GraphQL APIs\n" +
+             "- **Databases**: PostgreSQL, MongoDB\n" +
+             "- **Performance**: Asset optimization, SEO, Lighthouse 100/100 auditing, Responsive Design\n\n" +
+             "You can explore his interactive 360° Rotary Skill Wheel in the **Skills** section!";
+    }
+
+    if (q.includes('service') || q.includes('hire') || q.includes('build') || q.includes('offer') || q.includes('help')) {
+      return "Moshiur offers high-end software development services:\n\n" +
+             "• **Full-Stack Web Development**: Custom responsive web applications built for speed & scale.\n" +
+             "• **UI/UX Design & Engineering**: Modern interfaces with glassmorphism, smooth animations, and clean architecture.\n" +
+             "• **API Engineering**: Secure, high-throughput REST and GraphQL backend services.\n" +
+             "• **Performance Tuning**: Web vital optimizations and bundle downsizing.\n" +
+             "• **Technical Consulting**: Architecture reviews & modern stack migration.";
+    }
+
+    if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('whatsapp') || q.includes('reach') || q.includes('message') || q.includes('social') || q.includes('github')) {
+      return "<div class='chat-contact-card'><div class='chat-contact-header'><img src='/logo.svg' class='chat-contact-logo' alt='MD. Moshiur Rahman Logo'><div class='chat-contact-meta'><h4 class='chat-contact-name'>MD. Moshiur Rahman</h4><span class='chat-contact-role'>Full Stack Developer & UI Engineer</span></div></div></div>\n\n" +
+             "You can get in touch with **MD. Moshiur Rahman** directly:\n\n" +
+             "- 📧 **Email**: [borshonsweb@gmail.com](mailto:borshonsweb@gmail.com?subject=Portfolio%20Inquiry)\n" +
+             "- 💬 **WhatsApp**: [+8801732212203](https://wa.me/8801732212203)\n" +
+             "- ✈️ **Telegram**: [@moshiur_182](https://t.me/moshiur_182)\n" +
+             "- 🐙 **GitHub**: [github.com/MRB13182](https://github.com/MRB13182)\n" +
+             "- 📸 **Instagram**: [@ali.babaa.x](https://www.instagram.com/ali.babaa.x?igsh=Y3dlMm5ib2IzZng0)\n" +
+             "- 🌐 **Facebook**: [facebook.com/md.moshiur.rahman.512608](https://www.facebook.com/md.moshiur.rahman.512608)\n\n" +
+             "Based in **Dhaka, Bangladesh** • Available for global freelance & full-time roles!";
+    }
+
+    if (q.includes('who') || q.includes('about') || q.includes('experience') || q.includes('background') || q.includes('where') || q.includes('location')) {
+      return "MD. Moshiur Rahman is a **Full Stack Developer & UI Engineer** based in Dhaka, Bangladesh, with **5+ years of experience**.\n\n" +
+             "He focuses on building clean, high-performance web products, from pixel-considered user interfaces to robust backend systems. He has delivered work for 18+ happy clients across the globe!";
+    }
+
+    return "Hello! I am **MRx Ai**, MD. Moshiur Rahman's official portfolio AI assistant.\n\n" +
+           "I can provide instant details about Moshiur's **projects**, **technical stack**, **services**, **5+ years of experience**, or how to **contact/hire him**. What would you like to explore?";
+  };
+
+  // Main Send Message Function
+  const sendMessage = async (userText) => {
+    appendMessage('user', userText);
+
+    // Push turn to conversation history
+    conversationHistory.push({
+      role: 'user',
+      parts: [{ text: userText }]
+    });
+
+    // Show typing animation
+    if (typingIndicator) {
+      typingIndicator.style.display = 'flex';
+      scrollToBottom();
+    }
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          conversationHistory,
+          apiKey: API_KEY
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`API response failed with status ${response.status}`);
+      }
+
+      const data = await response.json();
+      const aiReply = data.reply;
+
+      if (typingIndicator) typingIndicator.style.display = 'none';
+
+      if (aiReply) {
+        conversationHistory.push({
+          role: 'model',
+          parts: [{ text: aiReply }]
+        });
+        appendMessage('ai', aiReply);
+      } else {
+        const fallback = generateKnowledgeResponse(userText);
+        appendMessage('ai', fallback);
+      }
+
+    } catch (err) {
+      console.warn("MRx Ai API Notice (using local knowledge engine):", err.message);
+      if (typingIndicator) typingIndicator.style.display = 'none';
+
+      const fallback = generateKnowledgeResponse(userText);
+      conversationHistory.push({
+        role: 'model',
+        parts: [{ text: fallback }]
+      });
+      appendMessage('ai', fallback);
+    }
+  };
 }
