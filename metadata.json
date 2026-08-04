@@ -1,6 +1,6 @@
 {
-  "name": "Moshiur Rahman Portfolio AI Assistant",
-  "description": "Futuristic luxury AI chatbot assistant for MD. Moshiur Rahman's portfolio website.",
+  "name": "MD. Moshiur Rahman Portfolio",
+  "description": "Portfolio of MD. Moshiur Rahman, Full Stack Developer & UI Engineer",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

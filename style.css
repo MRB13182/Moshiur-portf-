@@ -182,13 +182,9 @@ body:hover .custom-cursor {
   filter: drop-shadow(0 0 10px var(--glow));
 }
 
+/* Removed orbit-container rotation animation as requested */
 .orbit-container {
-  animation: rotate 24s linear infinite;
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  animation: none;
 }
 
 .hero-circle {
@@ -1035,27 +1031,24 @@ main, header, footer {
   transition: border-color 0.4s var(--ease);
 }
 
+/* Static orbit rings without spinning animation */
 .ring-1 {
   inset: 0;
   border-color: rgba(96, 165, 250, 0.22);
-  animation: spin 26s linear infinite;
+  animation: none;
 }
 
 .ring-2 {
   inset: 38px;
   border-style: dashed;
   border-color: rgba(37, 99, 235, 0.3);
-  animation: spin 35s linear infinite reverse;
+  animation: none;
 }
 
 .ring-3 {
   inset: 76px;
   border-color: rgba(147, 197, 253, 0.28);
-  animation: spin 45s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
+  animation: none;
 }
 
 /* CENTER HERO LOGO (.orbit-core) */
@@ -1067,7 +1060,6 @@ main, header, footer {
   place-items: center;
   background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #6366f1 100%);
   box-shadow: 0 0 0 12px rgba(37, 99, 235, 0.1), 0 30px 60px -15px rgba(37, 99, 235, 0.7), inset 0 2px 4px rgba(255, 255, 255, 0.4);
-  animation: floatCore 6s ease-in-out infinite;
   z-index: 2;
   position: relative;
   transition: all 0.45s var(--ease);
@@ -1076,11 +1068,6 @@ main, header, footer {
 [data-theme="light"] .orbit-core {
   background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
   box-shadow: 0 0 0 12px rgba(37, 99, 235, 0.12), 0 20px 45px -10px rgba(37, 99, 235, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.6);
-}
-
-@keyframes floatCore {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-12px) scale(1.02); }
 }
 
 .orbit-core .profile-box {
@@ -1122,14 +1109,9 @@ main, header, footer {
   transform: scale(1.08) translateY(-4px) !important;
 }
 
-.chip-1 { top: 5%; left: -2%; animation: floatChip 6s ease-in-out infinite; }
-.chip-2 { bottom: 12%; right: -6%; animation: floatChip 7s ease-in-out infinite 1s; }
-.chip-3 { bottom: -3%; left: 18%; animation: floatChip 8s ease-in-out infinite 0.5s; }
-
-@keyframes floatChip {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
+.chip-1 { top: 5%; left: -2%; }
+.chip-2 { bottom: 12%; right: -6%; }
+.chip-3 { bottom: -3%; left: 18%; }
 
 .scroll-cue {
   position: absolute;
@@ -1692,6 +1674,7 @@ main, header, footer {
   align-items: center;
   justify-content: center;
   cursor: grab;
+  touch-action: none;
   background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, rgba(15, 23, 42, 0.75) 80%, rgba(37, 99, 235, 0.22) 100%);
   border: 1.5px solid var(--border);
   box-shadow: var(--shadow-card);
@@ -2226,7 +2209,7 @@ main, header, footer {
 }
 
 /* ==========================================================================
-   LUXURY FUTURISTIC GLASSMORPHISM AI CHATBOT COMPONENT
+   LUXURY FUTURISTIC GLASSMORPHISM AI CHATBOT COMPONENT (MOVABLE / DRAGGABLE)
    ========================================================================== */
 .chatbot-wrapper {
   position: fixed;
@@ -2234,6 +2217,9 @@ main, header, footer {
   right: 28px;
   z-index: 1000;
   font-family: var(--font-body);
+  touch-action: none;
+  user-select: none;
+  will-change: transform;
 }
 
 /* Floating Circular AI Trigger Button */
@@ -2248,15 +2234,21 @@ main, header, footer {
   align-items: center;
   justify-content: center;
   position: relative;
-  cursor: pointer;
+  cursor: grab;
   box-shadow: 0 10px 30px rgba(37, 99, 235, 0.5), 0 0 40px rgba(96, 165, 250, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.5);
   transition: transform 0.4s var(--ease-bounce), box-shadow 0.4s var(--ease), background 0.4s var(--ease);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  touch-action: none;
+}
+
+.chatbot-trigger:active,
+.chatbot-trigger.dragging {
+  cursor: grabbing;
 }
 
 .chatbot-trigger:hover {
-  transform: scale(1.1) translateY(-3px);
+  transform: scale(1.08) translateY(-2px);
   box-shadow: 0 15px 40px rgba(37, 99, 235, 0.7), 0 0 60px rgba(96, 165, 250, 0.6), inset 0 2px 6px rgba(255, 255, 255, 0.7);
 }
 
@@ -2283,6 +2275,7 @@ main, header, footer {
   position: relative;
   width: 100%;
   height: 100%;
+  pointer-events: none;
 }
 
 .trigger-robot-img {
@@ -2389,7 +2382,7 @@ main, header, footer {
 }
 
 .chat-contact-chip:hover {
-  background: var(--gradient-primary);
+  background: var(--primary-gradient);
   color: #ffffff;
   border-color: transparent;
   transform: translateY(-2px);
@@ -2486,9 +2479,9 @@ main, header, footer {
 
 /* Glassmorphism Chat Panel Window */
 .chatbot-panel {
-  position: fixed;
-  bottom: 104px;
-  right: 28px;
+  position: absolute;
+  bottom: 76px;
+  right: 0;
   width: 410px;
   max-width: calc(100vw - 32px);
   height: 600px;
@@ -2523,7 +2516,7 @@ main, header, footer {
   transform: translateY(0) scale(1);
 }
 
-/* Chat Header */
+/* Chat Header (Draggable Handle) */
 .chat-header {
   padding: 16px 20px;
   display: flex;
@@ -2531,6 +2524,13 @@ main, header, footer {
   justify-content: space-between;
   border-bottom: 1px solid rgba(96, 165, 250, 0.2);
   background: rgba(15, 23, 42, 0.4);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.chat-header:active {
+  cursor: grabbing;
 }
 
 [data-theme="light"] .chat-header {
@@ -2542,6 +2542,7 @@ main, header, footer {
   display: flex;
   align-items: center;
   gap: 12px;
+  pointer-events: none;
 }
 
 .chat-avatar {
@@ -2666,6 +2667,8 @@ main, header, footer {
   flex-direction: column;
   gap: 16px;
   scroll-behavior: smooth;
+  touch-action: pan-y;
+  user-select: text;
 }
 
 .message-row {
@@ -2913,6 +2916,7 @@ main, header, footer {
   padding: 14px 18px;
   border-top: 1px solid rgba(96, 165, 250, 0.2);
   background: rgba(15, 23, 42, 0.6);
+  user-select: text;
 }
 
 [data-theme="light"] .chat-input-area {
@@ -3105,14 +3109,9 @@ main, header, footer {
 
 /* Mobile Responsive Chatbot Adjustments */
 @media (max-width: 480px) {
-  .chatbot-wrapper {
-    bottom: 18px;
-    right: 18px;
-  }
-
   .chatbot-panel {
-    right: 16px;
-    bottom: 90px;
+    right: -10px;
+    bottom: 76px;
     width: calc(100vw - 32px);
     height: 520px;
     max-height: calc(100vh - 110px);
@@ -3123,4 +3122,3 @@ main, header, footer {
     display: none;
   }
 }
-
