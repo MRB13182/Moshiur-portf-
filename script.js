@@ -333,28 +333,62 @@ function initRoleRotator() {
    6. Scroll Reveal Engine: IntersectionObserver with Stagger
    ---------------------------------------------------------------------- */
 function initRevealAnimations() {
-  const revealItems = document.querySelectorAll('.reveal');
+  const selectors = [
+    '.reveal',
+    '.section-eyebrow',
+    '.section-title',
+    '.card',
+    '.btn',
+    '.social-btn',
+    '.contact-form',
+    '.timeline-item',
+    '.service-card',
+    '.project-icon',
+    '.aspirations-col',
+    '.info-card',
+    '.skill-info-card',
+    '.quote',
+    '.contact-info'
+  ];
+
+  const revealItems = document.querySelectorAll(selectors.join(', '));
   if (!revealItems.length) return;
 
   const observerOptions = {
     root: null,
-    rootMargin: '0px 0px -50px 0px',
-    threshold: 0.1
+    rootMargin: '0px 0px -30px 0px',
+    threshold: 0.08
   };
 
   const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach((entry, idx) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        const delay = (idx % 4) * 90;
+        const el = entry.target;
+
+        // Calculate stagger index relative to parent container siblings
+        let delay = 0;
+        const parent = el.parentElement;
+        if (parent) {
+          const siblings = Array.from(parent.children).filter(child => child.classList.contains('reveal'));
+          const index = siblings.indexOf(el);
+          if (index > 0) {
+            delay = Math.min(index * 90, 450);
+          }
+        }
+
         setTimeout(() => {
-          entry.target.classList.add('visible');
+          el.classList.add('visible');
         }, delay);
-        obs.unobserve(entry.target);
+
+        obs.unobserve(el);
       }
     });
   }, observerOptions);
 
-  revealItems.forEach((item) => observer.observe(item));
+  revealItems.forEach((item) => {
+    item.classList.add('reveal');
+    observer.observe(item);
+  });
 }
 
 /* ----------------------------------------------------------------------

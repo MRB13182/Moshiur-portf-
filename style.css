@@ -833,15 +833,37 @@ main, header, footer {
   pointer-events: auto;
 }
 
+/* ---------- Scroll Reveal Engine ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 /* ==========================================================================
    HERO SECTION
    ========================================================================== */
 .hero {
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(120px, 15vh, 180px) 24px clamp(60px, 8vh, 100px);
+  align-items: center;
+  padding: clamp(100px, 12vh, 140px) 24px clamp(28px, 4vh, 40px);
   position: relative;
   overflow: hidden;
 }
@@ -1002,10 +1024,11 @@ main, header, footer {
 
 
 .scroll-cue {
-  position: absolute;
-  bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  bottom: auto;
+  left: auto;
+  transform: none;
+  margin-top: 28px;
   width: 28px;
   height: 46px;
   border: 2px solid var(--border);
